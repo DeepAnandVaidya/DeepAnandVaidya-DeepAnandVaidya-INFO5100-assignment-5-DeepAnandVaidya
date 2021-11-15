@@ -7,6 +7,7 @@ package business;
 
 import business.role.Role;
 import business.role.SystemAdminRole;
+import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
 
 /**
@@ -57,6 +58,5 @@ public class Business extends Organization {
     public void setName1(String name1) {
         this.name1 = name1;
     }
-    
     
 }

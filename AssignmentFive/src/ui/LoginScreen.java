@@ -25,11 +25,14 @@ public class LoginScreen extends javax.swing.JPanel {
      */
     Business business;
     JPanel mainWorkArea;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private Business system;
 
     public LoginScreen(JPanel mainWorkArea, Business business) {
         initComponents();
         this.business = business;
         this.mainWorkArea = mainWorkArea;
+        system = dB4OUtil.retrieveSystem();
     }
 
     /**
@@ -117,11 +120,11 @@ public class LoginScreen extends javax.swing.JPanel {
         boolean flag = false;
 
         UserAccount userAccount = null;
-        userAccount = business.getUserAccountDirectory().authenticateUser(userName, password);
+        userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
 
         if (userAccount != null) {
             Role test = userAccount.getRole();
-            JPanel mainScreen = new MainScreen(mainWorkArea, userAccount, business);
+            JPanel mainScreen = new MainScreen(mainWorkArea, userAccount, system);
             mainWorkArea.add("MainScreen", mainScreen);
             CardLayout layout = (CardLayout) mainWorkArea.getLayout();
             layout.next(mainWorkArea);

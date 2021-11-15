@@ -6,6 +6,7 @@
 package ui.SystemAdminWorkArea;
 
 import business.Business;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +18,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SystemAdminWorkAreaJPanel
      */
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business ecosystem) {
+    Business business;
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business) {
         initComponents();
+        this.business = business;
     }
 
     /**
@@ -33,9 +36,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         NavigationJPanel = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnRestaurant = new javax.swing.JButton();
+        btnDeliveryStaff = new javax.swing.JButton();
+        btnCustomers = new javax.swing.JButton();
         workAreaPanel = new javax.swing.JPanel();
 
         jButton1.setText("jButton1");
@@ -44,20 +47,26 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         NavigationJPanel.setBackground(new java.awt.Color(0, 51, 51));
 
-        jButton2.setBackground(new java.awt.Color(206, 217, 217));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 51, 51));
-        jButton2.setText("MANAGE RESTAURANTS");
+        btnRestaurant.setBackground(new java.awt.Color(206, 217, 217));
+        btnRestaurant.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRestaurant.setForeground(new java.awt.Color(0, 51, 51));
+        btnRestaurant.setText("MANAGE RESTAURANTS");
+        btnRestaurant.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRestaurant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurantActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(206, 217, 217));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 51, 51));
-        jButton3.setText("MANAGE DELIVERY STAFF");
+        btnDeliveryStaff.setBackground(new java.awt.Color(206, 217, 217));
+        btnDeliveryStaff.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDeliveryStaff.setForeground(new java.awt.Color(0, 51, 51));
+        btnDeliveryStaff.setText("MANAGE DELIVERY STAFF");
 
-        jButton4.setBackground(new java.awt.Color(206, 217, 217));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 51, 51));
-        jButton4.setText("MANAGE CUSTOMERS");
+        btnCustomers.setBackground(new java.awt.Color(206, 217, 217));
+        btnCustomers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCustomers.setForeground(new java.awt.Color(0, 51, 51));
+        btnCustomers.setText("MANAGE CUSTOMERS");
 
         javax.swing.GroupLayout NavigationJPanelLayout = new javax.swing.GroupLayout(NavigationJPanel);
         NavigationJPanel.setLayout(NavigationJPanelLayout);
@@ -66,46 +75,35 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnDeliveryStaff, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRestaurant, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4)
+                .addComponent(btnCustomers)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3, jButton4});
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCustomers, btnDeliveryStaff, btnRestaurant});
 
         NavigationJPanelLayout.setVerticalGroup(
             NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
                 .addGap(191, 191, 191)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jButton3)
+                .addComponent(btnDeliveryStaff)
                 .addGap(45, 45, 45)
-                .addComponent(jButton4)
+                .addComponent(btnCustomers)
                 .addContainerGap(231, Short.MAX_VALUE))
         );
 
-        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton2, jButton3, jButton4});
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCustomers, btnDeliveryStaff, btnRestaurant});
 
         jSplitPane1.setLeftComponent(NavigationJPanel);
 
         workAreaPanel.setBackground(new java.awt.Color(240, 255, 255));
-
-        javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
-        workAreaPanel.setLayout(workAreaPanelLayout);
-        workAreaPanelLayout.setHorizontalGroup(
-            workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
-        );
-        workAreaPanelLayout.setVerticalGroup(
-            workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
-        );
-
+        workAreaPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(workAreaPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -120,13 +118,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
+        btnDeliveryStaff.setVisible(false);
+        btnCustomers.setVisible(false);
+        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business);
+        workAreaPanel.add("ManageRestaurantManagersPanel", manageRestaurantManagersPanel);
+        CardLayout layout = (CardLayout) workAreaPanel.getLayout();
+        layout.next(workAreaPanel);
+    }//GEN-LAST:event_btnRestaurantActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel NavigationJPanel;
+    private javax.swing.JButton btnCustomers;
+    private javax.swing.JButton btnDeliveryStaff;
+    private javax.swing.JButton btnRestaurant;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables

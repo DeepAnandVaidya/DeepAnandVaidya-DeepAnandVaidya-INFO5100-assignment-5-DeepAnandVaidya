@@ -21,6 +21,7 @@ public class RestaurantRole extends Role {
         this.type = RoleType.RestaurantAdmin;
     }
 
+    
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
         return new RestaurantAreaJPanel(userProcessContainer, Business.getInstance());

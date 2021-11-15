@@ -6,6 +6,7 @@
 package ui;
 
 import business.Business;
+import business.ConfigureABusiness;
 import business.DB4OUtil.DB4OUtil;
 import business.Organization;
 import business.useraccount.UserAccount;
@@ -30,14 +31,14 @@ public class MainScreen extends javax.swing.JPanel {
     Business business;
     private Business system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    
+
     public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
         this.userAccount = userAccount;
-        this.business = business;
+        this.business = ConfigureABusiness.configure();
         system = dB4OUtil.retrieveSystem();
-        System.out.println("output: " + system + "\n");
+        listOutput(system);
         initUserWorkArea();
     }
 
@@ -118,7 +119,6 @@ public class MainScreen extends javax.swing.JPanel {
         mainWorkArea.remove(this);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.previous(mainWorkArea);
-        system.setName1("test");
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOffActionPerformed
 
@@ -134,7 +134,13 @@ public class MainScreen extends javax.swing.JPanel {
     private void initUserWorkArea() {
         lblUser.setText("Welcome: " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
         CardLayout layout = (CardLayout) workArea.getLayout();
-        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, business));
+        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system));
         layout.next(workArea);
+    }
+
+    private void listOutput(Business system) {
+        for (int i = 0; i < system.getUserAccountDirectory().getUserAccountList().size(); i++) {
+            System.out.println("output: " + system.getUserAccountDirectory().getUserAccountList().get(i) + "\n");
+        }
     }
 }
