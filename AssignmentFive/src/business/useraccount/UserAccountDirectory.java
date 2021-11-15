@@ -25,6 +25,10 @@ public class UserAccountDirectory {
         return userAccountList;
     }
 
+    public void setUserAccountList(ArrayList<UserAccount> userAccountList) {
+        this.userAccountList = userAccountList;
+    }
+
     public UserAccount authenticateUser(String username, String password) {
         for (UserAccount ua : userAccountList) {
             if (ua.getUsername().equals(username) && ua.getPassword().equals(password)) {

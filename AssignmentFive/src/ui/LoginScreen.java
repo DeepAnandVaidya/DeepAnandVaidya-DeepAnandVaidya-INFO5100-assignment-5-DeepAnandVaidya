@@ -29,6 +29,7 @@ public class LoginScreen extends javax.swing.JPanel {
     private Business system;
 
     public LoginScreen(JPanel mainWorkArea, Business business) {
+        System.out.println("LOGIN!!!!!");
         initComponents();
         this.business = business;
         this.mainWorkArea = mainWorkArea;

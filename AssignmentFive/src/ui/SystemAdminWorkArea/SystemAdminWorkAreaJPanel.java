@@ -19,6 +19,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form SystemAdminWorkAreaJPanel
      */
     Business business;
+
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business) {
         initComponents();
         this.business = business;
@@ -62,11 +63,23 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnDeliveryStaff.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDeliveryStaff.setForeground(new java.awt.Color(0, 51, 51));
         btnDeliveryStaff.setText("MANAGE DELIVERY STAFF");
+        btnDeliveryStaff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDeliveryStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeliveryStaffActionPerformed(evt);
+            }
+        });
 
         btnCustomers.setBackground(new java.awt.Color(206, 217, 217));
         btnCustomers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCustomers.setForeground(new java.awt.Color(0, 51, 51));
         btnCustomers.setText("MANAGE CUSTOMERS");
+        btnCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomersActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout NavigationJPanelLayout = new javax.swing.GroupLayout(NavigationJPanel);
         NavigationJPanel.setLayout(NavigationJPanelLayout);
@@ -119,13 +132,23 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
-        btnDeliveryStaff.setVisible(false);
-        btnCustomers.setVisible(false);
-        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business);
+        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business, workAreaPanel);
         workAreaPanel.add("ManageRestaurantManagersPanel", manageRestaurantManagersPanel);
         CardLayout layout = (CardLayout) workAreaPanel.getLayout();
         layout.next(workAreaPanel);
     }//GEN-LAST:event_btnRestaurantActionPerformed
+
+    private void btnDeliveryStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryStaffActionPerformed
+        JPanel manageDeliveryStaffPanel = new ManageDeliveryStaffPanel(business);
+        workAreaPanel.add("ManageDeliveryStaffPanel", manageDeliveryStaffPanel);
+        CardLayout layout = (CardLayout) workAreaPanel.getLayout();
+        layout.next(workAreaPanel);    }//GEN-LAST:event_btnDeliveryStaffActionPerformed
+
+    private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
+        JPanel manageCustomerPanel = new ManageCustomerPanel(business);
+        workAreaPanel.add("ManageCustomerPanel", manageCustomerPanel);
+        CardLayout layout = (CardLayout) workAreaPanel.getLayout();
+        layout.next(workAreaPanel);    }//GEN-LAST:event_btnCustomersActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
