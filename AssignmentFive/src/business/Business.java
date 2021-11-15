@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Business extends Organization {
 
     private static Business business;
+    private String name1;
 
     public static Business getInstance() {
         if (business == null) {
@@ -40,4 +41,22 @@ public class Business extends Organization {
        //
        return false;
     }
+
+    public static Business getBusiness() {
+        return business;
+    }
+
+    public static void setBusiness(Business business) {
+        Business.business = business;
+    }
+
+    public String getName1() {
+        return name1;
+    }
+
+    public void setName1(String name1) {
+        this.name1 = name1;
+    }
+    
+    
 }

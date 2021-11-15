@@ -20,26 +20,17 @@ public class ConfigureABusiness {
 
     public static Business configure() {
 
-        Employee employee = new Employee();
-        employee.setName("Deep Vaidya");
-
         Business system = Business.getInstance();
-        UserAccount testAccount = new UserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
+        UserAccount testAccount = new UserAccount("sysadmin", "sysadmin", "Deep Vaidya", new SystemAdminRole());
         system.getUserAccountDirectory().getUserAccountList().add(testAccount);
 
-        Employee employee1 = new Employee();
-        employee.setName("Deep Vaidya Customer");
-        UserAccount testAccount1 = new UserAccount("customer", "customer", employee, new Customer());
+        UserAccount testAccount1 = new UserAccount("customer", "customer", "Deep Vaidya Customer", new Customer());
         system.getUserAccountDirectory().getUserAccountList().add(testAccount1);
 
-        Employee employee2 = new Employee();
-        employee.setName("Deep Vaidya Restaurant");
-        UserAccount testAccount2 = new UserAccount("restaurant", "restaurant", employee, new RestaurantRole());
+        UserAccount testAccount2 = new UserAccount("restaurant", "restaurant", "Deep Vaidya Restaurant", new RestaurantRole());
         system.getUserAccountDirectory().getUserAccountList().add(testAccount2);
 
-        Employee employee3 = new Employee();
-        employee.setName("Deep Vaidya Delivery");
-        UserAccount testAccount3 = new UserAccount("delivery", "delivery", employee, new DeliveryManRole());
+        UserAccount testAccount3 = new UserAccount("delivery", "delivery", "Deep Vaidya Delivery", new DeliveryManRole());
         system.getUserAccountDirectory().getUserAccountList().add(testAccount3);
 
         return system;

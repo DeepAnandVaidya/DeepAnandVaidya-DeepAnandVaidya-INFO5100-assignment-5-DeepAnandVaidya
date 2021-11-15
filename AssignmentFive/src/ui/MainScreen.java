@@ -6,9 +6,14 @@
 package ui;
 
 import business.Business;
+import business.DB4OUtil.DB4OUtil;
 import business.Organization;
 import business.useraccount.UserAccount;
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import java.awt.CardLayout;
+import java.nio.file.Paths;
 import javax.swing.JPanel;
 
 /**
@@ -23,12 +28,16 @@ public class MainScreen extends javax.swing.JPanel {
     JPanel mainWorkArea;
     UserAccount userAccount;
     Business business;
-
+    private Business system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    
     public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
         this.userAccount = userAccount;
         this.business = business;
+        system = dB4OUtil.retrieveSystem();
+        System.out.println("output: " + system + "\n");
         initUserWorkArea();
     }
 
@@ -41,40 +50,89 @@ public class MainScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        lblUser = new javax.swing.JLabel();
+        btnLogOff = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
-        jLabel1.setText("MAIN SCREEN");
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+
+        lblUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setText("<Welcome xyz>");
+
+        btnLogOff.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogOff.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogOff.setForeground(new java.awt.Color(0, 102, 102));
+        btnLogOff.setText("LOGOFF");
+        btnLogOff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOffActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 630, Short.MAX_VALUE)
+                .addComponent(btnLogOff, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogOff, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUser))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setTopComponent(jPanel1);
 
         workArea.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(workArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(357, 357, 357)
-                .addComponent(jLabel1)
-                .addContainerGap(366, Short.MAX_VALUE))
-            .addComponent(workArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(91, 91, 91)
-                .addComponent(workArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
+        // TODO add your handling code here:
+        mainWorkArea.remove(this);
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.previous(mainWorkArea);
+        system.setName1("test");
+        dB4OUtil.storeSystem(system);
+    }//GEN-LAST:event_btnLogOffActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnLogOff;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
 
     private void initUserWorkArea() {
+        lblUser.setText("Welcome: " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
         CardLayout layout = (CardLayout) workArea.getLayout();
         workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, business));
         layout.next(workArea);

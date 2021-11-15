@@ -39,7 +39,7 @@
 //             *
 //             */
 //            Pilot proto = new Pilot("Aravind", 0);
-//            ObjectSet result = db.queryByExample(proto);
+//            ObjectSet result = db.query(Pilot.class);
 //            listResult(result);
 //            /**
 //             *
