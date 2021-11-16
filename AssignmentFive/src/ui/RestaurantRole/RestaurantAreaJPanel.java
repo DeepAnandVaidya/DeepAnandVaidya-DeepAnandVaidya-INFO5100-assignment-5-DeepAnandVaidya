@@ -39,9 +39,6 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         managerName = account.getEmployee().getName();
         restaurant = restaurantDirectory.findRestaurant(managerName);
         lblRestaurantName.setText(restaurant.getName() == null ? managerName + "'s Dashboard" : restaurant.getName());
-//        if (restaurant.getMenu() != null && restaurant.getMenu().getApetizers() != null) {
-//            jLabel1.setText(String.valueOf(restaurant.getMenu().getApetizers().get("Onion Rings")));
-//        }
 
     }
 
@@ -980,7 +977,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         HashMap<String, Integer> apetizers = setApetizers();
         HashMap<String, Integer> mains = setMains();
         HashMap<String, Integer> desserts = setDessert();
-        HashMap<String, Integer> beverages = setDessert();
+        HashMap<String, Integer> beverages = setBeverages();
 
         Menu menu = new Menu();
         menu.setApetizers(apetizers);
@@ -1131,7 +1128,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         }
 
         if (rdPepsi1.isSelected()) {
-            beverages.put("pepsi", Integer.parseInt(txtPepsi.getText()));
+            beverages.put("Pepsi", Integer.parseInt(txtPepsi.getText()));
         }
 
         return beverages;
@@ -1336,6 +1333,50 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     }
 
     /**
+     * @param dessertsMap1
+     */
+    private void populateDessertsFields(HashMap<String, Integer> dessertsMap1) {
+        for (Map.Entry<String, Integer> dessertsMap : dessertsMap1.entrySet()) {
+            if (dessertsMap.getKey().equals("Black Forest Cake")) {
+                rdBlackForestCake1.setSelected(true);
+                txtBlackForestCake.setText(String.valueOf(dessertsMap.getValue()));
+            }
+
+            if (dessertsMap.getKey().equals("Pineapple Swiss Role")) {
+                rdPineappleSwissRole1.setSelected(true);
+                txtPineappleSwissRole.setText(String.valueOf(dessertsMap.getValue()));
+            }
+
+            if (dessertsMap.getKey().equals("Chocolate Mousse")) {
+                rdChocolateMousse1.setSelected(true);
+                txtChocolateMousse.setText(String.valueOf(dessertsMap.getValue()));
+            }
+        }
+    }
+
+    /**
+     * @param beveragesMap1
+     */
+    private void populateBeveragesFields(HashMap<String, Integer> beveragesMap1) {
+        for (Map.Entry<String, Integer> beveragesMap : beveragesMap1.entrySet()) {
+            if (beveragesMap.getKey().equals("CocaCola")) {
+                rdCocaCola1.setSelected(true);
+                txtCocaCola.setText(String.valueOf(beveragesMap.getValue()));
+            }
+
+            if (beveragesMap.getKey().equals("Fresh Lime Salted")) {
+                rdFreshLimesalted1.setSelected(true);
+                txtFreshLimeSalted.setText(String.valueOf(beveragesMap.getValue()));
+            }
+
+            if (beveragesMap.getKey().equals("Pepsi")) {
+                rdPepsi1.setSelected(true);
+                txtPepsi.setText(String.valueOf(beveragesMap.getValue()));
+            }
+        }
+    }
+
+    /**
      * Populate the menu fields
      */
     private void populateMenuFields() {
@@ -1346,6 +1387,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
             if (restaurant.getMenu().getMains() != null && !restaurant.getMenu().getMains().isEmpty()) {
                 populateMainsFields(restaurant.getMenu().getMains());
+            }
+
+            if (restaurant.getMenu().getDessert() != null && !restaurant.getMenu().getDessert().isEmpty()) {
+                populateDessertsFields(restaurant.getMenu().getDessert());
+            }
+
+            if (restaurant.getMenu().getBeverages() != null && !restaurant.getMenu().getBeverages().isEmpty()) {
+                populateBeveragesFields(restaurant.getMenu().getBeverages());
             }
         }
     }
