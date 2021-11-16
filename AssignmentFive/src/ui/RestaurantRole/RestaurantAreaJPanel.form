@@ -273,7 +273,6 @@
                                               <Component id="chkNonVeg" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="chkVeg" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
@@ -1053,6 +1052,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Onion Rings"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdOnionRings1ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtOnionRings">
                         </Component>
@@ -1215,6 +1217,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Cheese Burger"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdCheeseBurger1ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtCheeseBurger">
                         </Component>

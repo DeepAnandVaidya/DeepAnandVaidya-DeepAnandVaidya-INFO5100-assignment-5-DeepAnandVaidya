@@ -12,8 +12,11 @@ import business.Restaurant.RestaurantDirectory;
 import business.role.RestaurantRole;
 import business.role.Role;
 import business.useraccount.UserAccount;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -50,6 +53,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
         populateRestaurants();
+        disableRadioButtons();
     }
 
     /**
@@ -84,6 +88,70 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblMobileNum = new javax.swing.JLabel();
         txtMobileNum = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        OrderPanel = new javax.swing.JPanel();
+        lblHeader1 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        lblApetizers1 = new javax.swing.JLabel();
+        lblAptVeg1 = new javax.swing.JLabel();
+        lblAptNonVeg1 = new javax.swing.JLabel();
+        lblAptVegan1 = new javax.swing.JLabel();
+        rdOnionRings1 = new javax.swing.JRadioButton();
+        rdSpinachPie1 = new javax.swing.JRadioButton();
+        rdSpringRoles1 = new javax.swing.JRadioButton();
+        rdMeatBalls1 = new javax.swing.JRadioButton();
+        rdSausageDip1 = new javax.swing.JRadioButton();
+        rdFriedShrimp1 = new javax.swing.JRadioButton();
+        rdWhiteBeanDip1 = new javax.swing.JRadioButton();
+        rdTortillaChips1 = new javax.swing.JRadioButton();
+        rdCrispyTofu1 = new javax.swing.JRadioButton();
+        lblMains1 = new javax.swing.JLabel();
+        lblMainsVeg1 = new javax.swing.JLabel();
+        rdCheeseBurger1 = new javax.swing.JRadioButton();
+        rdFriedRice1 = new javax.swing.JRadioButton();
+        rdVeggiePizza1 = new javax.swing.JRadioButton();
+        rdHamBurger1 = new javax.swing.JRadioButton();
+        rdFishNChips1 = new javax.swing.JRadioButton();
+        rdPrawnFriedRice1 = new javax.swing.JRadioButton();
+        rdTofuSalad1 = new javax.swing.JRadioButton();
+        rdFalafelBowl1 = new javax.swing.JRadioButton();
+        rdTofuAndRiceBowl1 = new javax.swing.JRadioButton();
+        lblMainsNonVeg1 = new javax.swing.JLabel();
+        lblAptVegan2 = new javax.swing.JLabel();
+        lblDesserts1 = new javax.swing.JLabel();
+        rdBlackForestCake1 = new javax.swing.JRadioButton();
+        rdPineappleSwissRole1 = new javax.swing.JRadioButton();
+        rdChocolateMousse1 = new javax.swing.JRadioButton();
+        lbBeverages1 = new javax.swing.JLabel();
+        rdCocaCola1 = new javax.swing.JRadioButton();
+        rdFreshLimesalted1 = new javax.swing.JRadioButton();
+        rdPepsi1 = new javax.swing.JRadioButton();
+        lblOnionRingsPrice = new javax.swing.JLabel();
+        lblSpinachPiePrice = new javax.swing.JLabel();
+        lblSpringRolesPrice = new javax.swing.JLabel();
+        lblMeatBallsPrice = new javax.swing.JLabel();
+        lblsausageDipPrice = new javax.swing.JLabel();
+        lblFriedShrimpPrice = new javax.swing.JLabel();
+        lblWhiteBeanDipPrice = new javax.swing.JLabel();
+        lblTortillaChipsPrice = new javax.swing.JLabel();
+        lblCrispyTofuPrice = new javax.swing.JLabel();
+        lblCheeseBurgerPrice = new javax.swing.JLabel();
+        lblFriedRicePrice = new javax.swing.JLabel();
+        lblVeggiePrice = new javax.swing.JLabel();
+        lblHamburgerPrice = new javax.swing.JLabel();
+        lblFishNChipsPrice = new javax.swing.JLabel();
+        lblPrawnFriedRicePrice = new javax.swing.JLabel();
+        lblTofuSaladPrice = new javax.swing.JLabel();
+        lblFalafelBowlPrice = new javax.swing.JLabel();
+        lblTofuRiceBowlPrice = new javax.swing.JLabel();
+        lblBlackForestCakePrice = new javax.swing.JLabel();
+        lblPineappleSwissRolePrice = new javax.swing.JLabel();
+        lblChocolateMoussePrice = new javax.swing.JLabel();
+        lblCocaColaPrice = new javax.swing.JLabel();
+        lblFreshLimeSaltedPrice = new javax.swing.JLabel();
+        lblPepsiPrice = new javax.swing.JLabel();
+        btnBack2 = new javax.swing.JButton();
 
         navigationPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -193,7 +261,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         MainWorkArea.setLayout(MainWorkAreaLayout);
         MainWorkAreaLayout.setHorizontalGroup(
             MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+            .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
             .addGroup(MainWorkAreaLayout.createSequentialGroup()
                 .addGroup(MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainWorkAreaLayout.createSequentialGroup()
@@ -213,7 +281,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnViewMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(760, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MainWorkArea, "card2");
@@ -291,7 +359,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         EditProfilePanelLayout.setHorizontalGroup(
             EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
-                .addContainerGap(579, Short.MAX_VALUE)
+                .addContainerGap(582, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(35, 35, 35))
             .addGroup(EditProfilePanelLayout.createSequentialGroup()
@@ -347,10 +415,604 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(btnSave)
-                .addContainerGap(674, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(EditProfilePanel, "card3");
+
+        OrderPanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblHeader1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHeader1.setForeground(new java.awt.Color(0, 153, 153));
+        lblHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader1.setText("<Place your order at xyz>");
+
+        btnBack1.setBackground(new java.awt.Color(255, 204, 204));
+        btnBack1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack1.setForeground(new java.awt.Color(255, 0, 51));
+        btnBack1.setText("BACK");
+        btnBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblApetizers1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblApetizers1.setForeground(new java.awt.Color(0, 204, 204));
+        lblApetizers1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblApetizers1.setText("APPETIZERS");
+
+        lblAptVeg1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptVeg1.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptVeg1.setText("VEG");
+
+        lblAptNonVeg1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptNonVeg1.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptNonVeg1.setText("NON-VEG");
+
+        lblAptVegan1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptVegan1.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptVegan1.setText("VEGAN");
+
+        rdOnionRings1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdOnionRings1.setForeground(new java.awt.Color(0, 0, 0));
+        rdOnionRings1.setText("Onion Rings");
+        rdOnionRings1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdOnionRings1ActionPerformed(evt);
+            }
+        });
+
+        rdSpinachPie1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdSpinachPie1.setForeground(new java.awt.Color(0, 0, 0));
+        rdSpinachPie1.setText("Spinach Pie");
+
+        rdSpringRoles1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdSpringRoles1.setForeground(new java.awt.Color(0, 0, 0));
+        rdSpringRoles1.setText("Spring Roles");
+
+        rdMeatBalls1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdMeatBalls1.setForeground(new java.awt.Color(0, 0, 0));
+        rdMeatBalls1.setText("Meatballs");
+
+        rdSausageDip1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdSausageDip1.setForeground(new java.awt.Color(0, 0, 0));
+        rdSausageDip1.setText("Sausage Dip");
+
+        rdFriedShrimp1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFriedShrimp1.setForeground(new java.awt.Color(0, 0, 0));
+        rdFriedShrimp1.setText("Fired Shrimp");
+
+        rdWhiteBeanDip1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdWhiteBeanDip1.setForeground(new java.awt.Color(0, 0, 0));
+        rdWhiteBeanDip1.setText("White Bean Dip");
+
+        rdTortillaChips1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdTortillaChips1.setForeground(new java.awt.Color(0, 0, 0));
+        rdTortillaChips1.setText("Tortilla Chips");
+
+        rdCrispyTofu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdCrispyTofu1.setForeground(new java.awt.Color(0, 0, 0));
+        rdCrispyTofu1.setText("Crispy Tofu");
+
+        lblMains1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMains1.setForeground(new java.awt.Color(0, 204, 204));
+        lblMains1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMains1.setText("MAINS");
+
+        lblMainsVeg1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMainsVeg1.setForeground(new java.awt.Color(0, 102, 102));
+        lblMainsVeg1.setText("VEG");
+
+        rdCheeseBurger1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdCheeseBurger1.setForeground(new java.awt.Color(0, 0, 0));
+        rdCheeseBurger1.setText("Cheese Burger");
+        rdCheeseBurger1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdCheeseBurger1ActionPerformed(evt);
+            }
+        });
+
+        rdFriedRice1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFriedRice1.setForeground(new java.awt.Color(0, 0, 0));
+        rdFriedRice1.setText("Fried Rice");
+
+        rdVeggiePizza1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdVeggiePizza1.setForeground(new java.awt.Color(0, 0, 0));
+        rdVeggiePizza1.setText("Veggie Pizza");
+
+        rdHamBurger1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdHamBurger1.setForeground(new java.awt.Color(0, 0, 0));
+        rdHamBurger1.setText("Ham Burger");
+
+        rdFishNChips1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFishNChips1.setForeground(new java.awt.Color(0, 0, 0));
+        rdFishNChips1.setText("Fish N' Chips");
+
+        rdPrawnFriedRice1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdPrawnFriedRice1.setForeground(new java.awt.Color(0, 0, 0));
+        rdPrawnFriedRice1.setText("Prawn Fried Rice");
+
+        rdTofuSalad1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdTofuSalad1.setForeground(new java.awt.Color(0, 0, 0));
+        rdTofuSalad1.setText("Tofu Salad");
+
+        rdFalafelBowl1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFalafelBowl1.setForeground(new java.awt.Color(0, 0, 0));
+        rdFalafelBowl1.setText("Falafel Bowl");
+
+        rdTofuAndRiceBowl1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdTofuAndRiceBowl1.setForeground(new java.awt.Color(0, 0, 0));
+        rdTofuAndRiceBowl1.setText("Tofu & Rice platter");
+
+        lblMainsNonVeg1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMainsNonVeg1.setForeground(new java.awt.Color(0, 102, 102));
+        lblMainsNonVeg1.setText("NON-VEG");
+
+        lblAptVegan2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptVegan2.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptVegan2.setText("VEGAN");
+
+        lblDesserts1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDesserts1.setForeground(new java.awt.Color(0, 204, 204));
+        lblDesserts1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDesserts1.setText("DESSERTS");
+
+        rdBlackForestCake1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdBlackForestCake1.setForeground(new java.awt.Color(0, 0, 0));
+        rdBlackForestCake1.setText("Black Forest Cake");
+
+        rdPineappleSwissRole1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdPineappleSwissRole1.setForeground(new java.awt.Color(0, 0, 0));
+        rdPineappleSwissRole1.setText("Pineapple Swiss Role");
+
+        rdChocolateMousse1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdChocolateMousse1.setForeground(new java.awt.Color(0, 0, 0));
+        rdChocolateMousse1.setText("Chocolate Mousse with Whipped Cream");
+
+        lbBeverages1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbBeverages1.setForeground(new java.awt.Color(0, 204, 204));
+        lbBeverages1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbBeverages1.setText("BEVERAGES");
+
+        rdCocaCola1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdCocaCola1.setForeground(new java.awt.Color(0, 0, 0));
+        rdCocaCola1.setText("CocaCola");
+
+        rdFreshLimesalted1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFreshLimesalted1.setForeground(new java.awt.Color(0, 0, 0));
+        rdFreshLimesalted1.setText("Fresh Lime Salted");
+
+        rdPepsi1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdPepsi1.setForeground(new java.awt.Color(0, 0, 0));
+        rdPepsi1.setText("Pepsi");
+
+        lblOnionRingsPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblOnionRingsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblOnionRingsPrice.setText("- NA -");
+
+        lblSpinachPiePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSpinachPiePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblSpinachPiePrice.setText("- NA -");
+
+        lblSpringRolesPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSpringRolesPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblSpringRolesPrice.setText("- NA -");
+
+        lblMeatBallsPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMeatBallsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblMeatBallsPrice.setText("- NA -");
+
+        lblsausageDipPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblsausageDipPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblsausageDipPrice.setText("- NA -");
+
+        lblFriedShrimpPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFriedShrimpPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblFriedShrimpPrice.setText("- NA -");
+
+        lblWhiteBeanDipPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblWhiteBeanDipPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblWhiteBeanDipPrice.setText("- NA -");
+
+        lblTortillaChipsPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTortillaChipsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblTortillaChipsPrice.setText("- NA -");
+
+        lblCrispyTofuPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCrispyTofuPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblCrispyTofuPrice.setText("- NA -");
+
+        lblCheeseBurgerPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCheeseBurgerPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblCheeseBurgerPrice.setText("- NA -");
+
+        lblFriedRicePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFriedRicePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblFriedRicePrice.setText("- NA -");
+
+        lblVeggiePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblVeggiePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblVeggiePrice.setText("- NA -");
+
+        lblHamburgerPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHamburgerPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblHamburgerPrice.setText("- NA -");
+
+        lblFishNChipsPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFishNChipsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblFishNChipsPrice.setText("- NA -");
+
+        lblPrawnFriedRicePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPrawnFriedRicePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblPrawnFriedRicePrice.setText("- NA -");
+
+        lblTofuSaladPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTofuSaladPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblTofuSaladPrice.setText("- NA -");
+
+        lblFalafelBowlPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFalafelBowlPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblFalafelBowlPrice.setText("- NA -");
+
+        lblTofuRiceBowlPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTofuRiceBowlPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblTofuRiceBowlPrice.setText("- NA -");
+
+        lblBlackForestCakePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblBlackForestCakePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblBlackForestCakePrice.setText("- NA -");
+
+        lblPineappleSwissRolePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPineappleSwissRolePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblPineappleSwissRolePrice.setText("- NA -");
+
+        lblChocolateMoussePrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblChocolateMoussePrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblChocolateMoussePrice.setText("- NA -");
+
+        lblCocaColaPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCocaColaPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblCocaColaPrice.setText("- NA -");
+
+        lblFreshLimeSaltedPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFreshLimeSaltedPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblFreshLimeSaltedPrice.setText("- NA -");
+
+        lblPepsiPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPepsiPrice.setForeground(new java.awt.Color(0, 102, 102));
+        lblPepsiPrice.setText("- NA -");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(lblAptVeg1)
+                                .addGap(188, 188, 188)
+                                .addComponent(lblAptNonVeg1)
+                                .addGap(140, 140, 140)
+                                .addComponent(lblAptVegan1))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdOnionRings1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblOnionRingsPrice))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdSpinachPie1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(lblSpinachPiePrice))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdSpringRoles1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblSpringRolesPrice)))
+                                            .addGap(81, 81, 81)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdMeatBalls1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(lblMeatBallsPrice))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdSausageDip1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblsausageDipPrice))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdFriedShrimp1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblFriedShrimpPrice)))
+                                            .addGap(63, 63, 63))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(lblMainsNonVeg1)
+                                            .addGap(131, 131, 131)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdWhiteBeanDip1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblWhiteBeanDipPrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdCrispyTofu1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblCrispyTofuPrice))
+                                        .addComponent(lblAptVegan2)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdTortillaChips1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblTortillaChipsPrice))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(43, 43, 43)
+                                            .addComponent(lblMainsVeg1)
+                                            .addGap(151, 151, 151)
+                                            .addComponent(lblMains1))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdCheeseBurger1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblCheeseBurgerPrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdFriedRice1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblFriedRicePrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdVeggiePizza1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblVeggiePrice)))
+                                    .addGap(111, 111, 111)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(1, 1, 1)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdTofuSalad1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblTofuSaladPrice))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdFalafelBowl1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblFalafelBowlPrice))))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdTofuAndRiceBowl1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblTofuRiceBowlPrice))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdBlackForestCake1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblBlackForestCakePrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdPineappleSwissRole1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblPineappleSwissRolePrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdChocolateMousse1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblChocolateMoussePrice)))
+                                    .addGap(59, 59, 59)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(lbBeverages1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(17, 17, 17))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdPepsi1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblPepsiPrice))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(rdCocaCola1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblCocaColaPrice))
+                                                .addComponent(rdFreshLimesalted1))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblFreshLimeSaltedPrice)
+                                            .addGap(3, 3, 3)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(213, 213, 213)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdPrawnFriedRice1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblPrawnFriedRicePrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdHamBurger1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblHamburgerPrice))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdFishNChips1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblFishNChipsPrice)))
+                                    .addComponent(lblApetizers1)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lblDesserts1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblApetizers1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAptVeg1)
+                    .addComponent(lblAptNonVeg1)
+                    .addComponent(lblAptVegan1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdOnionRings1)
+                            .addComponent(lblOnionRingsPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdSpinachPie1)
+                            .addComponent(lblSpinachPiePrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdSpringRoles1)
+                            .addComponent(lblSpringRolesPrice)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdMeatBalls1)
+                            .addComponent(lblMeatBallsPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdSausageDip1)
+                            .addComponent(lblsausageDipPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdFriedShrimp1)
+                            .addComponent(lblFriedShrimpPrice)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdWhiteBeanDip1)
+                            .addComponent(lblWhiteBeanDipPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdTortillaChips1)
+                            .addComponent(lblTortillaChipsPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdCrispyTofu1)
+                            .addComponent(lblCrispyTofuPrice))))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblMains1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMainsVeg1)
+                            .addComponent(lblMainsNonVeg1)
+                            .addComponent(lblAptVegan2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdCheeseBurger1)
+                                    .addComponent(lblCheeseBurgerPrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdFriedRice1)
+                                    .addComponent(lblFriedRicePrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdVeggiePizza1)
+                                    .addComponent(lblVeggiePrice)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdHamBurger1)
+                                    .addComponent(lblHamburgerPrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdFishNChips1)
+                                    .addComponent(lblFishNChipsPrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdPrawnFriedRice1)
+                                    .addComponent(lblPrawnFriedRicePrice)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdTofuSalad1)
+                                    .addComponent(lblTofuSaladPrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdFalafelBowl1)
+                                    .addComponent(lblFalafelBowlPrice))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdTofuAndRiceBowl1)
+                                    .addComponent(lblTofuRiceBowlPrice))))
+                        .addGap(36, 36, 36)
+                        .addComponent(lblDesserts1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdBlackForestCake1)
+                            .addComponent(lblBlackForestCakePrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdPineappleSwissRole1)
+                            .addComponent(lblPineappleSwissRolePrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdChocolateMousse1)
+                            .addComponent(lblChocolateMoussePrice)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbBeverages1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdCocaCola1)
+                            .addComponent(lblCocaColaPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdFreshLimesalted1)
+                            .addComponent(lblFreshLimeSaltedPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdPepsi1)
+                            .addComponent(lblPepsiPrice))))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(jPanel1);
+
+        btnBack2.setBackground(new java.awt.Color(215, 254, 211));
+        btnBack2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack2.setForeground(new java.awt.Color(72, 151, 64));
+        btnBack2.setText("ORDER!");
+        btnBack2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OrderPanelLayout = new javax.swing.GroupLayout(OrderPanel);
+        OrderPanel.setLayout(OrderPanelLayout);
+        OrderPanelLayout.setHorizontalGroup(
+            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(lblHeader1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnBack1)
+                    .addComponent(btnBack2))
+                .addGap(50, 50, 50))
+        );
+        OrderPanelLayout.setVerticalGroup(
+            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OrderPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnBack1)
+                .addGap(12, 12, 12)
+                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeader1)
+                    .addComponent(btnBack2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(OrderPanel, "card4");
 
         jSplitPane1.setRightComponent(jLayeredPane1);
 
@@ -419,12 +1081,53 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMenuActionPerformed
         int selectedRowIndex = tblRestaurants.getSelectedRow();
+        
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a Restaurant");
             return;
+        } else {
+            switchPanels(OrderPanel);
+            DefaultTableModel model = (DefaultTableModel) tblRestaurants.getModel();
+            System.out.println(model.getRowCount());
+            Restaurant selectedRestaurant = (Restaurant) model.getValueAt(selectedRowIndex, 0);
+            lblHeader1.setText("Place your order at "+ selectedRestaurant.getName() + "!");
+
+            if (selectedRestaurant.getMenu() != null) {
+                if (selectedRestaurant.getMenu().getApetizers() != null && !selectedRestaurant.getMenu().getApetizers().isEmpty()) {
+                    enableAppetizerRadioButtons(selectedRestaurant);
+                }
+
+                if (selectedRestaurant.getMenu().getMains() != null && !selectedRestaurant.getMenu().getMains().isEmpty()) {
+                    enableMainsRadioButtons(selectedRestaurant);
+                }
+
+                if (selectedRestaurant.getMenu().getDessert() != null && !selectedRestaurant.getMenu().getDessert().isEmpty()) {
+                    enableDessertRadioButtons(selectedRestaurant);
+                }
+
+                if (selectedRestaurant.getMenu().getBeverages() != null && !selectedRestaurant.getMenu().getBeverages().isEmpty()) {
+                    enableBeverageRadioButtons(selectedRestaurant);
+                }
+            }
         }
     }//GEN-LAST:event_btnViewMenuActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        switchPanels(MainWorkArea);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void rdOnionRings1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdOnionRings1ActionPerformed
+
+    }//GEN-LAST:event_rdOnionRings1ActionPerformed
+
+    private void rdCheeseBurger1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCheeseBurger1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdCheeseBurger1ActionPerformed
+
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack2ActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -433,24 +1136,299 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jLayeredPane1.repaint();
     }
 
+    private void disableRadioButtons() {
+        rdOnionRings1.setEnabled(false);
+        rdSpinachPie1.setEnabled(false);
+        rdSpringRoles1.setEnabled(false);
+        rdMeatBalls1.setEnabled(false);
+        rdSausageDip1.setEnabled(false);
+        rdFriedShrimp1.setEnabled(false);
+        rdWhiteBeanDip1.setEnabled(false);
+        rdTortillaChips1.setEnabled(false);
+        rdCrispyTofu1.setEnabled(false);
+
+        rdCheeseBurger1.setEnabled(false);
+        rdFriedRice1.setEnabled(false);
+        rdVeggiePizza1.setEnabled(false);
+        rdHamBurger1.setEnabled(false);
+        rdFishNChips1.setEnabled(false);
+        rdPrawnFriedRice1.setEnabled(false);
+        rdTofuSalad1.setEnabled(false);
+        rdFalafelBowl1.setEnabled(false);
+        rdTofuAndRiceBowl1.setEnabled(false);
+
+        rdBlackForestCake1.setEnabled(false);
+        rdPineappleSwissRole1.setEnabled(false);
+        rdChocolateMousse1.setEnabled(false);
+
+        rdCocaCola1.setEnabled(false);
+        rdFreshLimesalted1.setEnabled(false);
+        rdPepsi1.setEnabled(false);
+    }
+
+    /**
+     * Enable Appetizer buttons based on what is available
+     *
+     * @param selectedRestaurant
+     */
+    private void enableAppetizerRadioButtons(Restaurant selectedRestaurant) {
+        for (Map.Entry<String, Integer> appetizerMap : selectedRestaurant.getMenu().getApetizers().entrySet()) {
+            if (appetizerMap.getKey().equals("Onion Rings")) {
+                rdOnionRings1.setEnabled(true);
+                lblOnionRingsPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblOnionRingsPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Spinach Pie")) {
+                rdSpinachPie1.setEnabled(true);
+                lblSpinachPiePrice.setText("- " + appetizerMap.getValue() + "$");
+                lblSpinachPiePrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Spring Roles")) {
+                rdSpringRoles1.setEnabled(true);
+                lblSpringRolesPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblSpringRolesPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Meat Balls")) {
+                rdMeatBalls1.setEnabled(true);
+                lblMeatBallsPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblMeatBallsPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Sausage Dip")) {
+                rdSausageDip1.setEnabled(true);
+                lblsausageDipPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblsausageDipPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Fried Shrimp")) {
+                rdFriedShrimp1.setEnabled(true);
+                lblFriedShrimpPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblFriedShrimpPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("White Bean Dip")) {
+                rdWhiteBeanDip1.setEnabled(true);
+                lblWhiteBeanDipPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblWhiteBeanDipPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Tortilla Chips")) {
+                rdTortillaChips1.setEnabled(true);
+                lblTortillaChipsPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblTortillaChipsPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (appetizerMap.getKey().equals("Crispy Tofu")) {
+                rdCrispyTofu1.setEnabled(true);
+                lblCrispyTofuPrice.setText("- " + appetizerMap.getValue() + "$");
+                lblCrispyTofuPrice.setForeground(Color.decode("#fc7703"));
+            }
+        }
+    }
+
+    /**
+     * Enable Mains buttons based on what is available
+     *
+     * @param selectedRestaurant
+     */
+    private void enableMainsRadioButtons(Restaurant selectedRestaurant) {
+        for (Map.Entry<String, Integer> mainsrMap : selectedRestaurant.getMenu().getMains().entrySet()) {
+            if (mainsrMap.getKey().equals("CheeseBurger")) {
+                rdCheeseBurger1.setEnabled(true);
+                lblCheeseBurgerPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblCheeseBurgerPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Fried Rice")) {
+                rdFriedRice1.setEnabled(true);
+                lblFriedRicePrice.setText("- " + mainsrMap.getValue() + "$");
+                lblFriedRicePrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Veggie Pizza")) {
+                rdVeggiePizza1.setEnabled(true);
+                lblCheeseBurgerPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblCheeseBurgerPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Ham Burger")) {
+                rdHamBurger1.setEnabled(true);
+                lblHamburgerPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblHamburgerPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Fish N' Chips")) {
+                rdFishNChips1.setEnabled(true);
+                lblFishNChipsPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblFishNChipsPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Prawn Fried Rice")) {
+                rdPrawnFriedRice1.setEnabled(true);
+                lblPrawnFriedRicePrice.setText("- " + mainsrMap.getValue() + "$");
+                lblPrawnFriedRicePrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Tofu Salad")) {
+                rdTofuSalad1.setEnabled(true);
+                lblTofuSaladPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblTofuSaladPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Falafel Bowl")) {
+                rdFalafelBowl1.setEnabled(true);
+                lblFalafelBowlPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblFalafelBowlPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (mainsrMap.getKey().equals("Tofu & Rice Platter")) {
+                rdTofuAndRiceBowl1.setEnabled(true);
+                lblTofuRiceBowlPrice.setText("- " + mainsrMap.getValue() + "$");
+                lblTofuRiceBowlPrice.setForeground(Color.decode("#fc7703"));
+            }
+        }
+    }
+
+    /**
+     * Enable Dessert buttons based on what is available
+     *
+     * @param selectedRestaurant
+     */
+    private void enableDessertRadioButtons(Restaurant selectedRestaurant) {
+        for (Map.Entry<String, Integer> dessertMap : selectedRestaurant.getMenu().getDessert().entrySet()) {
+            if (dessertMap.getKey().equals("Black Forest Cake")) {
+                rdBlackForestCake1.setEnabled(true);
+                lblBlackForestCakePrice.setText("- " + dessertMap.getValue() + "$");
+                lblBlackForestCakePrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (dessertMap.getKey().equals("Pineapple Swiss Role")) {
+                rdPineappleSwissRole1.setEnabled(true);
+                lblPineappleSwissRolePrice.setText("- " + dessertMap.getValue() + "$");
+                lblPineappleSwissRolePrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (dessertMap.getKey().equals("Chocolate Mousse")) {
+                rdChocolateMousse1.setEnabled(true);
+                lblChocolateMoussePrice.setText("- " + dessertMap.getValue() + "$");
+                lblChocolateMoussePrice.setForeground(Color.decode("#fc7703"));
+            }
+        }
+    }
+
+    /**
+     * Enable Beverage buttons based on what is available
+     *
+     * @param selectedRestaurant
+     */
+    private void enableBeverageRadioButtons(Restaurant selectedRestaurant) {
+        for (Map.Entry<String, Integer> beverageMap : selectedRestaurant.getMenu().getBeverages().entrySet()) {
+            if (beverageMap.getKey().equals("CocaCola")) {
+                rdCocaCola1.setEnabled(true);
+                lblCocaColaPrice.setText("- " + beverageMap.getValue() + "$");
+                lblCocaColaPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (beverageMap.getKey().equals("Fresh Lime Salted")) {
+                rdFreshLimesalted1.setEnabled(true);
+                lblFreshLimeSaltedPrice.setText("- " + beverageMap.getValue() + "$");
+                lblFreshLimeSaltedPrice.setForeground(Color.decode("#fc7703"));
+            }
+
+            if (beverageMap.getKey().equals("Pepsi")) {
+                rdPepsi1.setEnabled(true);
+                lblPepsiPrice.setText("- " + beverageMap.getValue() + "$");
+                lblPepsiPrice.setForeground(Color.decode("#fc7703"));
+            }
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EditProfilePanel;
     private javax.swing.JPanel MainWorkArea;
+    private javax.swing.JPanel OrderPanel;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnEditProfile;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnViewMenu;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lbBeverages1;
+    private javax.swing.JLabel lblApetizers1;
+    private javax.swing.JLabel lblAptNonVeg1;
+    private javax.swing.JLabel lblAptVeg1;
+    private javax.swing.JLabel lblAptVegan1;
+    private javax.swing.JLabel lblAptVegan2;
+    private javax.swing.JLabel lblBlackForestCakePrice;
+    private javax.swing.JLabel lblCheeseBurgerPrice;
+    private javax.swing.JLabel lblChocolateMoussePrice;
+    private javax.swing.JLabel lblCocaColaPrice;
+    private javax.swing.JLabel lblCrispyTofuPrice;
+    private javax.swing.JLabel lblDesserts1;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFalafelBowlPrice;
     private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblFishNChipsPrice;
+    private javax.swing.JLabel lblFreshLimeSaltedPrice;
+    private javax.swing.JLabel lblFriedRicePrice;
+    private javax.swing.JLabel lblFriedShrimpPrice;
     private javax.swing.JLabel lblGreeting;
+    private javax.swing.JLabel lblHamburgerPrice;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblMains1;
+    private javax.swing.JLabel lblMainsNonVeg1;
+    private javax.swing.JLabel lblMainsVeg1;
+    private javax.swing.JLabel lblMeatBallsPrice;
     private javax.swing.JLabel lblMobileNum;
+    private javax.swing.JLabel lblOnionRingsPrice;
+    private javax.swing.JLabel lblPepsiPrice;
+    private javax.swing.JLabel lblPineappleSwissRolePrice;
+    private javax.swing.JLabel lblPrawnFriedRicePrice;
+    private javax.swing.JLabel lblSpinachPiePrice;
+    private javax.swing.JLabel lblSpringRolesPrice;
+    private javax.swing.JLabel lblTofuRiceBowlPrice;
+    private javax.swing.JLabel lblTofuSaladPrice;
+    private javax.swing.JLabel lblTortillaChipsPrice;
+    private javax.swing.JLabel lblVeggiePrice;
+    private javax.swing.JLabel lblWhiteBeanDipPrice;
+    private javax.swing.JLabel lblsausageDipPrice;
     private javax.swing.JPanel navigationPanel;
     private javax.swing.JPanel pnlTable;
+    private javax.swing.JRadioButton rdBlackForestCake1;
+    private javax.swing.JRadioButton rdCheeseBurger1;
+    private javax.swing.JRadioButton rdChocolateMousse1;
+    private javax.swing.JRadioButton rdCocaCola1;
+    private javax.swing.JRadioButton rdCrispyTofu1;
+    private javax.swing.JRadioButton rdFalafelBowl1;
+    private javax.swing.JRadioButton rdFishNChips1;
+    private javax.swing.JRadioButton rdFreshLimesalted1;
+    private javax.swing.JRadioButton rdFriedRice1;
+    private javax.swing.JRadioButton rdFriedShrimp1;
+    private javax.swing.JRadioButton rdHamBurger1;
+    private javax.swing.JRadioButton rdMeatBalls1;
+    private javax.swing.JRadioButton rdOnionRings1;
+    private javax.swing.JRadioButton rdPepsi1;
+    private javax.swing.JRadioButton rdPineappleSwissRole1;
+    private javax.swing.JRadioButton rdPrawnFriedRice1;
+    private javax.swing.JRadioButton rdSausageDip1;
+    private javax.swing.JRadioButton rdSpinachPie1;
+    private javax.swing.JRadioButton rdSpringRoles1;
+    private javax.swing.JRadioButton rdTofuAndRiceBowl1;
+    private javax.swing.JRadioButton rdTofuSalad1;
+    private javax.swing.JRadioButton rdTortillaChips1;
+    private javax.swing.JRadioButton rdVeggiePizza1;
+    private javax.swing.JRadioButton rdWhiteBeanDip1;
     private javax.swing.JTable tblRestaurants;
     private javax.swing.JToggleButton tglRestaurantsTable;
     private javax.swing.JTextField txtEmail;
@@ -466,7 +1444,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
             if (restaurant.getName() != null && !restaurant.getName().isBlank() && !restaurant.getName().isEmpty()) {
                 Object[] row = new Object[6];
-                row[0] = restaurant.getName();
+                row[0] = restaurant;
                 row[1] = restaurant.getAddress();
                 row[2] = restaurant.getCuisine();
                 row[3] = restaurant.getVegOrNonVeg();

@@ -84,4 +84,9 @@ public class Restaurant {
         this.emailId = emailId;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

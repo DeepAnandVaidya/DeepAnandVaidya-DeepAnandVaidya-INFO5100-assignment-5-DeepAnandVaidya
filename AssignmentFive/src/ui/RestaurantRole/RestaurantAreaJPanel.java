@@ -383,8 +383,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(chkAll, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(chkVegan, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(chkNonVeg, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkVeg, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(chkVeg, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGap(245, 245, 245))
                     .addGroup(EditDetailsPanelLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -499,6 +498,11 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         rdOnionRings1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdOnionRings1.setForeground(new java.awt.Color(0, 0, 0));
         rdOnionRings1.setText("Onion Rings");
+        rdOnionRings1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdOnionRings1ActionPerformed(evt);
+            }
+        });
 
         rdSpinachPie1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdSpinachPie1.setForeground(new java.awt.Color(0, 0, 0));
@@ -552,6 +556,11 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         rdCheeseBurger1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdCheeseBurger1.setForeground(new java.awt.Color(0, 0, 0));
         rdCheeseBurger1.setText("Cheese Burger");
+        rdCheeseBurger1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdCheeseBurger1ActionPerformed(evt);
+            }
+        });
 
         rdFriedRice1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdFriedRice1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1039,6 +1048,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private void txtTofuSaladActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTofuSaladActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTofuSaladActionPerformed
+
+    private void rdOnionRings1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdOnionRings1ActionPerformed
+        
+    }//GEN-LAST:event_rdOnionRings1ActionPerformed
+
+    private void rdCheeseBurger1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCheeseBurger1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdCheeseBurger1ActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
