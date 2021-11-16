@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.Customer.CustomerDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.role.Role;
 import business.role.SystemAdminRole;
@@ -19,6 +20,7 @@ public class Business extends Organization {
 
     private static Business business;
     private RestaurantDirectory restaurantDirectory;
+    private CustomerDirectory customerDirectory;
 
     public static Business getInstance() {
         if (business == null) {
@@ -58,6 +60,14 @@ public class Business extends Organization {
 
     public void setRestaurantDirectory(RestaurantDirectory restaurantDirectory) {
         this.restaurantDirectory = restaurantDirectory;
+    }
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+        this.customerDirectory = customerDirectory;
     }
 
 }

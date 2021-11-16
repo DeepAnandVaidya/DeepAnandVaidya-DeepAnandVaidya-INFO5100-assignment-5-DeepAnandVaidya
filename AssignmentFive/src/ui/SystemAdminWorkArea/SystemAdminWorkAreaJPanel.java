@@ -6,6 +6,7 @@
 package ui.SystemAdminWorkArea;
 
 import business.Business;
+import business.Customer.CustomerDirectory;
 import business.Restaurant.RestaurantDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -21,11 +22,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     Business business;
     RestaurantDirectory restaurantDirectory;
+    CustomerDirectory customerDirectory;
 
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
+        this.customerDirectory = customerDirectory;
     }
 
     /**
@@ -148,7 +151,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(workAreaPanel);    }//GEN-LAST:event_btnDeliveryStaffActionPerformed
 
     private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
-        JPanel manageCustomerPanel = new ManageCustomerPanel(business);
+        JPanel manageCustomerPanel = new ManageCustomerPanel(business, customerDirectory);
         workAreaPanel.add("ManageCustomerPanel", manageCustomerPanel);
         CardLayout layout = (CardLayout) workAreaPanel.getLayout();
         layout.next(workAreaPanel);    }//GEN-LAST:event_btnCustomersActionPerformed

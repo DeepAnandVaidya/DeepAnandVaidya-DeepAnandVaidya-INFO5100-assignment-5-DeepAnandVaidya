@@ -7,6 +7,7 @@ package ui;
 
 import business.Business;
 import business.ConfigureABusiness;
+import business.Customer.CustomerDirectory;
 import business.DB4OUtil.DB4OUtil;
 import business.Organization;
 import business.Restaurant.RestaurantDirectory;
@@ -33,8 +34,9 @@ public class MainScreen extends javax.swing.JPanel {
     private Business system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     RestaurantDirectory restaurantDirectory;
+    CustomerDirectory customerDirectory;
 
-    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory) {
+    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
         this.userAccount = userAccount;
@@ -44,6 +46,12 @@ public class MainScreen extends javax.swing.JPanel {
             this.restaurantDirectory = system.getRestaurantDirectory();
         } else {
             this.restaurantDirectory = new RestaurantDirectory();
+        }
+
+        if (system.getCustomerDirectory() != null) {
+            this.customerDirectory = system.getCustomerDirectory();
+        } else {
+            this.customerDirectory = new CustomerDirectory();
         }
         initUserWorkArea();
     }
@@ -122,7 +130,7 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
         // TODO add your handling code here:
-        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory);
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
@@ -142,7 +150,7 @@ public class MainScreen extends javax.swing.JPanel {
     private void initUserWorkArea() {
         lblUser.setText("Welcome: " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
         CardLayout layout = (CardLayout) workArea.getLayout();
-        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory));
+        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory, customerDirectory));
         layout.next(workArea);
     }
 }

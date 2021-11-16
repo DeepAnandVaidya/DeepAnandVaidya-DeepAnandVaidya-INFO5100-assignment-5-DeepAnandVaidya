@@ -6,6 +6,7 @@
 package ui.SystemAdminWorkArea;
 
 import business.Business;
+import business.Customer.CustomerDirectory;
 import business.employee.Employee;
 import business.role.Customer;
 import business.role.RestaurantRole;
@@ -28,11 +29,13 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
      * Creates new form ManageCustomerPanel
      */
     Business business;
-
-    public ManageCustomerPanel(Business business) {
+    CustomerDirectory customerDirectory;
+    
+    public ManageCustomerPanel(Business business, CustomerDirectory customerDirectory) {
         initComponents();
         this.business = business;
-
+        this.customerDirectory = customerDirectory;
+        
         JTableHeader tableHeader = tblCustomers.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -202,12 +205,17 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         Employee employee = new Employee(txtName.getText());
         Customer role = new Customer();
         business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-
+        
         JOptionPane.showMessageDialog(null, "User Account added successfully.");
         txtName.setText("");
         txtUserName.setText("");
         pwdPassword.setText("");
         populateCustomerRole();
+        
+        business.Customer.Customer customer = customerDirectory.addCustomer();
+        customer.setUserName(userName);
+        business.setCustomerDirectory(customerDirectory);
+        
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
 
@@ -229,7 +237,7 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
     private void populateCustomerRole() {
         DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
         model.setRowCount(0);
-
+        
         for (UserAccount userAccount : business.getUserAccountDirectory().getUserAccountList()) {
             Object[] row = new Object[1];
             RestaurantRole role = new RestaurantRole();

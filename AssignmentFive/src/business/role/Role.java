@@ -6,6 +6,7 @@
 package business.role;
 
 import business.Business;
+import business.Customer.CustomerDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -42,7 +43,7 @@ public abstract class Role {
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer,
             UserAccount account,
-            Business business, RestaurantDirectory restaurantDirectory);
+            Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory);
 
     @Override
     public String toString() {

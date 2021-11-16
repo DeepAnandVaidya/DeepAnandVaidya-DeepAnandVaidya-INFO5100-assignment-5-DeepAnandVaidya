@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JEditorPane" name="jEditorPane1">
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -217,38 +230,58 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="209" pref="209" max="-2" attributes="0"/>
+                          <EmptySpace min="200" pref="200" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="btnSave" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="btnSave" min="-2" pref="165" max="-2" attributes="0"/>
+                                      </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblAddress" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblCuisine" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblVeg" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblNonVeg" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblVegan" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lvlAll" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                                  <Component id="lblEmailId" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="lblPhoneNum" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblCuisine" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblVeg" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblNonVeg" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblVegan" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lvlAll" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtName" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtCuisine" alignment="0" pref="119" max="32767" attributes="0"/>
-                                              <Component id="chkVeg" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkNonVeg" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkVegan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="chkAll" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="2" attributes="0">
+                                              <Component id="txtName" linkSize="3" alignment="2" max="32767" attributes="0"/>
+                                              <Component id="txtAddress" linkSize="3" alignment="2" pref="148" max="32767" attributes="0"/>
+                                              <Component id="txtCuisine" linkSize="3" alignment="2" max="32767" attributes="0"/>
+                                              <Component id="txtPhoneNum" linkSize="3" alignment="2" max="32767" attributes="0"/>
+                                              <Component id="txtEmailId" linkSize="3" alignment="2" min="-2" pref="151" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="93" pref="93" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="chkAll" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="chkVegan" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="chkNonVeg" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="chkVeg" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="274" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                   <Component id="lblHeader" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="123" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
@@ -286,6 +319,16 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblPhoneNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPhoneNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblEmailId" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmailId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblVeg" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="chkVeg" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -304,9 +347,9 @@
                               <Component id="lvlAll" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="chkAll" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="139" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -463,6 +506,32 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblPhoneNum">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="PHONE NO. : "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtPhoneNum">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblEmailId">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="EMAIL ID : "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtEmailId">
                 </Component>
               </SubComponents>
             </Container>
@@ -797,9 +866,9 @@
                                               <Component id="txtMeatBalls" min="-2" pref="22" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="rdSausageDip1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txtSausageDip" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="rdSausageDip1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -888,14 +957,14 @@
                                           <EmptySpace pref="41" max="32767" attributes="0"/>
                                           <Component id="lblDesserts1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="rdBlackForestCake1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txtBlackForestCake" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="rdBlackForestCake1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="rdPineappleSwissRole1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txtPineappleSwissRole" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="rdPineappleSwissRole1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">

@@ -6,6 +6,7 @@
 package ui.RestaurantRole;
 
 import business.Business;
+import business.Customer.CustomerDirectory;
 import business.Restaurant.Menu;
 import business.Restaurant.Restaurant;
 import business.Restaurant.RestaurantDirectory;
@@ -30,8 +31,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     UserAccount account;
     Restaurant restaurant;
     String managerName;
+    CustomerDirectory customerDirectory;
 
-    public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory) {
+    public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
@@ -39,6 +41,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         managerName = account.getEmployee().getName();
         restaurant = restaurantDirectory.findRestaurant(managerName);
         lblRestaurantName.setText(restaurant.getName() == null ? managerName + "'s Dashboard" : restaurant.getName());
+        this.customerDirectory = customerDirectory;
 
     }
 
@@ -51,6 +54,8 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jSplitPane1 = new javax.swing.JSplitPane();
         NavigationJPanel = new javax.swing.JPanel();
         btnMenu = new javax.swing.JButton();
@@ -78,6 +83,10 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         chkAll = new javax.swing.JCheckBox();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblPhoneNum = new javax.swing.JLabel();
+        txtPhoneNum = new javax.swing.JTextField();
+        lblEmailId = new javax.swing.JLabel();
+        txtEmailId = new javax.swing.JTextField();
         MenuPanel1 = new javax.swing.JPanel();
         lblHeader2 = new javax.swing.JLabel();
         btnBack3 = new javax.swing.JButton();
@@ -142,6 +151,8 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         txtFreshLimeSalted = new javax.swing.JTextField();
         rdPepsi1 = new javax.swing.JRadioButton();
         txtPepsi = new javax.swing.JTextField();
+
+        jScrollPane2.setViewportView(jEditorPane1);
 
         NavigationJPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -324,41 +335,67 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblPhoneNum.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPhoneNum.setForeground(new java.awt.Color(0, 51, 51));
+        lblPhoneNum.setText("PHONE NO. : ");
+
+        lblEmailId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblEmailId.setForeground(new java.awt.Color(0, 51, 51));
+        lblEmailId.setText("EMAIL ID : ");
+
         javax.swing.GroupLayout EditDetailsPanelLayout = new javax.swing.GroupLayout(EditDetailsPanel);
         EditDetailsPanel.setLayout(EditDetailsPanelLayout);
         EditDetailsPanelLayout.setHorizontalGroup(
             EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditDetailsPanelLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
+                .addGap(200, 200, 200)
                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditDetailsPanelLayout.createSequentialGroup()
                         .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(EditDetailsPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EditDetailsPanelLayout.createSequentialGroup()
                                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCuisine, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblVeg, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblNonVeg, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblVegan, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lvlAll, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(EditDetailsPanelLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(lblEmailId))
+                                    .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblPhoneNum)
+                                        .addComponent(lblName)
+                                        .addComponent(lblAddress)
+                                        .addComponent(lblCuisine)
+                                        .addComponent(lblVeg)
+                                        .addComponent(lblNonVeg)
+                                        .addComponent(lblVegan)
+                                        .addComponent(lvlAll)))
                                 .addGap(18, 18, 18)
-                                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                     .addComponent(txtName)
-                                    .addComponent(txtAddress)
-                                    .addComponent(txtCuisine, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                                    .addComponent(chkVeg)
-                                    .addComponent(chkNonVeg)
-                                    .addComponent(chkVegan)
-                                    .addComponent(chkAll))))
-                        .addContainerGap(274, Short.MAX_VALUE))
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                    .addComponent(txtCuisine)
+                                    .addComponent(txtPhoneNum)
+                                    .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EditDetailsPanelLayout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(chkAll, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkVegan, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkNonVeg, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkVeg, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(245, 245, 245))
                     .addGroup(EditDetailsPanelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(lblHeader)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack)
                         .addGap(24, 24, 24))))
         );
+
+        EditDetailsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAddress, txtCuisine, txtEmailId, txtName, txtPhoneNum});
+
         EditDetailsPanelLayout.setVerticalGroup(
             EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditDetailsPanelLayout.createSequentialGroup()
@@ -383,6 +420,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                     .addComponent(txtCuisine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPhoneNum)
+                    .addComponent(txtPhoneNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmailId)
+                    .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblVeg)
                     .addComponent(chkVeg))
                 .addGap(18, 18, 18)
@@ -397,9 +442,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lvlAll)
                     .addComponent(chkAll))
-                .addGap(54, 54, 54)
+                .addGap(31, 31, 31)
                 .addComponent(btnSave)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(76, 76, 76))
         );
 
         jLayeredPane1.add(EditDetailsPanel, "card3");
@@ -748,9 +793,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                             .addComponent(rdMeatBalls1)
                             .addComponent(txtMeatBalls, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdSausageDip1)
-                            .addComponent(txtSausageDip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSausageDip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdSausageDip1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rdFriedShrimp1)
@@ -817,13 +862,13 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(lblDesserts1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdBlackForestCake1)
-                            .addComponent(txtBlackForestCake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBlackForestCake, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdBlackForestCake1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdPineappleSwissRole1)
-                            .addComponent(txtPineappleSwissRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPineappleSwissRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdPineappleSwissRole1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rdChocolateMousse1)
@@ -926,6 +971,8 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         restaurant.setName(txtName.getText());
         restaurant.setAddress(txtAddress.getText());
         restaurant.setCuisine(txtCuisine.getText());
+        restaurant.setPhoneNumber(txtPhoneNum.getText());
+        restaurant.setEmailId(txtEmailId.getText());
 
         if (chkVeg.isSelected()) {
             restaurant.setVegOrNonVeg("VEG");
@@ -1150,9 +1197,11 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkVegan;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbBeverages1;
     private javax.swing.JLabel lblAddress;
@@ -1163,6 +1212,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAptVegan2;
     private javax.swing.JLabel lblCuisine;
     private javax.swing.JLabel lblDesserts1;
+    private javax.swing.JLabel lblEmailId;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JLabel lblMains1;
@@ -1170,6 +1220,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblMainsVeg1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNonVeg;
+    private javax.swing.JLabel lblPhoneNum;
     private javax.swing.JLabel lblRestaurantName;
     private javax.swing.JLabel lblVeg;
     private javax.swing.JLabel lblVegan;
@@ -1205,6 +1256,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtCocaCola;
     private javax.swing.JTextField txtCrispyTofu;
     private javax.swing.JTextField txtCuisine;
+    private javax.swing.JTextField txtEmailId;
     private javax.swing.JTextField txtFalafelBowl;
     private javax.swing.JTextField txtFishNChips;
     private javax.swing.JTextField txtFreshLimeSalted;
@@ -1215,6 +1267,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtOnionRings;
     private javax.swing.JTextField txtPepsi;
+    private javax.swing.JTextField txtPhoneNum;
     private javax.swing.JTextField txtPineappleSwissRole;
     private javax.swing.JTextField txtPrawnFriedRice;
     private javax.swing.JTextField txtSausageDip;
