@@ -16,6 +16,7 @@ public class Restaurant {
     private String cuisine;
     private String managerName;
     private String vegOrNonVeg;
+    private Menu menu;
 
     public String getName() {
         return name;
@@ -55,6 +56,14 @@ public class Restaurant {
 
     public void setVegOrNonVeg(String vegOrNonVeg) {
         this.vegOrNonVeg = vegOrNonVeg;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
 }

@@ -27,7 +27,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     UserAccount account;
     Restaurant restaurant;
     String managerName;
-
+    
     public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory) {
         initComponents();
         this.business = business;
@@ -49,10 +49,10 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         NavigationJPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnEditDetails = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
         lblRestaurantName = new javax.swing.JLabel();
@@ -74,13 +74,57 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         chkAll = new javax.swing.JCheckBox();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        MenuPanel = new javax.swing.JPanel();
+        lblHeader1 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
+        lblApetizers = new javax.swing.JLabel();
+        lblAptVeg = new javax.swing.JLabel();
+        rdOnionRings = new javax.swing.JRadioButton();
+        rdSpinachPie = new javax.swing.JRadioButton();
+        rdSpringRoles = new javax.swing.JRadioButton();
+        lblAptNonVeg = new javax.swing.JLabel();
+        rdMeatBalls = new javax.swing.JRadioButton();
+        rdSausageDip = new javax.swing.JRadioButton();
+        rdFriedShrimp = new javax.swing.JRadioButton();
+        lblAptVegan = new javax.swing.JLabel();
+        rdWhiteBeanDip = new javax.swing.JRadioButton();
+        rdTortillaChips = new javax.swing.JRadioButton();
+        rdCrispyTofu = new javax.swing.JRadioButton();
+        lblMains = new javax.swing.JLabel();
+        lblMainsVeg = new javax.swing.JLabel();
+        rdCheeseBurger = new javax.swing.JRadioButton();
+        rdFriedRice = new javax.swing.JRadioButton();
+        rdVeggiePizza = new javax.swing.JRadioButton();
+        lblMainsNonVeg = new javax.swing.JLabel();
+        rdHamBurger = new javax.swing.JRadioButton();
+        rdFishNChips = new javax.swing.JRadioButton();
+        rdPrawnFriedRice = new javax.swing.JRadioButton();
+        lblMainsVegan = new javax.swing.JLabel();
+        rdTofuSalad = new javax.swing.JRadioButton();
+        rdFalafelBowl = new javax.swing.JRadioButton();
+        rdTofuAndRiceBowl = new javax.swing.JRadioButton();
+        lblDesserts = new javax.swing.JLabel();
+        rdBlackForestCake = new javax.swing.JRadioButton();
+        rdPineappleSwissRole = new javax.swing.JRadioButton();
+        rdChocolateMousse = new javax.swing.JRadioButton();
+        lbBeverages = new javax.swing.JLabel();
+        rdCokeCola = new javax.swing.JRadioButton();
+        rdFreshLimesalted = new javax.swing.JRadioButton();
+        rdPepsi = new javax.swing.JRadioButton();
+        btnBack2 = new javax.swing.JButton();
 
         NavigationJPanel.setBackground(new java.awt.Color(0, 51, 51));
 
-        jButton1.setBackground(new java.awt.Color(206, 217, 217));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 51, 51));
-        jButton1.setText("MENU");
+        btnMenu.setBackground(new java.awt.Color(206, 217, 217));
+        btnMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(0, 51, 51));
+        btnMenu.setText("MENU");
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(206, 217, 217));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -92,13 +136,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         jButton3.setForeground(new java.awt.Color(0, 51, 51));
         jButton3.setText("VIEW ORDERS");
 
-        jButton4.setBackground(new java.awt.Color(206, 217, 217));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 51, 51));
-        jButton4.setText("EDIT DETAILS");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnEditDetails.setBackground(new java.awt.Color(206, 217, 217));
+        btnEditDetails.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditDetails.setForeground(new java.awt.Color(0, 51, 51));
+        btnEditDetails.setText("EDIT DETAILS");
+        btnEditDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnEditDetailsActionPerformed(evt);
             }
         });
 
@@ -112,22 +157,22 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                     .addGroup(NavigationJPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEditDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMenu, jButton2, jButton3});
 
         NavigationJPanelLayout.setVerticalGroup(
             NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
                 .addGap(76, 76, 76)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton2)
                 .addGap(35, 35, 35)
@@ -135,7 +180,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(239, Short.MAX_VALUE))
         );
 
-        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMenu, jButton2, jButton3});
 
         jSplitPane1.setLeftComponent(NavigationJPanel);
 
@@ -174,6 +219,12 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblName.setForeground(new java.awt.Color(0, 51, 51));
         lblName.setText("NAME : ");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         lblAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAddress.setForeground(new java.awt.Color(0, 51, 51));
@@ -323,6 +374,347 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
         jLayeredPane1.add(EditDetailsPanel, "card3");
 
+        MenuPanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblHeader1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHeader1.setForeground(new java.awt.Color(0, 153, 153));
+        lblHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader1.setText("MENU");
+
+        btnBack1.setBackground(new java.awt.Color(255, 204, 204));
+        btnBack1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack1.setForeground(new java.awt.Color(255, 0, 51));
+        btnBack1.setText("BACK");
+        btnBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+
+        lblApetizers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblApetizers.setForeground(new java.awt.Color(0, 204, 204));
+        lblApetizers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblApetizers.setText("APETIZERS");
+
+        lblAptVeg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptVeg.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptVeg.setText("VEG : ");
+
+        rdOnionRings.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdOnionRings.setForeground(new java.awt.Color(0, 0, 0));
+        rdOnionRings.setText("Onion Rings");
+
+        rdSpinachPie.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdSpinachPie.setForeground(new java.awt.Color(0, 0, 0));
+        rdSpinachPie.setText("Spinach Pie");
+
+        rdSpringRoles.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdSpringRoles.setForeground(new java.awt.Color(0, 0, 0));
+        rdSpringRoles.setText("Spring Roles");
+
+        lblAptNonVeg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptNonVeg.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptNonVeg.setText("NON-VEG : ");
+
+        rdMeatBalls.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdMeatBalls.setForeground(new java.awt.Color(0, 0, 0));
+        rdMeatBalls.setText("Meatballs");
+
+        rdSausageDip.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdSausageDip.setForeground(new java.awt.Color(0, 0, 0));
+        rdSausageDip.setText("Sausage Dip");
+
+        rdFriedShrimp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFriedShrimp.setForeground(new java.awt.Color(0, 0, 0));
+        rdFriedShrimp.setText("Fired Shrimp");
+
+        lblAptVegan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAptVegan.setForeground(new java.awt.Color(0, 102, 102));
+        lblAptVegan.setText("VEGAN : ");
+
+        rdWhiteBeanDip.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdWhiteBeanDip.setForeground(new java.awt.Color(0, 0, 0));
+        rdWhiteBeanDip.setText("White Bean Dip");
+
+        rdTortillaChips.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdTortillaChips.setForeground(new java.awt.Color(0, 0, 0));
+        rdTortillaChips.setText("Tortilla Chips");
+
+        rdCrispyTofu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdCrispyTofu.setForeground(new java.awt.Color(0, 0, 0));
+        rdCrispyTofu.setText("Crispy Tofu");
+
+        lblMains.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMains.setForeground(new java.awt.Color(0, 204, 204));
+        lblMains.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMains.setText("MAINS");
+
+        lblMainsVeg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMainsVeg.setForeground(new java.awt.Color(0, 102, 102));
+        lblMainsVeg.setText("VEG : ");
+
+        rdCheeseBurger.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdCheeseBurger.setForeground(new java.awt.Color(0, 0, 0));
+        rdCheeseBurger.setText("Cheese Burger");
+
+        rdFriedRice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFriedRice.setForeground(new java.awt.Color(0, 0, 0));
+        rdFriedRice.setText("Fried Rice");
+
+        rdVeggiePizza.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdVeggiePizza.setForeground(new java.awt.Color(0, 0, 0));
+        rdVeggiePizza.setText("Veggie Pizza");
+
+        lblMainsNonVeg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMainsNonVeg.setForeground(new java.awt.Color(0, 102, 102));
+        lblMainsNonVeg.setText("NON-VEG : ");
+
+        rdHamBurger.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdHamBurger.setForeground(new java.awt.Color(0, 0, 0));
+        rdHamBurger.setText("Ham Burger");
+
+        rdFishNChips.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFishNChips.setForeground(new java.awt.Color(0, 0, 0));
+        rdFishNChips.setText("Fish N' Chips");
+
+        rdPrawnFriedRice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdPrawnFriedRice.setForeground(new java.awt.Color(0, 0, 0));
+        rdPrawnFriedRice.setText("Prawn Fried Rice");
+
+        lblMainsVegan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMainsVegan.setForeground(new java.awt.Color(0, 102, 102));
+        lblMainsVegan.setText("VEGAN : ");
+
+        rdTofuSalad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdTofuSalad.setForeground(new java.awt.Color(0, 0, 0));
+        rdTofuSalad.setText("Tofu Salad");
+
+        rdFalafelBowl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFalafelBowl.setForeground(new java.awt.Color(0, 0, 0));
+        rdFalafelBowl.setText("Falafel Bowl");
+
+        rdTofuAndRiceBowl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdTofuAndRiceBowl.setForeground(new java.awt.Color(0, 0, 0));
+        rdTofuAndRiceBowl.setText("Tofu & Rice platter");
+
+        lblDesserts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDesserts.setForeground(new java.awt.Color(0, 204, 204));
+        lblDesserts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDesserts.setText("DESSERTS");
+
+        rdBlackForestCake.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdBlackForestCake.setForeground(new java.awt.Color(0, 0, 0));
+        rdBlackForestCake.setText("Black Forest Cake");
+
+        rdPineappleSwissRole.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdPineappleSwissRole.setForeground(new java.awt.Color(0, 0, 0));
+        rdPineappleSwissRole.setText("Pineapple Swiss Role");
+
+        rdChocolateMousse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdChocolateMousse.setForeground(new java.awt.Color(0, 0, 0));
+        rdChocolateMousse.setText("Chocolate Mousse with Whipped Cream");
+
+        lbBeverages.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbBeverages.setForeground(new java.awt.Color(0, 204, 204));
+        lbBeverages.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbBeverages.setText("BEVERAGES");
+
+        rdCokeCola.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdCokeCola.setForeground(new java.awt.Color(0, 0, 0));
+        rdCokeCola.setText("CokeCola");
+
+        rdFreshLimesalted.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdFreshLimesalted.setForeground(new java.awt.Color(0, 0, 0));
+        rdFreshLimesalted.setText("Fresh Lime Salted");
+
+        rdPepsi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdPepsi.setForeground(new java.awt.Color(0, 0, 0));
+        rdPepsi.setText("Pepsi");
+
+        btnBack2.setBackground(new java.awt.Color(215, 254, 211));
+        btnBack2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack2.setForeground(new java.awt.Color(72, 151, 64));
+        btnBack2.setText("SAVE");
+        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
+        MenuPanel.setLayout(MenuPanelLayout);
+        MenuPanelLayout.setHorizontalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMains, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblApetizers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDesserts, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdPineappleSwissRole)
+                            .addComponent(rdBlackForestCake)
+                            .addComponent(rdChocolateMousse))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbBeverages, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdFreshLimesalted)
+                            .addComponent(rdCokeCola)
+                            .addComponent(rdPepsi, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(lblAptNonVeg)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdMeatBalls)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdSausageDip)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rdFriedShrimp))
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(lblAptVeg)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdOnionRings)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdSpinachPie)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdSpringRoles))
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(lblAptVegan)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdWhiteBeanDip)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdTortillaChips)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdCrispyTofu))))
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(lblMainsNonVeg)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdHamBurger)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdFishNChips)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rdPrawnFriedRice))
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(lblMainsVeg)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdCheeseBurger)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdFriedRice)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdVeggiePizza))
+                                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(lblMainsVegan)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdTofuSalad)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdFalafelBowl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdTofuAndRiceBowl)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(246, 246, 246)))
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack2)
+                    .addComponent(btnBack1))
+                .addGap(25, 25, 25))
+        );
+        MenuPanelLayout.setVerticalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnBack1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBack2))
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblHeader1)))
+                .addGap(47, 47, 47)
+                .addComponent(lblApetizers)
+                .addGap(32, 32, 32)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAptVeg)
+                    .addComponent(rdOnionRings)
+                    .addComponent(rdSpinachPie)
+                    .addComponent(rdSpringRoles))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAptNonVeg)
+                    .addComponent(rdMeatBalls)
+                    .addComponent(rdSausageDip)
+                    .addComponent(rdFriedShrimp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAptVegan)
+                    .addComponent(rdWhiteBeanDip)
+                    .addComponent(rdTortillaChips)
+                    .addComponent(rdCrispyTofu))
+                .addGap(48, 48, 48)
+                .addComponent(lblMains)
+                .addGap(18, 18, 18)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMainsVeg)
+                    .addComponent(rdCheeseBurger)
+                    .addComponent(rdFriedRice)
+                    .addComponent(rdVeggiePizza))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMainsNonVeg)
+                    .addComponent(rdHamBurger)
+                    .addComponent(rdFishNChips)
+                    .addComponent(rdPrawnFriedRice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMainsVegan)
+                    .addComponent(rdTofuSalad)
+                    .addComponent(rdFalafelBowl)
+                    .addComponent(rdTofuAndRiceBowl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addComponent(lblDesserts)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdBlackForestCake)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdPineappleSwissRole)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdChocolateMousse))
+                    .addGroup(MenuPanelLayout.createSequentialGroup()
+                        .addComponent(lbBeverages)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdCokeCola)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdFreshLimesalted)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdPepsi)))
+                .addGap(37, 37, 37))
+        );
+
+        jLayeredPane1.add(MenuPanel, "card4");
+
         jSplitPane1.setRightComponent(jLayeredPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -337,9 +729,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnEditDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDetailsActionPerformed
         switchPanels(EditDetailsPanel);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnEditDetailsActionPerformed
 
     private void chkNonVegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkNonVegActionPerformed
         chkVeg.setSelected(false);
@@ -369,7 +761,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         restaurant.setName(txtName.getText());
         restaurant.setAddress(txtAddress.getText());
         restaurant.setCuisine(txtCuisine.getText());
-
+        
         if (chkVeg.isSelected()) {
             restaurant.setVegOrNonVeg("VEG");
         } else if (chkNonVeg.isSelected()) {
@@ -379,7 +771,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         } else {
             restaurant.setVegOrNonVeg("ALL");
         }
-
+        
         JOptionPane.showMessageDialog(null, "Restaurant Details saved successfully.");
         txtName.setText("");
         txtAddress.setText("");
@@ -389,7 +781,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         chkVegan.setSelected(false);
         chkAll.setSelected(false);
         switchPanels(workAreaPanel);
-
+        
         for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
             if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(managerName)) {
                 restaurantDirectory.getRestaurants().set(i, restaurant);
@@ -403,6 +795,22 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         switchPanels(workAreaPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        switchPanels(MenuPanel);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        switchPanels(workAreaPanel);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack2ActionPerformed
+    
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
         jLayeredPane1.add(component);
@@ -412,28 +820,66 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EditDetailsPanel;
+    private javax.swing.JPanel MenuPanel;
     private javax.swing.JPanel NavigationJPanel;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnBack2;
+    private javax.swing.JButton btnEditDetails;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnSave;
     private javax.swing.JCheckBox chkAll;
     private javax.swing.JCheckBox chkNonVeg;
     private javax.swing.JCheckBox chkVeg;
     private javax.swing.JCheckBox chkVegan;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lbBeverages;
     private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblApetizers;
+    private javax.swing.JLabel lblAptNonVeg;
+    private javax.swing.JLabel lblAptVeg;
+    private javax.swing.JLabel lblAptVegan;
     private javax.swing.JLabel lblCuisine;
+    private javax.swing.JLabel lblDesserts;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblHeader1;
+    private javax.swing.JLabel lblMains;
+    private javax.swing.JLabel lblMainsNonVeg;
+    private javax.swing.JLabel lblMainsVeg;
+    private javax.swing.JLabel lblMainsVegan;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNonVeg;
     private javax.swing.JLabel lblRestaurantName;
     private javax.swing.JLabel lblVeg;
     private javax.swing.JLabel lblVegan;
     private javax.swing.JLabel lvlAll;
+    private javax.swing.JRadioButton rdBlackForestCake;
+    private javax.swing.JRadioButton rdCheeseBurger;
+    private javax.swing.JRadioButton rdChocolateMousse;
+    private javax.swing.JRadioButton rdCokeCola;
+    private javax.swing.JRadioButton rdCrispyTofu;
+    private javax.swing.JRadioButton rdFalafelBowl;
+    private javax.swing.JRadioButton rdFishNChips;
+    private javax.swing.JRadioButton rdFreshLimesalted;
+    private javax.swing.JRadioButton rdFriedRice;
+    private javax.swing.JRadioButton rdFriedShrimp;
+    private javax.swing.JRadioButton rdHamBurger;
+    private javax.swing.JRadioButton rdMeatBalls;
+    private javax.swing.JRadioButton rdOnionRings;
+    private javax.swing.JRadioButton rdPepsi;
+    private javax.swing.JRadioButton rdPineappleSwissRole;
+    private javax.swing.JRadioButton rdPrawnFriedRice;
+    private javax.swing.JRadioButton rdSausageDip;
+    private javax.swing.JRadioButton rdSpinachPie;
+    private javax.swing.JRadioButton rdSpringRoles;
+    private javax.swing.JRadioButton rdTofuAndRiceBowl;
+    private javax.swing.JRadioButton rdTofuSalad;
+    private javax.swing.JRadioButton rdTortillaChips;
+    private javax.swing.JRadioButton rdVeggiePizza;
+    private javax.swing.JRadioButton rdWhiteBeanDip;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCuisine;
     private javax.swing.JTextField txtName;
