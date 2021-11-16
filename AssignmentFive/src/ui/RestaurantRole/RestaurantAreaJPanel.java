@@ -12,6 +12,7 @@ import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import java.awt.Component;
 import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -38,9 +39,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         managerName = account.getEmployee().getName();
         restaurant = restaurantDirectory.findRestaurant(managerName);
         lblRestaurantName.setText(restaurant.getName() == null ? managerName + "'s Dashboard" : restaurant.getName());
-        if (restaurant.getMenu() != null && restaurant.getMenu().getApetizers() != null) {
-            jLabel1.setText(String.valueOf(restaurant.getMenu().getApetizers().get("Onion Rings")));
-        }
+//        if (restaurant.getMenu() != null && restaurant.getMenu().getApetizers() != null) {
+//            jLabel1.setText(String.valueOf(restaurant.getMenu().getApetizers().get("Onion Rings")));
+//        }
 
     }
 
@@ -62,7 +63,6 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
         lblRestaurantName = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         EditDetailsPanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
@@ -226,26 +226,18 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblRestaurantName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRestaurantName.setText("<restaurant name>");
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
         workAreaPanel.setLayout(workAreaPanelLayout);
         workAreaPanelLayout.setHorizontalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-            .addGroup(workAreaPanelLayout.createSequentialGroup()
-                .addGap(312, 312, 312)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         workAreaPanelLayout.setVerticalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(workAreaPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(lblRestaurantName)
-                .addGap(230, 230, 230)
-                .addComponent(jLabel1)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addContainerGap(579, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(workAreaPanel, "card2");
@@ -448,7 +440,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblApetizers1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblApetizers1.setForeground(new java.awt.Color(0, 204, 204));
         lblApetizers1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblApetizers1.setText("APETIZERS");
+        lblApetizers1.setText("APPETIZERS");
 
         lblAptVeg1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAptVeg1.setForeground(new java.awt.Color(0, 102, 102));
@@ -977,13 +969,46 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         switchPanels(MenuPanel1);
+        populateMenuFields();
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
-        // TODO add your handling code here:
+        switchPanels(workAreaPanel);
     }//GEN-LAST:event_btnBack3ActionPerformed
 
     private void btnBack4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack4ActionPerformed
+        HashMap<String, Integer> apetizers = setApetizers();
+        HashMap<String, Integer> mains = setMains();
+        HashMap<String, Integer> desserts = setDessert();
+        HashMap<String, Integer> beverages = setDessert();
+
+        Menu menu = new Menu();
+        menu.setApetizers(apetizers);
+        menu.setMains(mains);
+        menu.setDessert(desserts);
+        menu.setBeverages(beverages);
+        restaurant.setMenu(menu);
+        JOptionPane.showMessageDialog(null, "Menu saved successfully.");
+        switchPanels(workAreaPanel);
+    }//GEN-LAST:event_btnBack4ActionPerformed
+
+    private void txtTofuSaladActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTofuSaladActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTofuSaladActionPerformed
+
+    private void switchPanels(Component component) {
+        jLayeredPane1.removeAll();
+        jLayeredPane1.add(component);
+        jLayeredPane1.revalidate();
+        jLayeredPane1.repaint();
+    }
+
+    /**
+     * set appetizer map
+     *
+     * @return
+     */
+    private HashMap<String, Integer> setApetizers() {
         HashMap<String, Integer> apetizers = new HashMap<>();
         if (rdOnionRings1.isSelected()) {
             apetizers.put("Onion Rings", Integer.parseInt(txtOnionRings.getText()));
@@ -997,25 +1022,119 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             apetizers.put("Spring Roles", Integer.parseInt(txtSpringRoles.getText()));
         }
 
-        if (rdSpringRoles1.isSelected()) {
-            apetizers.put("Spring Roles", Integer.parseInt(txtSpringRoles.getText()));
+        if (rdMeatBalls1.isSelected()) {
+            apetizers.put("Meat Balls", Integer.parseInt(txtMeatBalls.getText()));
         }
 
-        Menu menu = new Menu();
-        menu.setApetizers(apetizers);
-        restaurant.setMenu(menu);
-        JOptionPane.showMessageDialog(null, "Menu saved successfully.");
-    }//GEN-LAST:event_btnBack4ActionPerformed
+        if (rdSausageDip1.isSelected()) {
+            apetizers.put("Sausage Dip", Integer.parseInt(txtSausageDip.getText()));
+        }
 
-    private void txtTofuSaladActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTofuSaladActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTofuSaladActionPerformed
+        if (rdFriedShrimp1.isSelected()) {
+            apetizers.put("Fried Shrimp", Integer.parseInt(txtFriedShrimp.getText()));
+        }
 
-    private void switchPanels(Component component) {
-        jLayeredPane1.removeAll();
-        jLayeredPane1.add(component);
-        jLayeredPane1.revalidate();
-        jLayeredPane1.repaint();
+        if (rdWhiteBeanDip1.isSelected()) {
+            apetizers.put("White Bean Dip", Integer.parseInt(txtWhiteBeanDip.getText()));
+        }
+
+        if (rdTortillaChips1.isSelected()) {
+            apetizers.put("Tortilla Chips", Integer.parseInt(txtTortillaChips.getText()));
+        }
+
+        if (rdCrispyTofu1.isSelected()) {
+            apetizers.put("Crispy Tofu", Integer.parseInt(txtCrispyTofu.getText()));
+        }
+        return apetizers;
+    }
+
+    /**
+     * set mains map
+     *
+     * @return
+     */
+    private HashMap<String, Integer> setMains() {
+        HashMap<String, Integer> mains = new HashMap<>();
+        if (rdCheeseBurger1.isSelected()) {
+            mains.put("CheeseBurger", Integer.parseInt(txtCheeseBurger.getText()));
+        }
+
+        if (rdFriedRice1.isSelected()) {
+            mains.put("Fried Rice", Integer.parseInt(txtFriedRice.getText()));
+        }
+
+        if (rdVeggiePizza1.isSelected()) {
+            mains.put("Veggie Pizza", Integer.parseInt(txtVeggiePizza.getText()));
+        }
+
+        if (rdHamBurger1.isSelected()) {
+            mains.put("Ham Burger", Integer.parseInt(txtHamBurger.getText()));
+        }
+
+        if (rdFishNChips1.isSelected()) {
+            mains.put("Fish N' Chips", Integer.parseInt(txtFishNChips.getText()));
+        }
+
+        if (rdPrawnFriedRice1.isSelected()) {
+            mains.put("Prawn Fried Rice", Integer.parseInt(txtPrawnFriedRice.getText()));
+        }
+
+        if (rdTofuSalad1.isSelected()) {
+            mains.put("Tofu Salad", Integer.parseInt(txtTofuSalad.getText()));
+        }
+
+        if (rdFalafelBowl1.isSelected()) {
+            mains.put("Falafel Bowl", Integer.parseInt(txtFalafelBowl.getText()));
+        }
+
+        if (rdTofuAndRiceBowl1.isSelected()) {
+            mains.put("Tofu & Rice Platter", Integer.parseInt(txtTofuAndRiceBowl.getText()));
+        }
+        return mains;
+    }
+
+    /**
+     * sets desserts map
+     *
+     * @return
+     */
+    private HashMap<String, Integer> setDessert() {
+        HashMap<String, Integer> desserts = new HashMap<>();
+        if (rdBlackForestCake1.isSelected()) {
+            desserts.put("Black Forest Cake", Integer.parseInt(txtBlackForestCake.getText()));
+        }
+
+        if (rdPineappleSwissRole1.isSelected()) {
+            desserts.put("Pineapple Swiss Role", Integer.parseInt(txtPineappleSwissRole.getText()));
+        }
+
+        if (rdChocolateMousse1.isSelected()) {
+            desserts.put("Chocolate Mousse", Integer.parseInt(txtChocolateMousse.getText()));
+        }
+
+        return desserts;
+    }
+
+    /**
+     * set beverages map
+     *
+     * @return
+     */
+    private HashMap<String, Integer> setBeverages() {
+        HashMap<String, Integer> beverages = new HashMap<>();
+        if (rdCocaCola1.isSelected()) {
+            beverages.put("CocaCola", Integer.parseInt(txtCocaCola.getText()));
+        }
+
+        if (rdFreshLimesalted1.isSelected()) {
+            beverages.put("Fresh Lime Salted", Integer.parseInt(txtFreshLimeSalted.getText()));
+        }
+
+        if (rdPepsi1.isSelected()) {
+            beverages.put("pepsi", Integer.parseInt(txtPepsi.getText()));
+        }
+
+        return beverages;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1034,7 +1153,6 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkVegan;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1112,5 +1230,124 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtWhiteBeanDip;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @param appetizerMap1
+     */
+    private void populateAppetizerFields(HashMap<String, Integer> appetizerMap1) {
+        for (Map.Entry<String, Integer> appetizerMap : appetizerMap1.entrySet()) {
+            if (appetizerMap.getKey().equals("Onion Rings")) {
+                rdOnionRings1.setSelected(true);
+                txtOnionRings.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Spinach Pie")) {
+                rdSpinachPie1.setSelected(true);
+                txtSpinachPie.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Spring Roles")) {
+                rdSpringRoles1.setSelected(true);
+                txtSpringRoles.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Meat Balls")) {
+                rdMeatBalls1.setSelected(true);
+                txtMeatBalls.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Sausage Dip")) {
+                rdSausageDip1.setSelected(true);
+                txtSausageDip.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Fried Shrimp")) {
+                rdFriedShrimp1.setSelected(true);
+                txtFriedShrimp.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("White Bean Dip")) {
+                rdWhiteBeanDip1.setSelected(true);
+                txtWhiteBeanDip.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Tortilla Chips")) {
+                rdTortillaChips1.setSelected(true);
+                txtTortillaChips.setText(String.valueOf(appetizerMap.getValue()));
+            }
+
+            if (appetizerMap.getKey().equals("Crispy Tofu")) {
+                rdCrispyTofu1.setSelected(true);
+                txtCrispyTofu.setText(String.valueOf(appetizerMap.getValue()));
+            }
+        }
+    }
+
+    /**
+     * @param mainsMap1
+     */
+    private void populateMainsFields(HashMap<String, Integer> mainsMap1) {
+        for (Map.Entry<String, Integer> mainsMap : mainsMap1.entrySet()) {
+            if (mainsMap.getKey().equals("Cheese Burger")) {
+                rdCheeseBurger1.setSelected(true);
+                txtCheeseBurger.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Fried Rice")) {
+                rdFriedRice1.setSelected(true);
+                txtFriedRice.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Veggie Pizza")) {
+                rdVeggiePizza1.setSelected(true);
+                txtVeggiePizza.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Ham Burger")) {
+                rdHamBurger1.setSelected(true);
+                txtHamBurger.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Fish N' Chips")) {
+                rdFishNChips1.setSelected(true);
+                txtFishNChips.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Prawn Fried Rice")) {
+                rdPrawnFriedRice1.setSelected(true);
+                txtPrawnFriedRice.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Tofu Salad")) {
+                rdTofuSalad1.setSelected(true);
+                txtTofuSalad.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Falafel Bowl")) {
+                rdFalafelBowl1.setSelected(true);
+                txtFalafelBowl.setText(String.valueOf(mainsMap.getValue()));
+            }
+
+            if (mainsMap.getKey().equals("Tofu & Rice Platter")) {
+                rdTofuAndRiceBowl1.setSelected(true);
+                txtTofuAndRiceBowl.setText(String.valueOf(mainsMap.getValue()));
+            }
+        }
+    }
+
+    /**
+     * Populate the menu fields
+     */
+    private void populateMenuFields() {
+        if (restaurant.getMenu() != null) {
+            if (restaurant.getMenu().getApetizers() != null && !restaurant.getMenu().getApetizers().isEmpty()) {
+                populateAppetizerFields(restaurant.getMenu().getApetizers());
+            }
+
+            if (restaurant.getMenu().getMains() != null && !restaurant.getMenu().getMains().isEmpty()) {
+                populateMainsFields(restaurant.getMenu().getMains());
+            }
+        }
+    }
 
 }
