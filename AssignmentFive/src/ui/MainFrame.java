@@ -7,6 +7,7 @@ package ui;
 
 import business.Business;
 import business.ConfigureABusiness;
+import business.Restaurant.RestaurantDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,10 +21,16 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private Business business;
+    private RestaurantDirectory restaurantDirectory;
 
     public MainFrame() {
         initComponents();
         business = ConfigureABusiness.configure();
+        if (business.getRestaurantDirectory() != null) {
+            this.restaurantDirectory = business.getRestaurantDirectory();
+        } else {
+            this.restaurantDirectory = new RestaurantDirectory();
+        }
         setSize(943, 738);
 
         initLoginScreen();
@@ -98,7 +105,7 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initLoginScreen() {
-        JPanel loginScreen = new LoginScreen(mainWorkArea, business);
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);

@@ -6,6 +6,7 @@
 package ui.SystemAdminWorkArea;
 
 import business.Business;
+import business.Restaurant.RestaurantDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -19,10 +20,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form SystemAdminWorkAreaJPanel
      */
     Business business;
+    RestaurantDirectory restaurantDirectory;
 
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory) {
         initComponents();
         this.business = business;
+        this.restaurantDirectory = restaurantDirectory;
     }
 
     /**
@@ -132,7 +135,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
-        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business, workAreaPanel);
+        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business, workAreaPanel, restaurantDirectory);
         workAreaPanel.add("ManageRestaurantManagersPanel", manageRestaurantManagersPanel);
         CardLayout layout = (CardLayout) workAreaPanel.getLayout();
         layout.next(workAreaPanel);

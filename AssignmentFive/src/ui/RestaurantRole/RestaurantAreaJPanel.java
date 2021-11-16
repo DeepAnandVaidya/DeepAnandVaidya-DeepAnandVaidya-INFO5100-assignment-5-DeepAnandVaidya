@@ -6,6 +6,7 @@
 package ui.RestaurantRole;
 
 import business.Business;
+import business.Restaurant.RestaurantDirectory;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +18,15 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RestaurantAreaJPanel
      */
-    public RestaurantAreaJPanel(JPanel userProcessContainer, Business business) {
+    Business business;
+    RestaurantDirectory restaurantDirectory;
+
+    public RestaurantAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory) {
         initComponents();
+        this.business = business;
+        this.restaurantDirectory = restaurantDirectory;
+
+        lblTest.setText(restaurantDirectory.getRestaurants().get(0).getManagerName());
     }
 
     /**
@@ -30,30 +38,105 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        NavigationJPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        workAreaPanel = new javax.swing.JPanel();
+        lblTest = new javax.swing.JLabel();
 
-        jLabel1.setText("RESTAURANT");
+        NavigationJPanel.setBackground(new java.awt.Color(0, 51, 51));
+
+        jButton1.setBackground(new java.awt.Color(206, 217, 217));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 51));
+        jButton1.setText("MENU");
+
+        jButton2.setBackground(new java.awt.Color(206, 217, 217));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 51, 51));
+        jButton2.setText("VIEW DELIVERY STAFF");
+
+        jButton3.setBackground(new java.awt.Color(206, 217, 217));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 51, 51));
+        jButton3.setText("VIEW ORDERS");
+
+        javax.swing.GroupLayout NavigationJPanelLayout = new javax.swing.GroupLayout(NavigationJPanel);
+        NavigationJPanel.setLayout(NavigationJPanelLayout);
+        NavigationJPanelLayout.setHorizontalGroup(
+            NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NavigationJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
+        NavigationJPanelLayout.setVerticalGroup(
+            NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NavigationJPanelLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButton2)
+                .addGap(35, 35, 35)
+                .addComponent(jButton3)
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
+
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
+        jSplitPane1.setLeftComponent(NavigationJPanel);
+
+        workAreaPanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblTest.setText("<test label>");
+
+        javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
+        workAreaPanel.setLayout(workAreaPanelLayout);
+        workAreaPanelLayout.setHorizontalGroup(
+            workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(workAreaPanelLayout.createSequentialGroup()
+                .addGap(292, 292, 292)
+                .addComponent(lblTest)
+                .addContainerGap(321, Short.MAX_VALUE))
+        );
+        workAreaPanelLayout.setVerticalGroup(
+            workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(workAreaPanelLayout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addComponent(lblTest)
+                .addContainerGap(307, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setRightComponent(workAreaPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(360, 360, 360)
-                .addComponent(jLabel1)
-                .addContainerGap(350, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jLabel1)
-                .addContainerGap(320, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel NavigationJPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblTest;
+    private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
 }

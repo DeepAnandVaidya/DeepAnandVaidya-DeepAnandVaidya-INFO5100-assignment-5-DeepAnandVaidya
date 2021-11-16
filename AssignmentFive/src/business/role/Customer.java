@@ -6,6 +6,7 @@
 package business.role;
 
 import business.Business;
+import business.Restaurant.RestaurantDirectory;
 import business.role.Role.RoleType;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -22,8 +23,8 @@ public class Customer extends Role {
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
-        return new CustomerAreaJPanel(userProcessContainer, Business.getInstance());
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory) {
+        return new CustomerAreaJPanel(userProcessContainer, Business.getInstance(), restaurantDirectory);
     }
 
 }

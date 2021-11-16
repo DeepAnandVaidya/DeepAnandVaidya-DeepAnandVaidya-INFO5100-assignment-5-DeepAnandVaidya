@@ -6,6 +6,8 @@
 package ui.SystemAdminWorkArea;
 
 import business.Business;
+import business.Restaurant.Restaurant;
+import business.Restaurant.RestaurantDirectory;
 import business.employee.Employee;
 import business.role.RestaurantRole;
 import business.role.Role;
@@ -30,11 +32,13 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
      */
     Business business;
     JPanel workAreaPanel;
+    RestaurantDirectory restaurantDirectory;
 
-    public ManageRestaurantManagersPanel(Business business, JPanel workAreaPanel) {
+    public ManageRestaurantManagersPanel(Business business, JPanel workAreaPanel, RestaurantDirectory restaurantDirectory) {
         initComponents();
         this.business = business;
         this.workAreaPanel = workAreaPanel;
+        this.restaurantDirectory = restaurantDirectory;
 
         JTableHeader tableHeader = tblRestaurantManagers.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -198,7 +202,8 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
         String userName = txtUserName.getText();
         String password = pwdPassword.getText();
-        Employee employee = new Employee(txtName.getText());
+        String name = txtName.getText();
+        Employee employee = new Employee(name);
         RestaurantRole role = new RestaurantRole();
         business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
 
@@ -207,6 +212,10 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
         txtUserName.setText("");
         pwdPassword.setText("");
         populateRestaurantRole();
+        
+        Restaurant restaurant = restaurantDirectory.addRestaurant();
+        restaurant.setManagerName(name);
+        business.setRestaurantDirectory(restaurantDirectory);
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

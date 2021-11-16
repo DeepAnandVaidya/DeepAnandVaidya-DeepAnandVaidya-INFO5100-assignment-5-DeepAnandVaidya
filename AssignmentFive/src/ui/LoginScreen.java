@@ -7,6 +7,7 @@ package ui;
 
 import business.Business;
 import business.DB4OUtil.DB4OUtil;
+import business.Restaurant.RestaurantDirectory;
 import business.role.Role;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -27,13 +28,15 @@ public class LoginScreen extends javax.swing.JPanel {
     JPanel mainWorkArea;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private Business system;
+    RestaurantDirectory restaurantDirectory;
 
-    public LoginScreen(JPanel mainWorkArea, Business business) {
+    public LoginScreen(JPanel mainWorkArea, Business business, RestaurantDirectory restaurantDirectory) {
         System.out.println("LOGIN!!!!!");
         initComponents();
         this.business = business;
         this.mainWorkArea = mainWorkArea;
         system = dB4OUtil.retrieveSystem();
+        this.restaurantDirectory = restaurantDirectory;
     }
 
     /**
@@ -125,7 +128,7 @@ public class LoginScreen extends javax.swing.JPanel {
 
         if (userAccount != null) {
             Role test = userAccount.getRole();
-            JPanel mainScreen = new MainScreen(mainWorkArea, userAccount, system);
+            JPanel mainScreen = new MainScreen(mainWorkArea, userAccount, system, restaurantDirectory);
             mainWorkArea.add("MainScreen", mainScreen);
             CardLayout layout = (CardLayout) mainWorkArea.getLayout();
             layout.next(mainWorkArea);

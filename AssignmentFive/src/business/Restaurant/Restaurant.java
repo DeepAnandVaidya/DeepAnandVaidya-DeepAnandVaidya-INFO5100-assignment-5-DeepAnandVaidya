@@ -15,6 +15,7 @@ public class Restaurant {
     private String rating;
     private String address;
     private String cuisine;
+    private String managerName;
 
     public String getName() {
         return name;
@@ -46,6 +47,14 @@ public class Restaurant {
 
     public void setCuisine(String cuisine) {
         this.cuisine = cuisine;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
     }
 
 }

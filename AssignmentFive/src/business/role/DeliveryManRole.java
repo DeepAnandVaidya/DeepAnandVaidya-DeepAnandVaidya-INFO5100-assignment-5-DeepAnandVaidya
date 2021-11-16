@@ -6,6 +6,7 @@
 package business.role;
 
 import business.Business;
+import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 import ui.DeliveryWorkArea.DeliveryAreaJPanel;
@@ -22,7 +23,7 @@ public class DeliveryManRole extends Role {
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
-        return new DeliveryAreaJPanel(userProcessContainer, Business.getInstance());
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory) {
+        return new DeliveryAreaJPanel(userProcessContainer, Business.getInstance(), restaurantDirectory);
     }
 }

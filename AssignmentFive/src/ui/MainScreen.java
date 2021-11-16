@@ -9,6 +9,7 @@ import business.Business;
 import business.ConfigureABusiness;
 import business.DB4OUtil.DB4OUtil;
 import business.Organization;
+import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -31,13 +32,19 @@ public class MainScreen extends javax.swing.JPanel {
     Business business;
     private Business system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    RestaurantDirectory restaurantDirectory;
 
-    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business) {
+    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
         this.userAccount = userAccount;
         this.business = ConfigureABusiness.configure();
         system = dB4OUtil.retrieveSystem();
+        if (system.getRestaurantDirectory() != null) {
+            this.restaurantDirectory = system.getRestaurantDirectory();
+        } else {
+            this.restaurantDirectory = new RestaurantDirectory();
+        }
         initUserWorkArea();
     }
 
@@ -119,7 +126,7 @@ public class MainScreen extends javax.swing.JPanel {
 //        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
 //        layout.previous(mainWorkArea);
 
-        JPanel loginScreen = new LoginScreen(mainWorkArea, business);
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
@@ -139,13 +146,7 @@ public class MainScreen extends javax.swing.JPanel {
     private void initUserWorkArea() {
         lblUser.setText("Welcome: " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
         CardLayout layout = (CardLayout) workArea.getLayout();
-        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system));
+        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory));
         layout.next(workArea);
-    }
-
-    private void listOutput(Business system) {
-        for (int i = 0; i < system.getUserAccountDirectory().getUserAccountList().size(); i++) {
-            System.out.println("output: " + system.getUserAccountDirectory().getUserAccountList().get(i) + "\n");
-        }
     }
 }

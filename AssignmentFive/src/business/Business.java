@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.Restaurant.RestaurantDirectory;
 import business.role.Role;
 import business.role.SystemAdminRole;
 import business.useraccount.UserAccountDirectory;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class Business extends Organization {
 
     private static Business business;
-    private String name1;
+    private RestaurantDirectory restaurantDirectory;
 
     public static Business getInstance() {
         if (business == null) {
@@ -25,22 +26,22 @@ public class Business extends Organization {
         }
         return business;
     }
-    
+
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList=new ArrayList<Role>();
+        ArrayList<Role> roleList = new ArrayList<Role>();
         roleList.add(new SystemAdminRole());
         return roleList;
     }
-    private Business(){
+
+    private Business() {
         super(null);
-       // networkList=new ArrayList<Network>();
+        // networkList=new ArrayList<Network>();
     }
 
-    
-    public boolean checkIfUserIsUnique(String userName){
-       //
-       return false;
+    public boolean checkIfUserIsUnique(String userName) {
+        //
+        return false;
     }
 
     public static Business getBusiness() {
@@ -51,12 +52,12 @@ public class Business extends Organization {
         Business.business = business;
     }
 
-    public String getName1() {
-        return name1;
+    public RestaurantDirectory getRestaurantDirectory() {
+        return restaurantDirectory;
     }
 
-    public void setName1(String name1) {
-        this.name1 = name1;
+    public void setRestaurantDirectory(RestaurantDirectory restaurantDirectory) {
+        this.restaurantDirectory = restaurantDirectory;
     }
-    
+
 }

@@ -6,6 +6,7 @@
 package ui.DeliveryWorkArea;
 
 import business.Business;
+import business.Restaurant.RestaurantDirectory;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +18,10 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DeliveryAreaJPanel
      */
-    public DeliveryAreaJPanel(JPanel userProcessContainer, Business business) {
+    RestaurantDirectory restaurantDirectory;
+    public DeliveryAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory) {
         initComponents();
+        this.restaurantDirectory = restaurantDirectory;
     }
 
     /**

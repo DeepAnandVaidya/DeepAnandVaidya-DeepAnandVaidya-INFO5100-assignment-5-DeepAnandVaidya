@@ -6,6 +6,7 @@
 package ui.CustomerRole;
 
 import business.Business;
+import business.Restaurant.RestaurantDirectory;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +18,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerAreaJPanel
      */
-    public CustomerAreaJPanel(JPanel userProcessContainer, Business business) {
+    RestaurantDirectory restaurantDirectory;
+    public CustomerAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory) {
         initComponents();
+        this.restaurantDirectory = restaurantDirectory;
     }
 
     /**
