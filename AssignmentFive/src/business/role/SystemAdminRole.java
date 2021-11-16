@@ -7,6 +7,8 @@ package business.role;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.Order.Order;
+import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -17,7 +19,7 @@ import ui.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
  * @author deepv
  */
 public class SystemAdminRole extends Role {
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business system, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer, system, restaurantDirectory, customerDirectory);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business system, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
+        return new SystemAdminWorkAreaJPanel(userProcessContainer, system, restaurantDirectory, customerDirectory, orderDirectory);
     }
 }

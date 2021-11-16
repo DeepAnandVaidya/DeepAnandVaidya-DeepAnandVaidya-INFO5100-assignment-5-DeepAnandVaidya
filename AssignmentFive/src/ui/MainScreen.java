@@ -9,6 +9,8 @@ import business.Business;
 import business.ConfigureABusiness;
 import business.Customer.CustomerDirectory;
 import business.DB4OUtil.DB4OUtil;
+import business.Order.Order;
+import business.Order.OrderDirectory;
 import business.Organization;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
@@ -35,8 +37,9 @@ public class MainScreen extends javax.swing.JPanel {
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
+    OrderDirectory orderDirectory;
 
-    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
+    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
         this.userAccount = userAccount;
@@ -52,6 +55,12 @@ public class MainScreen extends javax.swing.JPanel {
             this.customerDirectory = system.getCustomerDirectory();
         } else {
             this.customerDirectory = new CustomerDirectory();
+        }
+
+        if (system.getOrderDirectory()!= null) {
+            this.orderDirectory = system.getOrderDirectory();
+        } else {
+            this.orderDirectory = new OrderDirectory();
         }
         initUserWorkArea();
     }
@@ -130,7 +139,7 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
         // TODO add your handling code here:
-        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory);
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory, orderDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
@@ -148,9 +157,9 @@ public class MainScreen extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initUserWorkArea() {
-        lblUser.setText("Welcome: " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
+        lblUser.setText("Welcome " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
         CardLayout layout = (CardLayout) workArea.getLayout();
-        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory, customerDirectory));
+        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory, customerDirectory, orderDirectory));
         layout.next(workArea);
     }
 }

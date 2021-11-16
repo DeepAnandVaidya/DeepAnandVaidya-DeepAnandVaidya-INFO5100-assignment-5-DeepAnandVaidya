@@ -7,6 +7,8 @@ package ui.SystemAdminWorkArea;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.Order.Order;
+import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -23,12 +25,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     Business business;
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
+    OrderDirectory orderDirectory;
 
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
+        this.orderDirectory = orderDirectory;
     }
 
     /**

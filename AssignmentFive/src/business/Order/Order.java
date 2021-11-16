@@ -1,0 +1,86 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package business.Order;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+/**
+ *
+ * @author deepv
+ */
+public class Order {
+
+    private String customerName;
+    private String restaurantName;
+    private int cost;
+    private ArrayList<String> foodItems;
+    private Date orderDateTime;
+    private int id;
+    private String status;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public ArrayList<String> getFoodItems() {
+        return foodItems;
+    }
+
+    public void setFoodItems(ArrayList<String> foodItems) {
+        this.foodItems = foodItems;
+    }
+
+    public Date getOrderDateTime() {
+        return orderDateTime;
+    }
+
+    public void setOrderDateTime(Date orderDateTime) {
+        this.orderDateTime = orderDateTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return customerName;
+    }
+
+}

@@ -7,6 +7,8 @@ package ui.CustomerRole;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.Order.Order;
+import business.Order.OrderDirectory;
 import business.Restaurant.Restaurant;
 import business.Restaurant.RestaurantDirectory;
 import business.role.RestaurantRole;
@@ -15,8 +17,11 @@ import business.useraccount.UserAccount;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,12 +43,18 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     business.Customer.Customer customer;
     Business business;
     String userName;
+    OrderDirectory orderDirectory;
+    String restaurantName;
+    int totalCost = 0;
+    ArrayList<String> foodItems;
 
-    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
+    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
+        this.orderDirectory = orderDirectory;
+        this.foodItems = new ArrayList<>();
         userName = account.getUsername();
         customer = customerDirectory.findCustomer(userName);
         lblGreeting.setText(customer.getFirstName() == null && customer.getLastName() == null ? "Ready to order " + customer.getUserName() + "?" : "Ready to Order " + customer.getFirstName().toUpperCase() + " " + customer.getLastName().toUpperCase() + "?");
@@ -52,8 +63,16 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
+        JTableHeader tableHeader1 = tblOrders.getTableHeader();
+        tableHeader1.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        ((DefaultTableCellRenderer) tableHeader1.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
         populateRestaurants();
         disableRadioButtons();
+
+        if (orderDirectory != null) {
+            populateOrders();
+        }
     }
 
     /**
@@ -76,6 +95,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRestaurants = new javax.swing.JTable();
         btnViewMenu = new javax.swing.JButton();
+        pnlOrderTable = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblOrders = new javax.swing.JTable();
         EditProfilePanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -151,7 +173,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblCocaColaPrice = new javax.swing.JLabel();
         lblFreshLimeSaltedPrice = new javax.swing.JLabel();
         lblPepsiPrice = new javax.swing.JLabel();
-        btnBack2 = new javax.swing.JButton();
+        btnOrder = new javax.swing.JButton();
 
         navigationPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -229,6 +251,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tblRestaurants.setSelectionBackground(new java.awt.Color(153, 209, 232));
         tblRestaurants.setSelectionForeground(new java.awt.Color(0, 51, 51));
         jScrollPane1.setViewportView(tblRestaurants);
+        if (tblRestaurants.getColumnModel().getColumnCount() > 0) {
+            tblRestaurants.getColumnModel().getColumn(5).setHeaderValue("EMAIL ID");
+        }
 
         javax.swing.GroupLayout pnlTableLayout = new javax.swing.GroupLayout(pnlTable);
         pnlTable.setLayout(pnlTableLayout);
@@ -257,6 +282,41 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        pnlOrderTable.setBackground(new java.awt.Color(240, 255, 255));
+
+        tblOrders.setBackground(new java.awt.Color(255, 255, 255));
+        tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "NAME", "RESTAURANT", "TOTAL COST", "ORDER TIME", "ORDER STATUS"
+            }
+        ));
+        tblOrders.setSelectionBackground(new java.awt.Color(153, 209, 232));
+        tblOrders.setSelectionForeground(new java.awt.Color(0, 51, 51));
+        jScrollPane3.setViewportView(tblOrders);
+
+        javax.swing.GroupLayout pnlOrderTableLayout = new javax.swing.GroupLayout(pnlOrderTable);
+        pnlOrderTable.setLayout(pnlOrderTableLayout);
+        pnlOrderTableLayout.setHorizontalGroup(
+            pnlOrderTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrderTableLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        pnlOrderTableLayout.setVerticalGroup(
+            pnlOrderTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrderTableLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout MainWorkAreaLayout = new javax.swing.GroupLayout(MainWorkArea);
         MainWorkArea.setLayout(MainWorkAreaLayout);
         MainWorkAreaLayout.setHorizontalGroup(
@@ -265,12 +325,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             .addGroup(MainWorkAreaLayout.createSequentialGroup()
                 .addGroup(MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainWorkAreaLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MainWorkAreaLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(btnViewMenu)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnViewMenu))
+                    .addGroup(MainWorkAreaLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         MainWorkAreaLayout.setVerticalGroup(
             MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +343,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnViewMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(pnlOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(540, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MainWorkArea, "card2");
@@ -970,14 +1034,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jPanel1);
 
-        btnBack2.setBackground(new java.awt.Color(215, 254, 211));
-        btnBack2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBack2.setForeground(new java.awt.Color(72, 151, 64));
-        btnBack2.setText("ORDER!");
-        btnBack2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+        btnOrder.setBackground(new java.awt.Color(215, 254, 211));
+        btnOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnOrder.setForeground(new java.awt.Color(72, 151, 64));
+        btnOrder.setText("ORDER!");
+        btnOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBack2ActionPerformed(evt);
+                btnOrderActionPerformed(evt);
             }
         });
 
@@ -995,7 +1059,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnBack1)
-                    .addComponent(btnBack2))
+                    .addComponent(btnOrder))
                 .addGap(50, 50, 50))
         );
         OrderPanelLayout.setVerticalGroup(
@@ -1006,7 +1070,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHeader1)
-                    .addComponent(btnBack2))
+                    .addComponent(btnOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1081,7 +1145,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMenuActionPerformed
         int selectedRowIndex = tblRestaurants.getSelectedRow();
-        
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a Restaurant");
@@ -1089,9 +1152,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         } else {
             switchPanels(OrderPanel);
             DefaultTableModel model = (DefaultTableModel) tblRestaurants.getModel();
-            System.out.println(model.getRowCount());
             Restaurant selectedRestaurant = (Restaurant) model.getValueAt(selectedRowIndex, 0);
-            lblHeader1.setText("Place your order at "+ selectedRestaurant.getName() + "!");
+            lblHeader1.setText("Place your order at " + selectedRestaurant.getName() + "!");
+            restaurantName = selectedRestaurant.getName();
 
             if (selectedRestaurant.getMenu() != null) {
                 if (selectedRestaurant.getMenu().getApetizers() != null && !selectedRestaurant.getMenu().getApetizers().isEmpty()) {
@@ -1125,9 +1188,25 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdCheeseBurger1ActionPerformed
 
-    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBack2ActionPerformed
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        Order order = orderDirectory.addOrder();
+        order.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
+        order.setRestaurantName(restaurantName);
+        order.setFoodItems(foodItems);
+
+        Calendar calendar = Calendar.getInstance();
+        order.setOrderDateTime(calendar.getTime());
+
+        Random randomNum = new Random();
+        int randomOrderId = randomNum.nextInt(65536 - 32768);
+        order.setId(randomOrderId);
+
+        JOptionPane.showMessageDialog(null, "Order placed successfully!");
+        switchPanels(MainWorkArea);
+        finalizeOrder(order);
+        business.setOrderDirectory(orderDirectory);
+        populateOrders();
+    }//GEN-LAST:event_btnOrderActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -1177,54 +1256,72 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 rdOnionRings1.setEnabled(true);
                 lblOnionRingsPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblOnionRingsPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Spinach Pie")) {
                 rdSpinachPie1.setEnabled(true);
                 lblSpinachPiePrice.setText("- " + appetizerMap.getValue() + "$");
                 lblSpinachPiePrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Spring Roles")) {
                 rdSpringRoles1.setEnabled(true);
                 lblSpringRolesPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblSpringRolesPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Meat Balls")) {
                 rdMeatBalls1.setEnabled(true);
                 lblMeatBallsPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblMeatBallsPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Sausage Dip")) {
                 rdSausageDip1.setEnabled(true);
                 lblsausageDipPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblsausageDipPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Fried Shrimp")) {
                 rdFriedShrimp1.setEnabled(true);
                 lblFriedShrimpPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblFriedShrimpPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("White Bean Dip")) {
                 rdWhiteBeanDip1.setEnabled(true);
                 lblWhiteBeanDipPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblWhiteBeanDipPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Tortilla Chips")) {
                 rdTortillaChips1.setEnabled(true);
                 lblTortillaChipsPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblTortillaChipsPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
 
             if (appetizerMap.getKey().equals("Crispy Tofu")) {
                 rdCrispyTofu1.setEnabled(true);
                 lblCrispyTofuPrice.setText("- " + appetizerMap.getValue() + "$");
                 lblCrispyTofuPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + appetizerMap.getValue();
+//                foodItems.add(appetizerMap.getKey());
             }
         }
     }
@@ -1240,54 +1337,72 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 rdCheeseBurger1.setEnabled(true);
                 lblCheeseBurgerPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblCheeseBurgerPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Fried Rice")) {
                 rdFriedRice1.setEnabled(true);
                 lblFriedRicePrice.setText("- " + mainsrMap.getValue() + "$");
                 lblFriedRicePrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Veggie Pizza")) {
                 rdVeggiePizza1.setEnabled(true);
                 lblCheeseBurgerPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblCheeseBurgerPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Ham Burger")) {
                 rdHamBurger1.setEnabled(true);
                 lblHamburgerPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblHamburgerPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Fish N' Chips")) {
                 rdFishNChips1.setEnabled(true);
                 lblFishNChipsPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblFishNChipsPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Prawn Fried Rice")) {
                 rdPrawnFriedRice1.setEnabled(true);
                 lblPrawnFriedRicePrice.setText("- " + mainsrMap.getValue() + "$");
                 lblPrawnFriedRicePrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Tofu Salad")) {
                 rdTofuSalad1.setEnabled(true);
                 lblTofuSaladPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblTofuSaladPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Falafel Bowl")) {
                 rdFalafelBowl1.setEnabled(true);
                 lblFalafelBowlPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblFalafelBowlPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Tofu & Rice Platter")) {
                 rdTofuAndRiceBowl1.setEnabled(true);
                 lblTofuRiceBowlPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblTofuRiceBowlPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + mainsrMap.getValue();
+//                foodItems.add(mainsrMap.getKey());
             }
         }
     }
@@ -1303,18 +1418,24 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 rdBlackForestCake1.setEnabled(true);
                 lblBlackForestCakePrice.setText("- " + dessertMap.getValue() + "$");
                 lblBlackForestCakePrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + dessertMap.getValue();
+//                foodItems.add(dessertMap.getKey());
             }
 
             if (dessertMap.getKey().equals("Pineapple Swiss Role")) {
                 rdPineappleSwissRole1.setEnabled(true);
                 lblPineappleSwissRolePrice.setText("- " + dessertMap.getValue() + "$");
                 lblPineappleSwissRolePrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + dessertMap.getValue();
+//                foodItems.add(dessertMap.getKey());
             }
 
             if (dessertMap.getKey().equals("Chocolate Mousse")) {
                 rdChocolateMousse1.setEnabled(true);
                 lblChocolateMoussePrice.setText("- " + dessertMap.getValue() + "$");
                 lblChocolateMoussePrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + dessertMap.getValue();
+//                foodItems.add(dessertMap.getKey());
             }
         }
     }
@@ -1330,18 +1451,24 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 rdCocaCola1.setEnabled(true);
                 lblCocaColaPrice.setText("- " + beverageMap.getValue() + "$");
                 lblCocaColaPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + beverageMap.getValue();
+//                foodItems.add(beverageMap.getKey());
             }
 
             if (beverageMap.getKey().equals("Fresh Lime Salted")) {
                 rdFreshLimesalted1.setEnabled(true);
                 lblFreshLimeSaltedPrice.setText("- " + beverageMap.getValue() + "$");
                 lblFreshLimeSaltedPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + beverageMap.getValue();
+//                foodItems.add(beverageMap.getKey());
             }
 
             if (beverageMap.getKey().equals("Pepsi")) {
                 rdPepsi1.setEnabled(true);
                 lblPepsiPrice.setText("- " + beverageMap.getValue() + "$");
                 lblPepsiPrice.setForeground(Color.decode("#fc7703"));
+//                totalCost = totalCost + beverageMap.getValue();
+//                foodItems.add(beverageMap.getKey());
             }
         }
     }
@@ -1353,14 +1480,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel OrderPanel;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnEditProfile;
+    private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnViewMenu;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbBeverages1;
     private javax.swing.JLabel lblApetizers1;
@@ -1404,6 +1532,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblWhiteBeanDipPrice;
     private javax.swing.JLabel lblsausageDipPrice;
     private javax.swing.JPanel navigationPanel;
+    private javax.swing.JPanel pnlOrderTable;
     private javax.swing.JPanel pnlTable;
     private javax.swing.JRadioButton rdBlackForestCake1;
     private javax.swing.JRadioButton rdCheeseBurger1;
@@ -1429,6 +1558,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdTortillaChips1;
     private javax.swing.JRadioButton rdVeggiePizza1;
     private javax.swing.JRadioButton rdWhiteBeanDip1;
+    private javax.swing.JTable tblOrders;
     private javax.swing.JTable tblRestaurants;
     private javax.swing.JToggleButton tglRestaurantsTable;
     private javax.swing.JTextField txtEmail;
@@ -1452,6 +1582,28 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 row[5] = restaurant.getEmailId();
                 model.addRow(row);
             }
+        }
+    }
+
+    private void populateOrders() {
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+
+        for (Order order : orderDirectory.getOrders()) {
+            Object[] row = new Object[5];
+            row[0] = order;
+            row[1] = order.getRestaurantName();
+            row[2] = order.getCost();
+            row[3] = order.getOrderDateTime();
+            row[4] = order.getStatus();
+            model.addRow(row);
+        }
+    }
+
+    private void finalizeOrder(Order order) {
+        if(rdOnionRings1.isSelected()){
+            totalCost = totalCost + Integer.parseInt(lblOnionRingsPrice.getText().substring(2, lblOnionRingsPrice.getText().indexOf("$")));
+            order.setCost(totalCost);
         }
     }
 }

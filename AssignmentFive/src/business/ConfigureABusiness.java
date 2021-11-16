@@ -25,20 +25,20 @@ public class ConfigureABusiness {
         ArrayList<UserAccount> userAccList = new ArrayList<>();
         UserAccount testAccount = new UserAccount("sysadmin", "sysadmin", "Deep Vaidya", new SystemAdminRole());
         userAccList.add(testAccount);
-//        system.getUserAccountDirectory().getUserAccountList().add(testAccount);
+        system.getUserAccountDirectory().getUserAccountList().add(testAccount);
 
-        UserAccount testAccount1 = new UserAccount("customer", "customer", "Deep Vaidya Customer", new Customer());
-        userAccList.add(testAccount1);
+//        UserAccount testAccount1 = new UserAccount("customer", "customer", "Deep Vaidya Customer", new Customer());
+//        userAccList.add(testAccount1);
 //        system.getUserAccountDirectory().getUserAccountList().add(testAccount1);
 
-        UserAccount testAccount2 = new UserAccount("restaurant", "restaurant", "Deep Vaidya Restaurant", new RestaurantRole());
-        userAccList.add(testAccount2);
+//        UserAccount testAccount2 = new UserAccount("restaurant", "restaurant", "Deep Vaidya Restaurant", new RestaurantRole());
+//        userAccList.add(testAccount2);
 //        system.getUserAccountDirectory().getUserAccountList().add(testAccount2);
 
-        UserAccount testAccount3 = new UserAccount("delivery", "delivery", "Deep Vaidya Delivery", new DeliveryManRole());
-        userAccList.add(testAccount3);
+//        UserAccount testAccount3 = new UserAccount("delivery", "delivery", "Deep Vaidya Delivery", new DeliveryManRole());
+//        userAccList.add(testAccount3);
 //        system.getUserAccountDirectory().getUserAccountList().add(testAccount3);
-        system.getUserAccountDirectory().setUserAccountList(userAccList);
+//        system.getUserAccountDirectory().setUserAccountList(userAccList);
 
         return system;
     }

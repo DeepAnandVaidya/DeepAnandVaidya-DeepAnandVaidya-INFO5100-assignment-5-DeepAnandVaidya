@@ -7,6 +7,8 @@ package ui.RestaurantRole;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.Order.Order;
+import business.Order.OrderDirectory;
 import business.Restaurant.Menu;
 import business.Restaurant.Restaurant;
 import business.Restaurant.RestaurantDirectory;
@@ -32,12 +34,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     Restaurant restaurant;
     String managerName;
     CustomerDirectory customerDirectory;
+    OrderDirectory orderDirectory;
 
-    public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
+    public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
         this.account = account;
+        this.orderDirectory = orderDirectory;
         managerName = account.getEmployee().getName();
         restaurant = restaurantDirectory.findRestaurant(managerName);
         lblRestaurantName.setText(restaurant.getName() == null ? managerName + "'s Dashboard" : restaurant.getName());

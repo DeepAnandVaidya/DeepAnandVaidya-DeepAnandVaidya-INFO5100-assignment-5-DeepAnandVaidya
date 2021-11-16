@@ -7,6 +7,8 @@ package ui.DeliveryWorkArea;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.Order.Order;
+import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import javax.swing.JPanel;
 
@@ -21,10 +23,12 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
      */
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
-    public DeliveryAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory) {
+    OrderDirectory orderDirectory;
+    public DeliveryAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
+        this.orderDirectory = orderDirectory;
     }
 
     /**
