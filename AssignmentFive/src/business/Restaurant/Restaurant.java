@@ -12,10 +12,10 @@ package business.Restaurant;
 public class Restaurant {
 
     private String name;
-    private String rating;
     private String address;
     private String cuisine;
     private String managerName;
+    private String vegOrNonVeg;
 
     public String getName() {
         return name;
@@ -23,14 +23,6 @@ public class Restaurant {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
     }
 
     public String getAddress() {
@@ -55,6 +47,14 @@ public class Restaurant {
 
     public void setManagerName(String managerName) {
         this.managerName = managerName;
+    }
+
+    public String getVegOrNonVeg() {
+        return vegOrNonVeg;
+    }
+
+    public void setVegOrNonVeg(String vegOrNonVeg) {
+        this.vegOrNonVeg = vegOrNonVeg;
     }
 
 }

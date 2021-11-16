@@ -38,5 +38,10 @@ public class RestaurantDirectory {
         restaurants.add(restaurant);
         return restaurant;
     }
+    
+    public Restaurant findRestaurant(String managerNames){
+        Restaurant restaurant = restaurants.stream().filter(x -> x.getManagerName().equals(managerNames)).findAny().orElse(null);
+        return restaurant;
+    }
 
 }

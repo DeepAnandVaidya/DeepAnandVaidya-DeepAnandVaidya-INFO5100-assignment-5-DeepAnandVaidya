@@ -25,6 +25,6 @@ public class RestaurantRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory) {
-        return new RestaurantAreaJPanel(userProcessContainer, Business.getInstance(), restaurantDirectory);
+        return new RestaurantAreaJPanel(userProcessContainer, account, Business.getInstance(), restaurantDirectory);
     }
 }

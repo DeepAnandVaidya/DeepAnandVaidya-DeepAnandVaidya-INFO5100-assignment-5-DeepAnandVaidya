@@ -122,10 +122,6 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
         // TODO add your handling code here:
-//        mainWorkArea.remove(this);
-//        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-//        layout.previous(mainWorkArea);
-
         JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
