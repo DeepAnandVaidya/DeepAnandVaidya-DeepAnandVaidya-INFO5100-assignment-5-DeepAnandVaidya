@@ -10,6 +10,7 @@ import business.Customer.CustomerDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
+import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -26,13 +27,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
     OrderDirectory orderDirectory;
+    UserAccount account;
 
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.orderDirectory = orderDirectory;
+        this.account = account;
     }
 
     /**
@@ -142,7 +145,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
-        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business, workAreaPanel, restaurantDirectory);
+        JPanel manageRestaurantManagersPanel = new ManageRestaurantManagersPanel(business, account, workAreaPanel, restaurantDirectory);
         workAreaPanel.add("ManageRestaurantManagersPanel", manageRestaurantManagersPanel);
         CardLayout layout = (CardLayout) workAreaPanel.getLayout();
         layout.next(workAreaPanel);

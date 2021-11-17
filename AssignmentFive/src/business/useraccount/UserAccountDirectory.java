@@ -56,4 +56,14 @@ public class UserAccountDirectory {
         }
         return true;
     }
+
+    public void removeAccount(UserAccount account) {
+        int index = userAccountList.indexOf(account);
+        userAccountList.remove(index);
+    }
+
+    public UserAccount fetchUserAccountUsingUserName(String userName) {
+        UserAccount account = userAccountList.stream().filter(x -> x.getUsername().equals(userName)).findAny().orElse(null);
+        return account;
+    }
 }

@@ -20,6 +20,6 @@ import ui.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
  */
 public class SystemAdminRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business system, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer, system, restaurantDirectory, customerDirectory, orderDirectory);
+        return new SystemAdminWorkAreaJPanel(userProcessContainer, account, system, restaurantDirectory, customerDirectory, orderDirectory);
     }
 }

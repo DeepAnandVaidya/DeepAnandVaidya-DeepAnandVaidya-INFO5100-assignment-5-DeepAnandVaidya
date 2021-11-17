@@ -230,7 +230,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(187, 187, 187)
                 .addComponent(tglOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(744, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
         navigationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditProfile, tglOrders});
@@ -345,7 +345,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         MainWorkArea.setLayout(MainWorkAreaLayout);
         MainWorkAreaLayout.setHorizontalGroup(
             MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(MainWorkAreaLayout.createSequentialGroup()
                 .addGroup(MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainWorkAreaLayout.createSequentialGroup()
@@ -359,7 +359,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addGroup(MainWorkAreaLayout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(btnAddReview)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainWorkAreaLayout.setVerticalGroup(
             MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +374,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnAddReview)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MainWorkArea, "card2");
@@ -452,7 +452,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         EditProfilePanelLayout.setHorizontalGroup(
             EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
-                .addContainerGap(582, Short.MAX_VALUE)
+                .addContainerGap(573, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(35, 35, 35))
             .addGroup(EditProfilePanelLayout.createSequentialGroup()
@@ -481,7 +481,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(32, 32, 32))))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         EditProfilePanelLayout.setVerticalGroup(
             EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,7 +508,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(btnSave)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(EditProfilePanel, "card3");
@@ -1080,7 +1080,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
                 .addGap(186, 186, 186)
@@ -1173,7 +1173,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addGroup(FeedbackPanelLayout.createSequentialGroup()
                         .addGap(300, 300, 300)
                         .addComponent(btnSubmitFeedback)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         FeedbackPanelLayout.setVerticalGroup(
             FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1192,7 +1192,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(btnSubmitFeedback)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(FeedbackPanel, "card5");
@@ -1203,7 +1203,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 843, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

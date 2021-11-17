@@ -49,4 +49,9 @@ public class RestaurantDirectory {
         return restaurant;
     }
 
+    public void removeRestaurant(Restaurant restaurant) {
+        int index = restaurants.indexOf(restaurant);
+        restaurants.remove(restaurant);
+    }
+
 }

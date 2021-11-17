@@ -39,4 +39,13 @@ public class OrderDirectory {
         return order;
     }
 
+    public void removeSelectedRestaurantOrders(String restaurantName) {
+        for (Order order : orders) {
+            if (order.getRestaurantName().equals(restaurantName)) {
+                int index = orders.indexOf(order);
+                orders.remove(order);
+            }
+        }
+    }
+
 }

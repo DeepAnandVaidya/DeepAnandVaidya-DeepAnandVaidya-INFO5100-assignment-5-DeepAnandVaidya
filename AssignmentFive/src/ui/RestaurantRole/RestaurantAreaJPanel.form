@@ -13,6 +13,11 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel5"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -169,24 +174,28 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblRestaurantName" alignment="0" pref="689" max="32767" attributes="0"/>
+                      <Component id="lblRestaurantName" alignment="0" pref="680" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnAcceptOrder" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnrejectOrder" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnFeedback" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="btnClose" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jScrollPane3" pref="479" max="32767" attributes="0"/>
+                                      <Component id="pnlFeedbackTable" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane3" pref="479" max="32767" attributes="0"/>
-                                  <Component id="pnlFeedbackTable" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnAcceptOrder" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnrejectOrder" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnFeedback" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnDetails" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="100" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -200,6 +209,7 @@
                               <Component id="btnAcceptOrder" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnrejectOrder" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnFeedback" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDetails" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" pref="205" max="-2" attributes="0"/>
@@ -440,6 +450,26 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="btnDetails">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="DETAILS"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetailsActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="EditDetailsPanel">
@@ -458,7 +488,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="200" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -558,7 +588,7 @@
                               <Component id="lblEmailId" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtEmailId" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="149" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblVeg" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="chkVeg" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -791,7 +821,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="680" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -810,7 +840,7 @@
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="659" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="500" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1124,68 +1154,68 @@
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="lblMains1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblMainsVeg1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblMainsNonVeg1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblAptVegan2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                          <Component id="lblMains1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lblMainsVeg1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblMainsNonVeg1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblAptVegan2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="rdCheeseBurger1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtCheeseBurger" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdCheeseBurger1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtCheeseBurger" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdFriedRice1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtFriedRice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdVeggiePizza1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtVeggiePizza" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdHamBurger1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtHamBurger" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdFishNChips1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtFishNChips" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdPrawnFriedRice1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtPrawnFriedRice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="rdTofuSalad1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtTofuSalad" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdFalafelBowl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtFalafelBowl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="rdTofuAndRiceBowl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtTofuAndRiceBowl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdFriedRice1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtFriedRice" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="237" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdVeggiePizza1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtVeggiePizza" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdHamBurger1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtHamBurger" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdFishNChips1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtFishNChips" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdPrawnFriedRice1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtPrawnFriedRice" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="rdTofuSalad1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTofuSalad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdFalafelBowl1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtFalafelBowl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="rdTofuAndRiceBowl1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTofuAndRiceBowl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblDesserts1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1203,8 +1233,7 @@
                                               <Component id="txtChocolateMousse" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="lbBeverages1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1223,7 +1252,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace pref="225" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1666,6 +1695,196 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="OrderDetails">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="f0" type="rgb"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                  <CardConstraints cardName="card5"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" min="-2" pref="202" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblOrderedBy" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblOrderedAt" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblOrderedAtValue" max="32767" attributes="0"/>
+                                      <Component id="lblOrderedByValue" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblHeader3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="116" max="32767" attributes="0"/>
+                                  <Component id="btnBack5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnBack5" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblHeader3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblOrderedBy" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblOrderedByValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblOrderedAtValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblOrderedAt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" min="-2" pref="154" max="-2" attributes="0"/>
+                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="lblHeader3">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="24" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="&lt;ORDER xyz details&gt;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnBack5">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="BACK"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBack5ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblOrderedBy">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="ORDERED BY : "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblOrderedAt">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="ORDERED AT :"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblOrderedByValue">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&lt;Customer Name&gt;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblOrderedAtValue">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&lt;OrderTime&gt;"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tblFoodList">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="1"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="1" rowCount="4">
+                            <Column editable="true" title="FOOD ITEMS" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e8" green="d1" red="99" type="rgb"/>
+                        </Property>
+                        <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="33" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
