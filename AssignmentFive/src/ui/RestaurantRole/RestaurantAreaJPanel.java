@@ -14,10 +14,15 @@ import business.Restaurant.Restaurant;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -47,6 +52,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblRestaurantName.setText(restaurant.getName() == null ? managerName + "'s Dashboard" : restaurant.getName());
         this.customerDirectory = customerDirectory;
 
+        JTableHeader tableHeader = tblOrders.getTableHeader();
+        tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
+        if (orderDirectory != null) {
+            populateOrders();
+        }
+
     }
 
     /**
@@ -64,11 +77,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         NavigationJPanel = new javax.swing.JPanel();
         btnMenu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         btnEditDetails = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
         lblRestaurantName = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblOrders = new javax.swing.JTable();
+        btnAcceptOrder = new javax.swing.JButton();
+        btnrejectOrder = new javax.swing.JButton();
         EditDetailsPanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
@@ -176,11 +192,6 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(0, 51, 51));
         jButton2.setText("VIEW DELIVERY STAFF");
 
-        jButton3.setBackground(new java.awt.Color(206, 217, 217));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 51, 51));
-        jButton3.setText("VIEW ORDERS");
-
         btnEditDetails.setBackground(new java.awt.Color(206, 217, 217));
         btnEditDetails.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEditDetails.setForeground(new java.awt.Color(0, 51, 51));
@@ -203,13 +214,12 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(btnEditDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMenu, jButton2, jButton3});
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMenu, jButton2});
 
         NavigationJPanelLayout.setVerticalGroup(
             NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,12 +230,10 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton2)
-                .addGap(35, 35, 35)
-                .addComponent(jButton3)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(338, Short.MAX_VALUE))
         );
 
-        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMenu, jButton2, jButton3});
+        NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMenu, jButton2});
 
         jSplitPane1.setLeftComponent(NavigationJPanel);
 
@@ -238,18 +246,72 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblRestaurantName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRestaurantName.setText("<restaurant name>");
 
+        tblOrders.setBackground(new java.awt.Color(255, 255, 255));
+        tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "CUSTOMER", "BILL AMOUNT", "ORDER TIME", "STATUS"
+            }
+        ));
+        tblOrders.setSelectionBackground(new java.awt.Color(153, 209, 232));
+        tblOrders.setSelectionForeground(new java.awt.Color(0, 51, 51));
+        jScrollPane3.setViewportView(tblOrders);
+
+        btnAcceptOrder.setBackground(new java.awt.Color(204, 255, 204));
+        btnAcceptOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAcceptOrder.setForeground(new java.awt.Color(0, 102, 51));
+        btnAcceptOrder.setText("ACCEPT ORDER");
+        btnAcceptOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptOrderActionPerformed(evt);
+            }
+        });
+
+        btnrejectOrder.setBackground(new java.awt.Color(255, 204, 204));
+        btnrejectOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnrejectOrder.setForeground(new java.awt.Color(204, 0, 0));
+        btnrejectOrder.setText("REJECT ORDER");
+        btnrejectOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrejectOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
         workAreaPanel.setLayout(workAreaPanelLayout);
         workAreaPanelLayout.setHorizontalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+            .addComponent(lblRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addGroup(workAreaPanelLayout.createSequentialGroup()
+                .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(workAreaPanelLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(workAreaPanelLayout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(btnAcceptOrder)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnrejectOrder)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         workAreaPanelLayout.setVerticalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(workAreaPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(lblRestaurantName)
-                .addContainerGap(579, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcceptOrder)
+                    .addComponent(btnrejectOrder))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(workAreaPanel, "card2");
@@ -360,34 +422,36 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EditDetailsPanelLayout.createSequentialGroup()
-                                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(EditDetailsPanelLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(lblEmailId))
-                                    .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblPhoneNum)
-                                        .addComponent(lblName)
-                                        .addComponent(lblAddress)
-                                        .addComponent(lblCuisine)
-                                        .addComponent(lblVeg)
-                                        .addComponent(lblNonVeg)
-                                        .addComponent(lblVegan)
-                                        .addComponent(lvlAll)))
-                                .addGap(18, 18, 18)
-                                .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(txtName)
-                                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                    .addComponent(txtCuisine)
-                                    .addComponent(txtPhoneNum)
-                                    .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EditDetailsPanelLayout.createSequentialGroup()
-                                .addGap(93, 93, 93)
                                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(chkAll, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkVegan, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkNonVeg, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkVeg, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EditDetailsPanelLayout.createSequentialGroup()
+                                        .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(EditDetailsPanelLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(lblEmailId))
+                                            .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lblPhoneNum)
+                                                .addComponent(lblName)
+                                                .addComponent(lblAddress)
+                                                .addComponent(lblCuisine)
+                                                .addComponent(lblVeg)
+                                                .addComponent(lblNonVeg)
+                                                .addComponent(lblVegan)
+                                                .addComponent(lvlAll)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                            .addComponent(txtName)
+                                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                            .addComponent(txtCuisine)
+                                            .addComponent(txtPhoneNum)
+                                            .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EditDetailsPanelLayout.createSequentialGroup()
+                                        .addGap(93, 93, 93)
+                                        .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(chkAll, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkVegan, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkNonVeg, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkVeg, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(245, 245, 245))
                     .addGroup(EditDetailsPanelLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -1054,12 +1118,54 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTofuSaladActionPerformed
 
     private void rdOnionRings1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdOnionRings1ActionPerformed
-        
+
     }//GEN-LAST:event_rdOnionRings1ActionPerformed
 
     private void rdCheeseBurger1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCheeseBurger1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdCheeseBurger1ActionPerformed
+
+    private void btnAcceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrderActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            Order updatedOrder = orderDirectory.findOrder(selectedOrder.getId());
+            updatedOrder.setStatus("ACCEPTED");
+
+            for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+                if (orderDirectory.getOrders().get(i).getId() == selectedOrder.getId()) {
+                    orderDirectory.getOrders().set(i, updatedOrder);
+                }
+            }
+            populateOrders();
+        }
+    }//GEN-LAST:event_btnAcceptOrderActionPerformed
+
+    private void btnrejectOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrejectOrderActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            Order updatedOrder = orderDirectory.findOrder(selectedOrder.getId());
+            updatedOrder.setStatus("REJECTED");
+
+            for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+                if (orderDirectory.getOrders().get(i).getId() == selectedOrder.getId()) {
+                    orderDirectory.getOrders().set(i, updatedOrder);
+                }
+            }
+            populateOrders();
+        }
+    }//GEN-LAST:event_btnrejectOrderActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -1206,23 +1312,25 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel EditDetailsPanel;
     private javax.swing.JPanel MenuPanel1;
     private javax.swing.JPanel NavigationJPanel;
+    private javax.swing.JButton btnAcceptOrder;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnBack4;
     private javax.swing.JButton btnEditDetails;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnrejectOrder;
     private javax.swing.JCheckBox chkAll;
     private javax.swing.JCheckBox chkNonVeg;
     private javax.swing.JCheckBox chkVeg;
     private javax.swing.JCheckBox chkVegan;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbBeverages1;
     private javax.swing.JLabel lblAddress;
@@ -1270,6 +1378,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdTortillaChips1;
     private javax.swing.JRadioButton rdVeggiePizza1;
     private javax.swing.JRadioButton rdWhiteBeanDip1;
+    private javax.swing.JTable tblOrders;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBlackForestCake;
     private javax.swing.JTextField txtCheeseBurger;
@@ -1469,6 +1578,23 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
             if (restaurant.getMenu().getBeverages() != null && !restaurant.getMenu().getBeverages().isEmpty()) {
                 populateBeveragesFields(restaurant.getMenu().getBeverages());
+            }
+        }
+    }
+
+    private void populateOrders() {
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+
+        for (Order order : orderDirectory.getOrders()) {
+            if (order.getRestaurantName().equals(restaurant.getName())) {
+                Object[] row = new Object[5];
+                row[0] = order;
+                row[1] = order.getCustomerName();
+                row[2] = order.getCost() + "$";
+                row[3] = order.getOrderDateTime();
+                row[4] = order.getStatus();
+                model.addRow(row);
             }
         }
     }
