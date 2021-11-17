@@ -13,7 +13,12 @@ import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -31,6 +36,9 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     DeliveryStaff staff;
     UserAccount account;
     String userName;
+    Order order;
+    int orderId;
+    String staffMemberName;
 
     public DeliveryAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
@@ -39,9 +47,19 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         this.orderDirectory = orderDirectory;
         this.deliveryStaffDirectory = deliveryStaffDirectory;
         this.account = account;
+        this.order = orderDirectory.findOrderByDeliveryStaffName(account.getEmployee().getName());
+        orderId = order.getId();
         userName = account.getUsername();
         this.staff = deliveryStaffDirectory.findStaffByUserName(userName);
         lblGreeting.setText(staff.getFirstName() == null && staff.getLastName() == null ? "Welcome " + staff.getUserName() + "!" : "Welcome " + staff.getFirstName().toUpperCase() + " " + staff.getLastName().toUpperCase() + "!");
+
+        JTableHeader tableHeader = tblOrders.getTableHeader();
+        tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
+        if (orderDirectory != null) {
+            populateOrders();
+        }
     }
 
     /**
@@ -62,6 +80,8 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         MainWorkAreaPanel = new javax.swing.JPanel();
         lblGreeting = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblOrders = new javax.swing.JTable();
 
         NavigationPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -156,21 +176,41 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         lblGreeting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGreeting.setText("<delivery staff greeting>");
 
+        tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "CUSTOMER", "RESTAURANT", "ORDER TIME", "STATUS"
+            }
+        ));
+        jScrollPane1.setViewportView(tblOrders);
+
         javax.swing.GroupLayout MainWorkAreaPanelLayout = new javax.swing.GroupLayout(MainWorkAreaPanel);
         MainWorkAreaPanel.setLayout(MainWorkAreaPanelLayout);
         MainWorkAreaPanelLayout.setHorizontalGroup(
             MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainWorkAreaPanelLayout.setVerticalGroup(
             MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(lblGreeting)
-                .addContainerGap(536, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MainWorkAreaPanel, "card2");
@@ -213,7 +253,28 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnEditProfile;
     private javax.swing.JButton btnPendingOrders;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblGreeting;
+    private javax.swing.JTable tblOrders;
     // End of variables declaration//GEN-END:variables
+
+    private void populateOrders() {
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+
+        for (Order order : orderDirectory.getOrders()) {
+            if (order.getDeliveryStaffName() != null && !order.getDeliveryStaffName().isBlank() && !order.getDeliveryStaffName().isEmpty()) {
+                if (order.getDeliveryStaffName().equals(account.getEmployee().getName())) {
+                    Object[] row = new Object[5];
+                    row[0] = order;
+                    row[1] = order.getCustomerName().toUpperCase();
+                    row[2] = order.getRestaurantName().toUpperCase();
+                    row[3] = order.getOrderDateTime();
+                    row[4] = order.getStatus();
+                    model.addRow(row);
+                }
+            }
+        }
+    }
 }

@@ -48,4 +48,18 @@ public class OrderDirectory {
         }
     }
 
+    public Order findOrderByDeliveryStaffName(String staffMemberName) {
+        Order order = new Order();
+        for (Order order2 : orders) {
+            if (order2.getDeliveryStaffName() != null && !order2.getDeliveryStaffName().isBlank() && !order2.getDeliveryStaffName().isEmpty()) {
+                if (order2.getDeliveryStaffName().equals(staffMemberName)) {
+                    order = order2;
+                    break;
+                }
+            }
+        }
+
+        return order;
+    }
+
 }

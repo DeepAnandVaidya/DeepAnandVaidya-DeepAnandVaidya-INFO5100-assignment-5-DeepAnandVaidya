@@ -25,6 +25,14 @@ public class Order {
     private HashMap<String, String> reviewComments;
     private String deliveryStaffName;
 
+//    public Order() {
+//        if (this.deliveryStaffName == null) {
+//            this.deliveryStaffName = "";
+//        } else {
+//            this.deliveryStaffName = deliveryStaffName;
+//        }
+//    }
+
     public String getCustomerName() {
         return customerName;
     }
