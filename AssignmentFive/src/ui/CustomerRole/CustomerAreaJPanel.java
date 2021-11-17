@@ -508,7 +508,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(btnSave)
-                .addContainerGap(674, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(EditProfilePanel, "card3");
@@ -1352,7 +1352,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private void btnSubmitFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitFeedbackActionPerformed
         Order order = orderDirectory.findOrder(orderId);
         HashMap<String, String> feedbackMap = new HashMap<>();
-        feedbackMap.put(order.getRestaurantName(), txtFeedback.getText());
+        feedbackMap.put(String.valueOf(order.getId()), txtFeedback.getText());
+        order.setReviewComments(feedbackMap);
+
+        for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+            if (orderDirectory.getOrders().get(i).getId() == order.getId()) {
+                orderDirectory.getOrders().set(i, order);
+            }
+        }
+
         JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
         switchPanels(MainWorkArea);
         txtFeedback.setText("");

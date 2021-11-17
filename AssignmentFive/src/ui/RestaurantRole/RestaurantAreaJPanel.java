@@ -40,6 +40,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     String managerName;
     CustomerDirectory customerDirectory;
     OrderDirectory orderDirectory;
+    int orderId;
 
     public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
         initComponents();
@@ -56,9 +57,16 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
+        JTableHeader tableHeader1 = tblFeedBack.getTableHeader();
+        tableHeader1.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        ((DefaultTableCellRenderer) tableHeader1.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
         if (orderDirectory != null) {
             populateOrders();
         }
+
+        pnlFeedbackTable.setVisible(false);
+        btnClose.setVisible(false);
 
     }
 
@@ -85,6 +93,11 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         tblOrders = new javax.swing.JTable();
         btnAcceptOrder = new javax.swing.JButton();
         btnrejectOrder = new javax.swing.JButton();
+        btnFeedback = new javax.swing.JButton();
+        pnlFeedbackTable = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblFeedBack = new javax.swing.JTable();
+        btnClose = new javax.swing.JButton();
         EditDetailsPanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
@@ -230,7 +243,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton2)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(463, Short.MAX_VALUE))
         );
 
         NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMenu, jButton2});
@@ -283,21 +296,81 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnFeedback.setBackground(new java.awt.Color(255, 255, 255));
+        btnFeedback.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnFeedback.setForeground(new java.awt.Color(0, 102, 102));
+        btnFeedback.setText("VIEW FEEDBACK");
+        btnFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeedbackActionPerformed(evt);
+            }
+        });
+
+        pnlFeedbackTable.setBackground(new java.awt.Color(240, 255, 255));
+
+        tblFeedBack.setBackground(new java.awt.Color(255, 255, 255));
+        tblFeedBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblFeedBack.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "FEEDBACK"
+            }
+        ));
+        tblFeedBack.setSelectionBackground(new java.awt.Color(153, 209, 232));
+        tblFeedBack.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane4.setViewportView(tblFeedBack);
+
+        javax.swing.GroupLayout pnlFeedbackTableLayout = new javax.swing.GroupLayout(pnlFeedbackTable);
+        pnlFeedbackTable.setLayout(pnlFeedbackTableLayout);
+        pnlFeedbackTableLayout.setHorizontalGroup(
+            pnlFeedbackTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFeedbackTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+        );
+        pnlFeedbackTableLayout.setVerticalGroup(
+            pnlFeedbackTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFeedbackTableLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnClose.setBackground(new java.awt.Color(255, 204, 204));
+        btnClose.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(204, 0, 0));
+        btnClose.setText("X");
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
         workAreaPanel.setLayout(workAreaPanelLayout);
         workAreaPanelLayout.setHorizontalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
             .addGroup(workAreaPanelLayout.createSequentialGroup()
-                .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(workAreaPanelLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(workAreaPanelLayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(btnAcceptOrder)
-                        .addGap(41, 41, 41)
-                        .addComponent(btnrejectOrder)))
+                .addGap(105, 105, 105)
+                .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnClose)
+                    .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(workAreaPanelLayout.createSequentialGroup()
+                            .addComponent(btnAcceptOrder)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnrejectOrder)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnFeedback))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                        .addComponent(pnlFeedbackTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         workAreaPanelLayout.setVerticalGroup(
@@ -308,10 +381,15 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addGap(62, 62, 62)
                 .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcceptOrder)
-                    .addComponent(btnrejectOrder))
+                    .addComponent(btnrejectOrder)
+                    .addComponent(btnFeedback))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(btnClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlFeedbackTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(workAreaPanel, "card2");
@@ -493,7 +571,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmailId)
                     .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addGroup(EditDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblVeg)
                     .addComponent(chkVeg))
@@ -936,7 +1014,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(rdTofuAndRiceBowl1)
                                     .addComponent(txtTofuAndRiceBowl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                         .addComponent(lblDesserts1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -997,7 +1075,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addComponent(lblHeader2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MenuPanel1, "card5");
@@ -1136,6 +1214,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
             Order updatedOrder = orderDirectory.findOrder(selectedOrder.getId());
             updatedOrder.setStatus("ACCEPTED");
+            orderId = selectedOrder.getId();
 
             for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
                 if (orderDirectory.getOrders().get(i).getId() == selectedOrder.getId()) {
@@ -1166,6 +1245,27 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             populateOrders();
         }
     }//GEN-LAST:event_btnrejectOrderActionPerformed
+
+    private void btnFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order");
+            return;
+        } else {
+            btnClose.setVisible(true);
+            pnlFeedbackTable.setVisible(true);
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            populateFeedbackTable(String.valueOf(selectedOrder.getId()));
+        }
+    }//GEN-LAST:event_btnFeedbackActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        btnClose.setVisible(false);
+        pnlFeedbackTable.setVisible(false);
+
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -1316,7 +1416,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnBack4;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnEditDetails;
+    private javax.swing.JButton btnFeedback;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnrejectOrder;
@@ -1331,6 +1433,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbBeverages1;
     private javax.swing.JLabel lblAddress;
@@ -1354,6 +1457,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblVeg;
     private javax.swing.JLabel lblVegan;
     private javax.swing.JLabel lvlAll;
+    private javax.swing.JPanel pnlFeedbackTable;
     private javax.swing.JRadioButton rdBlackForestCake1;
     private javax.swing.JRadioButton rdCheeseBurger1;
     private javax.swing.JRadioButton rdChocolateMousse1;
@@ -1378,6 +1482,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdTortillaChips1;
     private javax.swing.JRadioButton rdVeggiePizza1;
     private javax.swing.JRadioButton rdWhiteBeanDip1;
+    private javax.swing.JTable tblFeedBack;
     private javax.swing.JTable tblOrders;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBlackForestCake;
@@ -1595,6 +1700,24 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 row[3] = order.getOrderDateTime();
                 row[4] = order.getStatus();
                 model.addRow(row);
+            }
+        }
+    }
+
+    private void populateFeedbackTable(String id) {
+        DefaultTableModel model = (DefaultTableModel) tblFeedBack.getModel();
+        model.setRowCount(0);
+
+        for (Order order : orderDirectory.getOrders()) {
+            Object[] row = new Object[2];
+            if (order.getReviewComments() != null && !order.getReviewComments().isEmpty()) {
+                for (Map.Entry<String, String> feedbackMap : order.getReviewComments().entrySet()) {
+                    if (id.equals(feedbackMap.getKey())) {
+                        row[0] = feedbackMap.getKey();
+                        row[1] = feedbackMap.getValue();
+                        model.addRow(row);
+                    }
+                }
             }
         }
     }
