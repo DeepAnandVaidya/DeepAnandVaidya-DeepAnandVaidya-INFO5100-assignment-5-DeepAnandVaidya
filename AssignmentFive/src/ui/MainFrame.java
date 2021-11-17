@@ -8,6 +8,7 @@ package ui;
 import business.Business;
 import business.ConfigureABusiness;
 import business.Customer.CustomerDirectory;
+import business.DeliveryStaff.DeliveryStaffDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
@@ -27,6 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     private RestaurantDirectory restaurantDirectory;
     private CustomerDirectory customerDirectory;
     private OrderDirectory orderDirectory;
+    private DeliveryStaffDirectory deliveryStaffDirectory;
 
     public MainFrame() {
         initComponents();
@@ -43,10 +45,16 @@ public class MainFrame extends javax.swing.JFrame {
             this.customerDirectory = new CustomerDirectory();
         }
 
-        if (business.getOrderDirectory()!= null) {
+        if (business.getOrderDirectory() != null) {
             this.orderDirectory = business.getOrderDirectory();
         } else {
             this.orderDirectory = new OrderDirectory();
+        }
+
+        if (business.getDeliveryStaffDirectory() != null) {
+            this.deliveryStaffDirectory = business.getDeliveryStaffDirectory();
+        } else {
+            this.deliveryStaffDirectory = new DeliveryStaffDirectory();
         }
         setSize(943, 738);
 
@@ -122,7 +130,7 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initLoginScreen() {
-        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory, orderDirectory);
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory, orderDirectory, deliveryStaffDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);

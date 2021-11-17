@@ -7,6 +7,8 @@ package ui.RestaurantRole;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.DeliveryStaff.DeliveryStaff;
+import business.DeliveryStaff.DeliveryStaffDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.Menu;
@@ -40,14 +42,16 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     String managerName;
     CustomerDirectory customerDirectory;
     OrderDirectory orderDirectory;
+    DeliveryStaffDirectory deliveryStaffDirectory;
     int orderId;
 
-    public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
+    public RestaurantAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
         this.account = account;
         this.orderDirectory = orderDirectory;
+        this.deliveryStaffDirectory = deliveryStaffDirectory;
         managerName = account.getEmployee().getName();
         restaurant = restaurantDirectory.findRestaurant(managerName);
         lblRestaurantName.setText(restaurant.getName() == null ? managerName + "'s Dashboard" : restaurant.getName());
@@ -65,8 +69,16 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         tableHeader2.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader2.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
+        JTableHeader tableHeader3 = tblDeliveryStaff.getTableHeader();
+        tableHeader3.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        ((DefaultTableCellRenderer) tableHeader3.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
         if (orderDirectory != null) {
             populateOrders();
+        }
+
+        if (deliveryStaffDirectory != null) {
+            populateStaffMembers();
         }
 
         pnlFeedbackTable.setVisible(false);
@@ -104,6 +116,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         tblFeedBack = new javax.swing.JTable();
         btnClose = new javax.swing.JButton();
         btnDetails = new javax.swing.JButton();
+        btnDetails1 = new javax.swing.JButton();
         EditDetailsPanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
@@ -199,6 +212,13 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblOrderedAtValue = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblFoodList = new javax.swing.JTable();
+        AssignDeliveryPanel = new javax.swing.JPanel();
+        lblHeader4 = new javax.swing.JLabel();
+        btnBack6 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblDeliveryStaff = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        btnAssign = new javax.swing.JButton();
 
         jScrollPane2.setViewportView(jEditorPane1);
 
@@ -280,18 +300,21 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "CUSTOMER", "BILL AMOUNT", "ORDER TIME", "STATUS"
+                "ID", "CUSTOMER", "BILL AMOUNT", "ORDER TIME", "STATUS", "DELIVERY STAFF"
             }
         ));
         tblOrders.setSelectionBackground(new java.awt.Color(153, 209, 232));
         tblOrders.setSelectionForeground(new java.awt.Color(0, 51, 51));
         jScrollPane3.setViewportView(tblOrders);
+        if (tblOrders.getColumnModel().getColumnCount() > 0) {
+            tblOrders.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
         btnAcceptOrder.setBackground(new java.awt.Color(204, 255, 204));
         btnAcceptOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -348,7 +371,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             pnlFeedbackTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFeedbackTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlFeedbackTableLayout.setVerticalGroup(
@@ -381,28 +404,45 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDetails1.setBackground(new java.awt.Color(204, 255, 255));
+        btnDetails1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDetails1.setForeground(new java.awt.Color(0, 153, 204));
+        btnDetails1.setText("SEND FOR DELIVERY");
+        btnDetails1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDetails1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetails1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
         workAreaPanel.setLayout(workAreaPanelLayout);
         workAreaPanelLayout.setHorizontalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
             .addGroup(workAreaPanelLayout.createSequentialGroup()
-                .addGap(108, 108, 108)
                 .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnClose)
-                        .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-                            .addComponent(pnlFeedbackTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(workAreaPanelLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
                         .addComponent(btnAcceptOrder)
                         .addGap(18, 18, 18)
                         .addComponent(btnrejectOrder)
                         .addGap(18, 18, 18)
-                        .addComponent(btnFeedback)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDetails)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addComponent(btnDetails1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDetails))
+                    .addGroup(workAreaPanelLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnClose)
+                            .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnFeedback)
+                                .addComponent(pnlFeedbackTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workAreaPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         workAreaPanelLayout.setVerticalGroup(
             workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,11 +453,13 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcceptOrder)
                     .addComponent(btnrejectOrder)
-                    .addComponent(btnFeedback)
-                    .addComponent(btnDetails))
+                    .addComponent(btnDetails)
+                    .addComponent(btnDetails1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFeedback)
+                .addGap(8, 8, 8)
                 .addComponent(btnClose)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlFeedbackTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1183,7 +1225,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                             .addComponent(lblOrderedByValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(OrderDetailsLayout.createSequentialGroup()
                         .addComponent(lblHeader3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                         .addComponent(btnBack5)))
                 .addGap(34, 34, 34))
         );
@@ -1204,10 +1246,97 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                     .addComponent(lblOrderedAt))
                 .addGap(102, 102, 102)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(OrderDetails, "card5");
+
+        AssignDeliveryPanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblHeader4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHeader4.setForeground(new java.awt.Color(0, 153, 153));
+        lblHeader4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader4.setText("<ORDER xyz delivery>");
+
+        btnBack6.setBackground(new java.awt.Color(255, 204, 204));
+        btnBack6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack6.setForeground(new java.awt.Color(255, 0, 51));
+        btnBack6.setText("BACK");
+        btnBack6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack6ActionPerformed(evt);
+            }
+        });
+
+        tblDeliveryStaff.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblDeliveryStaff.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Delivery Staff Member"
+            }
+        ));
+        jScrollPane6.setViewportView(tblDeliveryStaff);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setText("ASSIGN ORDER TO A DELIVERY STAFF MEMBER BELOW");
+
+        btnAssign.setBackground(new java.awt.Color(215, 254, 211));
+        btnAssign.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAssign.setForeground(new java.awt.Color(72, 151, 64));
+        btnAssign.setText("ASSIGN");
+        btnAssign.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AssignDeliveryPanelLayout = new javax.swing.GroupLayout(AssignDeliveryPanel);
+        AssignDeliveryPanel.setLayout(AssignDeliveryPanelLayout);
+        AssignDeliveryPanelLayout.setHorizontalGroup(
+            AssignDeliveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AssignDeliveryPanelLayout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(lblHeader4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(btnBack6)
+                .addGap(40, 40, 40))
+            .addGroup(AssignDeliveryPanelLayout.createSequentialGroup()
+                .addGroup(AssignDeliveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AssignDeliveryPanelLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel1))
+                    .addGroup(AssignDeliveryPanelLayout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addGroup(AssignDeliveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnAssign, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AssignDeliveryPanelLayout.setVerticalGroup(
+            AssignDeliveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AssignDeliveryPanelLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(AssignDeliveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack6)
+                    .addComponent(lblHeader4))
+                .addGap(58, 58, 58)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(btnAssign)
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(AssignDeliveryPanel, "card6");
 
         jSplitPane1.setRightComponent(jLayeredPane1);
 
@@ -1417,6 +1546,49 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         switchPanels(workAreaPanel);
     }//GEN-LAST:event_btnBack5ActionPerformed
 
+    private void btnDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetails1ActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order");
+            return;
+        } else {
+            switchPanels(AssignDeliveryPanel);
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            orderId = selectedOrder.getId();
+            lblHeader4.setText("Assign Order: " + orderId);
+        }
+    }//GEN-LAST:event_btnDetails1ActionPerformed
+
+    private void btnBack6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack6ActionPerformed
+        switchPanels(workAreaPanel);
+    }//GEN-LAST:event_btnBack6ActionPerformed
+
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        int selectedRowIndex = tblDeliveryStaff.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a Delivery Staff member");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblDeliveryStaff.getModel();
+            DeliveryStaff selectedStaff = (DeliveryStaff) model.getValueAt(selectedRowIndex, 0);
+            Order orderToBeUpdated = orderDirectory.findOrder(orderId);
+            orderToBeUpdated.setDeliveryStaffName(selectedStaff.getFirstName() + " " + selectedStaff.getLastName());
+            orderToBeUpdated.setStatus("ASSIGNED");
+
+            for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+                if (orderDirectory.getOrders().get(i).getId() == (orderId)) {
+                    orderDirectory.getOrders().set(i, orderToBeUpdated);
+                }
+            }
+
+            populateOrders();
+            switchPanels(workAreaPanel);
+        }
+    }//GEN-LAST:event_btnAssignActionPerformed
+
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
         jLayeredPane1.add(component);
@@ -1559,17 +1731,21 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AssignDeliveryPanel;
     private javax.swing.JPanel EditDetailsPanel;
     private javax.swing.JPanel MenuPanel1;
     private javax.swing.JPanel NavigationJPanel;
     private javax.swing.JPanel OrderDetails;
     private javax.swing.JButton btnAcceptOrder;
+    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnBack4;
     private javax.swing.JButton btnBack5;
+    private javax.swing.JButton btnBack6;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDetails;
+    private javax.swing.JButton btnDetails1;
     private javax.swing.JButton btnEditDetails;
     private javax.swing.JButton btnFeedback;
     private javax.swing.JButton btnMenu;
@@ -1581,6 +1757,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox chkVegan;
     private javax.swing.JButton jButton2;
     private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
@@ -1589,6 +1766,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbBeverages1;
     private javax.swing.JLabel lblAddress;
@@ -1603,6 +1781,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JLabel lblHeader3;
+    private javax.swing.JLabel lblHeader4;
     private javax.swing.JLabel lblMains1;
     private javax.swing.JLabel lblMainsNonVeg1;
     private javax.swing.JLabel lblMainsVeg1;
@@ -1642,6 +1821,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdTortillaChips1;
     private javax.swing.JRadioButton rdVeggiePizza1;
     private javax.swing.JRadioButton rdWhiteBeanDip1;
+    private javax.swing.JTable tblDeliveryStaff;
     private javax.swing.JTable tblFeedBack;
     private javax.swing.JTable tblFoodList;
     private javax.swing.JTable tblOrders;
@@ -1854,12 +2034,16 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
         for (Order order : orderDirectory.getOrders()) {
             if (order.getRestaurantName().equals(restaurant.getName())) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[6];
                 row[0] = order;
                 row[1] = order.getCustomerName();
                 row[2] = order.getCost() + "$";
                 row[3] = order.getOrderDateTime();
                 row[4] = order.getStatus();
+
+                if (order.getDeliveryStaffName() != null) {
+                    row[5] = order.getDeliveryStaffName().toUpperCase();
+                }
                 model.addRow(row);
             }
         }
@@ -1890,13 +2074,24 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         for (Order order : orderDirectory.getOrders()) {
             Object[] row = new Object[1];
             if (order.getFoodItems() != null && !order.getFoodItems().isEmpty()) {
-                for ( String foodItems : order.getFoodItems() ) {
+                for (String foodItems : order.getFoodItems()) {
                     if (id == order.getId()) {
                         row[0] = foodItems.toString();
                         model.addRow(row);
                     }
                 }
             }
+        }
+    }
+
+    private void populateStaffMembers() {
+        DefaultTableModel model = (DefaultTableModel) tblDeliveryStaff.getModel();
+        model.setRowCount(0);
+
+        for (DeliveryStaff staff : deliveryStaffDirectory.getDeliveryStaffMembers()) {
+            Object[] row = new Object[1];
+            row[0] = staff;
+            model.addRow(row);
         }
     }
 

@@ -7,6 +7,7 @@ package business.role;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.DeliveryStaff.DeliveryStaffDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
@@ -42,10 +43,10 @@ public abstract class Role {
     }
 
     public RoleType type;
-    
+
     public abstract JPanel createWorkArea(JPanel userProcessContainer,
             UserAccount account,
-            Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory);
+            Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory);
 
     @Override
     public String toString() {

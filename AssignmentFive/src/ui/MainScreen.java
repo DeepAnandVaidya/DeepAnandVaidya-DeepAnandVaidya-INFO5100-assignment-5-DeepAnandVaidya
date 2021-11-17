@@ -9,6 +9,7 @@ import business.Business;
 import business.ConfigureABusiness;
 import business.Customer.CustomerDirectory;
 import business.DB4OUtil.DB4OUtil;
+import business.DeliveryStaff.DeliveryStaffDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Organization;
@@ -38,8 +39,9 @@ public class MainScreen extends javax.swing.JPanel {
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
     OrderDirectory orderDirectory;
+    DeliveryStaffDirectory deliveryStaffDirectory;
 
-    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
+    public MainScreen(JPanel mainWorkArea, UserAccount userAccount, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
         this.userAccount = userAccount;
@@ -57,10 +59,16 @@ public class MainScreen extends javax.swing.JPanel {
             this.customerDirectory = new CustomerDirectory();
         }
 
-        if (system.getOrderDirectory()!= null) {
+        if (system.getOrderDirectory() != null) {
             this.orderDirectory = system.getOrderDirectory();
         } else {
             this.orderDirectory = new OrderDirectory();
+        }
+
+        if (system.getDeliveryStaffDirectory() != null) {
+            this.deliveryStaffDirectory = system.getDeliveryStaffDirectory();
+        } else {
+            this.deliveryStaffDirectory = new DeliveryStaffDirectory();
         }
         initUserWorkArea();
     }
@@ -139,7 +147,7 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
         // TODO add your handling code here:
-        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory, orderDirectory);
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory, orderDirectory, deliveryStaffDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
@@ -157,9 +165,9 @@ public class MainScreen extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initUserWorkArea() {
-        lblUser.setText("Welcome " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName() : userAccount.getUsername()));
+        lblUser.setText("Logged in as " + ((userAccount.getEmployee() != null) ? userAccount.getEmployee().getName().toUpperCase() : userAccount.getUsername()));
         CardLayout layout = (CardLayout) workArea.getLayout();
-        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory, customerDirectory, orderDirectory));
+        workArea.add("workArea", userAccount.getRole().createWorkArea(workArea, userAccount, system, restaurantDirectory, customerDirectory, orderDirectory, deliveryStaffDirectory));
         layout.next(workArea);
     }
 }

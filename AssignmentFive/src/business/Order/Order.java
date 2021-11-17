@@ -23,6 +23,7 @@ public class Order {
     private Date orderDateTime;
     private String status;
     private HashMap<String, String> reviewComments;
+    private String deliveryStaffName;
 
     public String getCustomerName() {
         return customerName;
@@ -86,6 +87,14 @@ public class Order {
 
     public void setReviewComments(HashMap<String, String> reviewComments) {
         this.reviewComments = reviewComments;
+    }
+
+    public String getDeliveryStaffName() {
+        return deliveryStaffName;
+    }
+
+    public void setDeliveryStaffName(String deliveryStaffName) {
+        this.deliveryStaffName = deliveryStaffName;
     }
 
     @Override

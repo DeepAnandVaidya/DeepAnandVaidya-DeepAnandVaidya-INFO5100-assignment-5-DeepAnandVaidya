@@ -7,6 +7,7 @@ package ui.SystemAdminWorkArea;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.DeliveryStaff.DeliveryStaffDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
@@ -27,14 +28,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
     OrderDirectory orderDirectory;
+    DeliveryStaffDirectory deliveryStaffDirectory;
     UserAccount account;
 
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.business = business;
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.orderDirectory = orderDirectory;
+        this.deliveryStaffDirectory = deliveryStaffDirectory;
         this.account = account;
     }
 
@@ -152,7 +155,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRestaurantActionPerformed
 
     private void btnDeliveryStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryStaffActionPerformed
-        JPanel manageDeliveryStaffPanel = new ManageDeliveryStaffPanel(business);
+        JPanel manageDeliveryStaffPanel = new ManageDeliveryStaffPanel(business, deliveryStaffDirectory);
         workAreaPanel.add("ManageDeliveryStaffPanel", manageDeliveryStaffPanel);
         CardLayout layout = (CardLayout) workAreaPanel.getLayout();
         layout.next(workAreaPanel);    }//GEN-LAST:event_btnDeliveryStaffActionPerformed

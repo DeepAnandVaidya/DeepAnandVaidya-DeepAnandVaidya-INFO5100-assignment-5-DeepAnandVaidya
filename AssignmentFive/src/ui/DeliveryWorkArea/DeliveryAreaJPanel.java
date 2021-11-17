@@ -7,9 +7,12 @@ package ui.DeliveryWorkArea;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.DeliveryStaff.DeliveryStaff;
+import business.DeliveryStaff.DeliveryStaffDirectory;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
+import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
@@ -24,11 +27,21 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     RestaurantDirectory restaurantDirectory;
     CustomerDirectory customerDirectory;
     OrderDirectory orderDirectory;
-    public DeliveryAreaJPanel(JPanel userProcessContainer, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory) {
+    DeliveryStaffDirectory deliveryStaffDirectory;
+    DeliveryStaff staff;
+    UserAccount account;
+    String userName;
+
+    public DeliveryAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.orderDirectory = orderDirectory;
+        this.deliveryStaffDirectory = deliveryStaffDirectory;
+        this.account = account;
+        userName = account.getUsername();
+        this.staff = deliveryStaffDirectory.findStaffByUserName(userName);
+        lblGreeting.setText(staff.getFirstName() == null && staff.getLastName() == null ? "Welcome " + staff.getUserName() + "!" : "Welcome " + staff.getFirstName().toUpperCase() + " " + staff.getLastName().toUpperCase() + "!");
     }
 
     /**
@@ -40,30 +53,167 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        NavigationPanel = new javax.swing.JPanel();
+        btnEditProfile = new javax.swing.JButton();
+        btnCompletedOrders = new javax.swing.JButton();
+        btnPendingOrders = new javax.swing.JButton();
+        btnAllOrders = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        MainWorkAreaPanel = new javax.swing.JPanel();
+        lblGreeting = new javax.swing.JLabel();
 
-        jLabel1.setText("DELIVERY");
+        NavigationPanel.setBackground(new java.awt.Color(0, 51, 51));
+
+        btnEditProfile.setBackground(new java.awt.Color(206, 217, 217));
+        btnEditProfile.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditProfile.setForeground(new java.awt.Color(0, 51, 51));
+        btnEditProfile.setText("EDIT PROFILE");
+        btnEditProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditProfileActionPerformed(evt);
+            }
+        });
+
+        btnCompletedOrders.setBackground(new java.awt.Color(206, 217, 217));
+        btnCompletedOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCompletedOrders.setForeground(new java.awt.Color(0, 51, 51));
+        btnCompletedOrders.setText("COMPLETED ORDERS");
+        btnCompletedOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCompletedOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompletedOrdersActionPerformed(evt);
+            }
+        });
+
+        btnPendingOrders.setBackground(new java.awt.Color(206, 217, 217));
+        btnPendingOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPendingOrders.setForeground(new java.awt.Color(0, 51, 51));
+        btnPendingOrders.setText("PENDING ORDERS");
+        btnPendingOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPendingOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPendingOrdersActionPerformed(evt);
+            }
+        });
+
+        btnAllOrders.setBackground(new java.awt.Color(206, 217, 217));
+        btnAllOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAllOrders.setForeground(new java.awt.Color(0, 51, 51));
+        btnAllOrders.setText("ALL ORDERS");
+        btnAllOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAllOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAllOrdersActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout NavigationPanelLayout = new javax.swing.GroupLayout(NavigationPanel);
+        NavigationPanel.setLayout(NavigationPanelLayout);
+        NavigationPanelLayout.setHorizontalGroup(
+            NavigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NavigationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(NavigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NavigationPanelLayout.createSequentialGroup()
+                        .addGroup(NavigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnPendingOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCompletedOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16))
+                    .addGroup(NavigationPanelLayout.createSequentialGroup()
+                        .addComponent(btnAllOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        NavigationPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAllOrders, btnCompletedOrders, btnEditProfile, btnPendingOrders});
+
+        NavigationPanelLayout.setVerticalGroup(
+            NavigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NavigationPanelLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(btnCompletedOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPendingOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAllOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(234, Short.MAX_VALUE))
+        );
+
+        NavigationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAllOrders, btnCompletedOrders, btnEditProfile, btnPendingOrders});
+
+        jSplitPane1.setLeftComponent(NavigationPanel);
+
+        jLayeredPane1.setLayout(new java.awt.CardLayout());
+
+        MainWorkAreaPanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblGreeting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblGreeting.setForeground(new java.awt.Color(0, 153, 153));
+        lblGreeting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGreeting.setText("<delivery staff greeting>");
+
+        javax.swing.GroupLayout MainWorkAreaPanelLayout = new javax.swing.GroupLayout(MainWorkAreaPanel);
+        MainWorkAreaPanel.setLayout(MainWorkAreaPanelLayout);
+        MainWorkAreaPanelLayout.setHorizontalGroup(
+            MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        MainWorkAreaPanelLayout.setVerticalGroup(
+            MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(lblGreeting)
+                .addContainerGap(536, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(MainWorkAreaPanel, "card2");
+
+        jSplitPane1.setRightComponent(jLayeredPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(360, 360, 360)
-                .addComponent(jLabel1)
-                .addContainerGap(372, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jLabel1)
-                .addContainerGap(320, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
+    }//GEN-LAST:event_btnEditProfileActionPerformed
+
+    private void btnCompletedOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompletedOrdersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCompletedOrdersActionPerformed
+
+    private void btnPendingOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingOrdersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPendingOrdersActionPerformed
+
+    private void btnAllOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllOrdersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAllOrdersActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel MainWorkAreaPanel;
+    private javax.swing.JPanel NavigationPanel;
+    private javax.swing.JButton btnAllOrders;
+    private javax.swing.JButton btnCompletedOrders;
+    private javax.swing.JButton btnEditProfile;
+    private javax.swing.JButton btnPendingOrders;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblGreeting;
     // End of variables declaration//GEN-END:variables
 }
