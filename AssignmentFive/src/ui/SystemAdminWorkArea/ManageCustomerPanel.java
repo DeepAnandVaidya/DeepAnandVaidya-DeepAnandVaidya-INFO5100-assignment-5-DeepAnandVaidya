@@ -30,12 +30,12 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
      */
     Business business;
     CustomerDirectory customerDirectory;
-    
+
     public ManageCustomerPanel(Business business, CustomerDirectory customerDirectory) {
         initComponents();
         this.business = business;
         this.customerDirectory = customerDirectory;
-        
+
         JTableHeader tableHeader = tblCustomers.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -56,13 +56,15 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
         lblAddUser = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        lblFirstName = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
         lblUserName = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         pwdPassword = new javax.swing.JPasswordField();
         btnCreateUser = new javax.swing.JButton();
+        lblLastName = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(240, 255, 255));
 
@@ -104,8 +106,8 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         lblAddUser.setForeground(new java.awt.Color(0, 102, 102));
         lblAddUser.setText("ADD NEW USER");
 
-        lblName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblName.setText("Name : ");
+        lblFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFirstName.setText("First Name : ");
 
         lblUserName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblUserName.setText("Username : ");
@@ -124,6 +126,9 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
             }
         });
 
+        lblLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblLastName.setText("Last Name :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,28 +144,41 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                                 .addComponent(jButton1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lblAddUser)
-                                .addGap(44, 44, 44))))
+                                .addGap(44, 44, 44)))
+                        .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblUserName, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtName)
-                                    .addComponent(txtUserName)
-                                    .addComponent(pwdPassword)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCreateUser)
-                                .addGap(48, 48, 48)))))
-                .addGap(53, 53, 53))
+                                .addGap(48, 48, 48))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblFirstName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblLastName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblUserName)
+                                            .addComponent(lblPassword))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(52, 52, 52))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtFirstName, txtLastName, txtUserName});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -170,7 +188,7 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jButton1)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,8 +197,12 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                         .addComponent(lblAddUser)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblName)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblFirstName)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblLastName)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUserName)
@@ -189,7 +211,7 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPassword)
                             .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCreateUser)))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
@@ -202,20 +224,25 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
         String userName = txtUserName.getText();
         String password = pwdPassword.getText();
-        Employee employee = new Employee(txtName.getText());
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        Employee employee = new Employee(txtFirstName.getText() + " " + txtLastName.getText());
         Customer role = new Customer();
         business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-        
+
         JOptionPane.showMessageDialog(null, "User Account added successfully.");
-        txtName.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
         txtUserName.setText("");
         pwdPassword.setText("");
         populateCustomerRole();
-        
+
         business.Customer.Customer customer = customerDirectory.addCustomer();
         customer.setUserName(userName);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
         business.setCustomerDirectory(customerDirectory);
-        
+
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
 
@@ -224,20 +251,22 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAddUser;
-    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblPanelHeading;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JPasswordField pwdPassword;
     private javax.swing.JTable tblCustomers;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 
     private void populateCustomerRole() {
         DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
         model.setRowCount(0);
-        
+
         for (UserAccount userAccount : business.getUserAccountDirectory().getUserAccountList()) {
             Object[] row = new Object[1];
             RestaurantRole role = new RestaurantRole();

@@ -7,6 +7,7 @@ package business.Order;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -14,13 +15,14 @@ import java.util.Date;
  */
 public class Order {
 
+    private int id;
     private String customerName;
     private String restaurantName;
     private int cost;
     private ArrayList<String> foodItems;
     private Date orderDateTime;
-    private int id;
     private String status;
+    private HashMap<String, String> reviewComments;
 
     public String getCustomerName() {
         return customerName;
@@ -78,9 +80,17 @@ public class Order {
         this.status = status;
     }
 
+    public HashMap<String, String> getReviewComments() {
+        return reviewComments;
+    }
+
+    public void setReviewComments(HashMap<String, String> reviewComments) {
+        this.reviewComments = reviewComments;
+    }
+
     @Override
     public String toString() {
-        return customerName;
+        return String.valueOf(id);
     }
 
 }

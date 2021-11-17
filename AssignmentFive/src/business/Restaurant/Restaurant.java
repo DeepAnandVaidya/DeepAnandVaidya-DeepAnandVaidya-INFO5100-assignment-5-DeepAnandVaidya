@@ -5,6 +5,8 @@
  */
 package business.Restaurant;
 
+import java.util.HashMap;
+
 /**
  *
  * @author deepv
@@ -19,6 +21,7 @@ public class Restaurant {
     private Menu menu;
     private String phoneNumber;
     private String emailId;
+    private HashMap<String, String> reviewComments;
 
     public String getName() {
         return name;
@@ -82,6 +85,14 @@ public class Restaurant {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    public HashMap<String, String> getReviewComments() {
+        return reviewComments;
+    }
+
+    public void setReviewComments(HashMap<String, String> reviewComments) {
+        this.reviewComments = reviewComments;
     }
 
     @Override
