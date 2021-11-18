@@ -103,6 +103,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnMenu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnEditDetails = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
         lblRestaurantName = new javax.swing.JLabel();
@@ -253,6 +254,10 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(178, 209, 201));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel2.setText("<html><span font color=\"rgb(178, 209, 201)\">C</span> <span font color=\"rgb(0,153,153)\">!<span></html> ");
+
         javax.swing.GroupLayout NavigationJPanelLayout = new javax.swing.GroupLayout(NavigationJPanel);
         NavigationJPanel.setLayout(NavigationJPanelLayout);
         NavigationJPanelLayout.setHorizontalGroup(
@@ -267,6 +272,10 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(btnEditDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(NavigationJPanelLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMenu, jButton2});
@@ -280,7 +289,9 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton2)
-                .addContainerGap(463, Short.MAX_VALUE))
+                .addGap(196, 196, 196)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMenu, jButton2});
@@ -1913,6 +1924,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;

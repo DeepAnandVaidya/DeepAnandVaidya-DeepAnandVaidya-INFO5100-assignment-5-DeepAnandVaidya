@@ -79,6 +79,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         btnCompletedOrders = new javax.swing.JButton();
         btnPendingOrders = new javax.swing.JButton();
         btnAllOrders = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         MainWorkAreaPanel = new javax.swing.JPanel();
         lblGreeting = new javax.swing.JLabel();
@@ -144,6 +145,10 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(178, 209, 201));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setText("<html><span font color=\"rgb(178, 209, 201)\">C</span> <span font color=\"rgb(0,153,153)\">!<span></html> ");
+
         javax.swing.GroupLayout NavigationPanelLayout = new javax.swing.GroupLayout(NavigationPanel);
         NavigationPanel.setLayout(NavigationPanelLayout);
         NavigationPanelLayout.setHorizontalGroup(
@@ -160,6 +165,10 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                     .addGroup(NavigationPanelLayout.createSequentialGroup()
                         .addComponent(btnAllOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(NavigationPanelLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         NavigationPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAllOrders, btnCompletedOrders, btnEditProfile, btnPendingOrders});
@@ -175,7 +184,9 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnPendingOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAllOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addGap(83, 83, 83)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         NavigationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAllOrders, btnCompletedOrders, btnEditProfile, btnPendingOrders});
@@ -496,6 +507,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnPendingOrders;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
