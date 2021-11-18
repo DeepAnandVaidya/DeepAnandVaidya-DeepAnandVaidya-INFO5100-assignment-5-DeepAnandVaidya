@@ -87,6 +87,7 @@ public class MainScreen extends javax.swing.JPanel {
         lblUser = new javax.swing.JLabel();
         btnLogOff = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -131,6 +132,8 @@ public class MainScreen extends javax.swing.JPanel {
         jSplitPane1.setTopComponent(jPanel1);
 
         workArea.setLayout(new java.awt.CardLayout());
+        workArea.add(jLabel1, "card2");
+
         jSplitPane1.setRightComponent(workArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -157,6 +160,7 @@ public class MainScreen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOff;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblUser;

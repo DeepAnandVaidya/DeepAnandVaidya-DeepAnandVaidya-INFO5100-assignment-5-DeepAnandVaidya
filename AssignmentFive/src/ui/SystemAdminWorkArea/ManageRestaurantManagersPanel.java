@@ -39,7 +39,7 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     String restaurantName;
     String managerame;
     FlagClass flag;
-    
+
     public ManageRestaurantManagersPanel(Business business, UserAccount account, JPanel workAreaPanel, RestaurantDirectory restaurantDirectory) {
         initComponents();
         this.business = business;
@@ -48,7 +48,7 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
         this.account = account;
         this.restaurant = new Restaurant();
         flag = new FlagClass();
-        
+
         JTableHeader tableHeader = tblRestaurantManagers.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -353,25 +353,34 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
-        String userName = txtUserName.getText();
-        String password = pwdPassword.getText();
-        managerame = txtManagerName.getText();
-        restaurantName = txtRestaurantName.getText();
-        Employee employee = new Employee(managerame);
-        RestaurantRole role = new RestaurantRole();
-        business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-        
-        JOptionPane.showMessageDialog(null, "User Account added successfully.");
-        txtManagerName.setText("");
-        txtRestaurantName.setText("");
-        txtUserName.setText("");
-        pwdPassword.setText("");
-        populateRestaurantRole();
-        
-        restaurant = restaurantDirectory.addRestaurant();
-        restaurant.setManagerName(managerame);
-        restaurant.setName(restaurantName);
-        business.setRestaurantDirectory(restaurantDirectory);
+        if (validations()) {
+            String userName = txtUserName.getText();
+            String password = pwdPassword.getText();
+
+            if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
+                JOptionPane.showMessageDialog(null, "UserName already taken!");
+                txtUserName.setText("");
+                pwdPassword.setText("");
+            } else {
+                managerame = txtManagerName.getText();
+                restaurantName = txtRestaurantName.getText();
+                Employee employee = new Employee(managerame);
+                RestaurantRole role = new RestaurantRole();
+                business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+
+                JOptionPane.showMessageDialog(null, "User Account added successfully.");
+                txtManagerName.setText("");
+                txtRestaurantName.setText("");
+                txtUserName.setText("");
+                pwdPassword.setText("");
+                populateRestaurantRole();
+
+                restaurant = restaurantDirectory.addRestaurant();
+                restaurant.setManagerName(managerame);
+                restaurant.setName(restaurantName);
+                business.setRestaurantDirectory(restaurantDirectory);
+            }
+        }
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -382,7 +391,7 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRowIndex = tblRestaurantManagers.getSelectedRow();
-        
+
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a User");
             return;
@@ -393,20 +402,20 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
             business.getUserAccountDirectory().removeAccount(accountToBeRemoved);
             JOptionPane.showMessageDialog(null, "User Account deleted successfully.");
             populateRestaurantRole();
-            
+
             Restaurant restaurant = restaurantDirectory.findRestaurant(selectedUserAccount.getEmployee().getName());
             String restaurantName = restaurant.getName();
-            
+
             Restaurant restaurantToBeRemoved = restaurantDirectory.findRestaurant(selectedUserAccount.getEmployee().getName());
             restaurantDirectory.removeRestaurant(restaurantToBeRemoved);
-            
+
             business.getOrderDirectory().removeSelectedRestaurantOrders(restaurantName);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int selectedRowIndex = tblRestaurantManagers.getSelectedRow();
-        
+
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a User");
             return;
@@ -425,37 +434,92 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
-        String oldRestaurantName;
-        UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flag.getUserName());
-        updatedAccount.setUsername(txtUserName1.getText());
-        updatedAccount.setPassword(txtPassword.getText());
-        Employee employee = new Employee();
-        employee.setName(txtManagerName1.getText());
-        updatedAccount.setEmployee(employee);
-        
-        for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
-            if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flag.getUserName())) {
-                business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+        if (updateValidations()) {
+
+            if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUserName1.getText())) {
+                JOptionPane.showMessageDialog(null, "UserName already taken!");
+                txtUserName1.setText("");
+                txtPassword.setText("");
+            } else {
+
+                String oldRestaurantName;
+                UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flag.getUserName());
+                updatedAccount.setUsername(txtUserName1.getText());
+                updatedAccount.setPassword(txtPassword.getText());
+                Employee employee = new Employee();
+                employee.setName(txtManagerName1.getText());
+                updatedAccount.setEmployee(employee);
+
+                for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+                    if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flag.getUserName())) {
+                        business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+                    }
+                }
+
+                Restaurant updatedRestaurant = restaurantDirectory.findRestaurant(flag.getRestaurantManagerName());
+                oldRestaurantName = updatedRestaurant.getName();
+                updatedRestaurant.setName(txtRestaurantName1.getText());
+                updatedRestaurant.setManagerName(txtManagerName1.getText());
+
+                for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
+                    if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(flag.getRestaurantManagerName())) {
+                        restaurantDirectory.getRestaurants().set(i, updatedRestaurant);
+                    }
+                }
+
+                business.getOrderDirectory().updateRestaurantNameInOrders(oldRestaurantName, txtRestaurantName1.getText());
+                JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+                pnlUpdate.setVisible(false);
+                populateRestaurantRole();
             }
         }
-        
-        Restaurant updatedRestaurant = restaurantDirectory.findRestaurant(flag.getRestaurantManagerName());
-        oldRestaurantName = updatedRestaurant.getName();
-        updatedRestaurant.setName(txtRestaurantName1.getText());
-        updatedRestaurant.setManagerName(txtManagerName1.getText());
-        
-        for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
-            if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(flag.getRestaurantManagerName())) {
-                restaurantDirectory.getRestaurants().set(i, updatedRestaurant);
-            }
-        }
-        
-        business.getOrderDirectory().updateRestaurantNameInOrders(oldRestaurantName, txtRestaurantName1.getText());
-        JOptionPane.showMessageDialog(null, "User Account updated successfully.");
-        pnlUpdate.setVisible(false);
-        populateRestaurantRole();
     }//GEN-LAST:event_btnUpdateSaveActionPerformed
 
+    private boolean validations() {
+        boolean validData = true;
+        if (txtManagerName == null || txtManagerName.getText().isBlank() || txtManagerName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Manager Name.");
+            validData = false;
+            return validData;
+        } else if (txtRestaurantName == null || txtRestaurantName.getText().isBlank() || txtRestaurantName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Restaurant Name.");
+            validData = false;
+            return validData;
+        } else if (txtUserName.getText().isBlank() || txtUserName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a valid User Name.");
+            validData = false;
+            return validData;
+        } else if (pwdPassword.getText().isBlank() || pwdPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Password.");
+            validData = false;
+            return validData;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean updateValidations() {
+        boolean validData = true;
+        if (txtManagerName1 == null || txtManagerName1.getText().isBlank() || txtManagerName1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Manager Name.");
+            validData = false;
+            return validData;
+        } else if (txtRestaurantName1 == null || txtRestaurantName1.getText().isBlank() || txtRestaurantName1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Restaurant Name.");
+            validData = false;
+            return validData;
+        } else if (txtUserName1.getText().isBlank() || txtUserName1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a valid User Name.");
+            validData = false;
+            return validData;
+        } else if (txtPassword.getText().isBlank() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Password.");
+            validData = false;
+            return validData;
+        } else {
+            return true;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -490,7 +554,7 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     private void populateRestaurantRole() {
         DefaultTableModel model = (DefaultTableModel) tblRestaurantManagers.getModel();
         model.setRowCount(0);
-        
+
         for (UserAccount userAccount : business.getUserAccountDirectory().getUserAccountList()) {
             Object[] row = new Object[3];
             RestaurantRole role = new RestaurantRole();

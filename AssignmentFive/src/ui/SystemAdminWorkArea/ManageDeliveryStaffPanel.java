@@ -359,55 +359,74 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
-        String userName = txtUserName.getText();
-        String password = pwdPassword.getText();
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        Employee employee = new Employee(txtFirstName.getText() + " " + txtLastName.getText());
-        DeliveryManRole role = new DeliveryManRole();
-        business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+        if (validations()) {
+            String userName = txtUserName.getText();
+            String password = pwdPassword.getText();
 
-        JOptionPane.showMessageDialog(null, "User Account added successfully.");
-        txtFirstName.setText("");
-        txtLastName.setText("");
-        txtUserName.setText("");
-        pwdPassword.setText("");
-        populateDeliveryStaffRole();
+            if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
+                JOptionPane.showMessageDialog(null, "UserName already taken!");
+                txtUserName.setText("");
+                pwdPassword.setText("");
+            } else {
+                String firstName = txtFirstName.getText();
+                String lastName = txtLastName.getText();
+                Employee employee = new Employee(txtFirstName.getText() + " " + txtLastName.getText());
+                DeliveryManRole role = new DeliveryManRole();
+                business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
 
-        DeliveryStaff deliveryStaff = deliveryStaffDirectory.addDeliveryStaff();
-        deliveryStaff.setUserName(userName);
-        deliveryStaff.setFirstName(firstName);
-        deliveryStaff.setLastName(lastName);
-        business.setDeliveryStaffDirectory(deliveryStaffDirectory);
+                JOptionPane.showMessageDialog(null, "User Account added successfully.");
+                txtFirstName.setText("");
+                txtLastName.setText("");
+                txtUserName.setText("");
+                pwdPassword.setText("");
+                populateDeliveryStaffRole();
+
+                DeliveryStaff deliveryStaff = deliveryStaffDirectory.addDeliveryStaff();
+                deliveryStaff.setUserName(userName);
+                deliveryStaff.setFirstName(firstName);
+                deliveryStaff.setLastName(lastName);
+                business.setDeliveryStaffDirectory(deliveryStaffDirectory);
+            }
+        }
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
-        UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
-        updatedAccount.setUsername(txtUserName1.getText());
-        updatedAccount.setPassword(txtPassword.getText());
-        Employee employee = new Employee();
-        employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
-        updatedAccount.setEmployee(employee);
+        if (updateValidations()) {
 
-        for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
-            if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
-                business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+            if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUserName1.getText())) {
+                JOptionPane.showMessageDialog(null, "UserName already taken!");
+                txtUserName1.setText("");
+                txtPassword.setText("");
+            } else {
+
+                UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
+                updatedAccount.setUsername(txtUserName1.getText());
+                updatedAccount.setPassword(txtPassword.getText());
+                Employee employee = new Employee();
+                employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
+                updatedAccount.setEmployee(employee);
+
+                for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+                    if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
+                        business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+                    }
+                }
+
+                DeliveryStaff staff = business.getDeliveryStaffDirectory().findStaffByUserName(flags.getUserName());
+                staff.setUserName(txtUserName1.getText());
+
+                for (int i = 0; i <= business.getDeliveryStaffDirectory().getDeliveryStaffMembers().size() - 1; i++) {
+                    if (business.getDeliveryStaffDirectory().getDeliveryStaffMembers().get(i).getUserName().equals(flags.getUserName())) {
+                        business.getDeliveryStaffDirectory().getDeliveryStaffMembers().set(i, staff);
+                    }
+                }
+
+                business.getOrderDirectory().updateSelectedDeliveryStaffOrders(flags.getDeliveryStaffName(), txtFirstName1.getText() + " " + txtLastName1.getText());
+                JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+                pnlUpdateUser.setVisible(false);
+                populateDeliveryStaffRole();
             }
         }
-
-        DeliveryStaff staff = business.getDeliveryStaffDirectory().findStaffByUserName(flags.getUserName());
-        staff.setUserName(txtUserName1.getText());
-
-        for (int i = 0; i <= business.getDeliveryStaffDirectory().getDeliveryStaffMembers().size() - 1; i++) {
-            if (business.getDeliveryStaffDirectory().getDeliveryStaffMembers().get(i).getUserName().equals(flags.getUserName())) {
-                business.getDeliveryStaffDirectory().getDeliveryStaffMembers().set(i, staff);
-            }
-        }
-
-        business.getOrderDirectory().updateSelectedDeliveryStaffOrders(flags.getDeliveryStaffName(), txtFirstName1.getText() + " " + txtLastName1.getText());
-        JOptionPane.showMessageDialog(null, "User Account updated successfully.");
-        pnlUpdateUser.setVisible(false);
-        populateDeliveryStaffRole();
     }//GEN-LAST:event_btnUpdateSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -451,6 +470,52 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
             flags.setDeliveryStaffName(selectedUserAccount.getEmployee().getName());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private boolean validations() {
+        boolean validData = true;
+        if (txtFirstName == null || txtFirstName.getText().isBlank() || txtFirstName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the First Name.");
+            validData = false;
+            return validData;
+        } else if (txtLastName == null || txtLastName.getText().isBlank() || txtLastName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Last Name.");
+            validData = false;
+            return validData;
+        } else if (txtUserName.getText().isBlank() || txtUserName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a valid User Name.");
+            validData = false;
+            return validData;
+        } else if (pwdPassword.getText().isBlank() || pwdPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Password.");
+            validData = false;
+            return validData;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean updateValidations() {
+        boolean validData = true;
+        if (txtFirstName1 == null || txtFirstName1.getText().isBlank() || txtFirstName1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the First Name.");
+            validData = false;
+            return validData;
+        } else if (txtLastName1 == null || txtLastName1.getText().isBlank() || txtLastName1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Last Name.");
+            validData = false;
+            return validData;
+        } else if (txtUserName1.getText().isBlank() || txtUserName1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a valid User Name.");
+            validData = false;
+            return validData;
+        } else if (txtPassword.getText().isBlank() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the Password.");
+            validData = false;
+            return validData;
+        } else {
+            return true;
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
