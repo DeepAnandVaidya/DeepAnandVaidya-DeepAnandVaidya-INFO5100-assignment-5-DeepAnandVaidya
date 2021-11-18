@@ -1439,14 +1439,16 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         HashMap<String, Integer> desserts = setDessert();
         HashMap<String, Integer> beverages = setBeverages();
 
-        Menu menu = new Menu();
-        menu.setApetizers(apetizers);
-        menu.setMains(mains);
-        menu.setDessert(desserts);
-        menu.setBeverages(beverages);
-        restaurant.setMenu(menu);
-        JOptionPane.showMessageDialog(null, "Menu saved successfully.");
-        switchPanels(workAreaPanel);
+        if (validateAppetizers() && validateMains()) {
+            Menu menu = new Menu();
+            menu.setApetizers(apetizers);
+            menu.setMains(mains);
+            menu.setDessert(desserts);
+            menu.setBeverages(beverages);
+            restaurant.setMenu(menu);
+            JOptionPane.showMessageDialog(null, "Menu saved successfully.");
+            switchPanels(workAreaPanel);
+        }
     }//GEN-LAST:event_btnBack4ActionPerformed
 
     private void txtTofuSaladActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTofuSaladActionPerformed
@@ -1597,6 +1599,80 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         jLayeredPane1.repaint();
     }
 
+    private boolean validateAppetizers() {
+        boolean valid = true;
+
+        if (rdOnionRings1.isSelected() && txtOnionRings.getText() == null || txtOnionRings.getText().isBlank() || txtOnionRings.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Onion Rings");
+            valid = false;
+        } else if (rdSpinachPie1.isSelected() && txtSpinachPie.getText() != null && txtSpinachPie.getText().isBlank() && txtSpinachPie.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Spinach Pie");
+            valid = false;
+        } else if (rdSpringRoles1.isSelected() && txtSpringRoles.getText() != null && txtSpringRoles.getText().isBlank() && txtSpringRoles.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Spring Roles");
+            valid = false;
+        } else if (rdMeatBalls1.isSelected() && txtMeatBalls.getText() != null && txtMeatBalls.getText().isBlank() && txtMeatBalls.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Meat Balls");
+            valid = false;
+        } else if (rdSausageDip1.isSelected() && txtSausageDip.getText() != null && txtSausageDip.getText().isBlank() && txtSausageDip.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Sausage Dip");
+            valid = false;
+        } else if (rdFriedShrimp1.isSelected() && txtFriedShrimp.getText() != null && txtFriedShrimp.getText().isBlank() && txtFriedShrimp.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Fried Shrimp");
+            valid = false;
+        } else if (rdWhiteBeanDip1.isSelected() && txtWhiteBeanDip.getText() != null && txtWhiteBeanDip.getText().isBlank() && txtWhiteBeanDip.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the White Bean Dip");
+            valid = false;
+        } else if (rdTortillaChips1.isSelected() && txtTortillaChips.getText() != null && txtTortillaChips.getText().isBlank() && txtTortillaChips.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Tortilla Chips");
+            valid = false;
+        } else if (rdCrispyTofu1.isSelected() && txtCrispyTofu.getText() != null && txtCrispyTofu.getText().isBlank() && txtCrispyTofu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Crispy Tofu");
+            valid = false;
+        } else {
+            valid = true;
+        }
+
+        return valid;
+    }
+
+    private boolean validateMains() {
+        boolean valid = true;
+
+        if (rdCheeseBurger1.isSelected() && txtCheeseBurger.getText() == null || txtCheeseBurger.getText().isBlank() || txtCheeseBurger.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Cheese Burger");
+            valid = false;
+        } else if (rdFriedRice1.isSelected() && txtFriedRice.getText() != null && txtFriedRice.getText().isBlank() && txtFriedRice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Fried Rice");
+            valid = false;
+        } else if (rdVeggiePizza1.isSelected() && txtVeggiePizza.getText() != null && txtVeggiePizza.getText().isBlank() && txtVeggiePizza.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Veggie Pizza");
+            valid = false;
+        } else if (rdHamBurger1.isSelected() && txtHamBurger.getText() != null && txtHamBurger.getText().isBlank() && txtHamBurger.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Ham Burger");
+            valid = false;
+        } else if (rdFishNChips1.isSelected() && txtFishNChips.getText() != null && txtFishNChips.getText().isBlank() && txtFishNChips.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Fish N' Chips");
+            valid = false;
+        } else if (rdPrawnFriedRice1.isSelected() && txtPrawnFriedRice.getText() != null && txtPrawnFriedRice.getText().isBlank() && txtPrawnFriedRice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Prawn Fried Rice");
+            valid = false;
+        } else if (rdTofuSalad1.isSelected() && txtTofuSalad.getText() != null && txtTofuSalad.getText().isBlank() && txtTofuSalad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Tofu Salad");
+            valid = false;
+        } else if (rdFalafelBowl1.isSelected() && txtFalafelBowl.getText() != null && txtFalafelBowl.getText().isBlank() && txtFalafelBowl.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Falafel Bowl");
+            valid = false;
+        } else if (rdTofuAndRiceBowl1.isSelected() && txtTofuAndRiceBowl.getText() != null && txtTofuAndRiceBowl.getText().isBlank() && txtTofuAndRiceBowl.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a price for the Tofu & Rice Platter");
+            valid = false;
+        } else {
+            valid = true;
+        }
+
+        return valid;
+    }
+
     /**
      * set appetizer map
      *
@@ -1604,39 +1680,40 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
      */
     private HashMap<String, Integer> setApetizers() {
         HashMap<String, Integer> apetizers = new HashMap<>();
-        if (rdOnionRings1.isSelected()) {
+        boolean valid = true;
+        if (rdOnionRings1.isSelected() && txtOnionRings.getText() != null && !txtOnionRings.getText().isBlank() && !txtOnionRings.getText().isEmpty()) {
             apetizers.put("Onion Rings", Integer.parseInt(txtOnionRings.getText()));
         }
 
-        if (rdSpinachPie1.isSelected()) {
+        if (rdSpinachPie1.isSelected() && txtSpinachPie.getText() != null && !txtSpinachPie.getText().isBlank() && !txtSpinachPie.getText().isEmpty()) {
             apetizers.put("Spinach Pie", Integer.parseInt(txtSpinachPie.getText()));
         }
 
-        if (rdSpringRoles1.isSelected()) {
+        if (rdSpringRoles1.isSelected() && txtSpringRoles.getText() != null && !txtSpringRoles.getText().isBlank() && !txtSpringRoles.getText().isEmpty()) {
             apetizers.put("Spring Roles", Integer.parseInt(txtSpringRoles.getText()));
         }
 
-        if (rdMeatBalls1.isSelected()) {
+        if (rdMeatBalls1.isSelected() && txtMeatBalls.getText() != null && !txtMeatBalls.getText().isBlank() && !txtMeatBalls.getText().isEmpty()) {
             apetizers.put("Meat Balls", Integer.parseInt(txtMeatBalls.getText()));
         }
 
-        if (rdSausageDip1.isSelected()) {
+        if (rdSausageDip1.isSelected() && txtSausageDip.getText() != null && !txtSausageDip.getText().isBlank() && !txtSausageDip.getText().isEmpty()) {
             apetizers.put("Sausage Dip", Integer.parseInt(txtSausageDip.getText()));
         }
 
-        if (rdFriedShrimp1.isSelected()) {
+        if (rdFriedShrimp1.isSelected() && txtFriedShrimp.getText() != null && !txtFriedShrimp.getText().isBlank() && !txtFriedShrimp.getText().isEmpty()) {
             apetizers.put("Fried Shrimp", Integer.parseInt(txtFriedShrimp.getText()));
         }
 
-        if (rdWhiteBeanDip1.isSelected()) {
+        if (rdWhiteBeanDip1.isSelected() && txtWhiteBeanDip.getText() != null && !txtWhiteBeanDip.getText().isBlank() && !txtWhiteBeanDip.getText().isEmpty()) {
             apetizers.put("White Bean Dip", Integer.parseInt(txtWhiteBeanDip.getText()));
         }
 
-        if (rdTortillaChips1.isSelected()) {
+        if (rdTortillaChips1.isSelected() && txtTortillaChips.getText() != null && !txtTortillaChips.getText().isBlank() && !txtTortillaChips.getText().isEmpty()) {
             apetizers.put("Tortilla Chips", Integer.parseInt(txtTortillaChips.getText()));
         }
 
-        if (rdCrispyTofu1.isSelected()) {
+        if (rdCrispyTofu1.isSelected() && txtCrispyTofu.getText() != null && !txtCrispyTofu.getText().isBlank() && !txtCrispyTofu.getText().isEmpty()) {
             apetizers.put("Crispy Tofu", Integer.parseInt(txtCrispyTofu.getText()));
         }
         return apetizers;
@@ -1649,39 +1726,39 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
      */
     private HashMap<String, Integer> setMains() {
         HashMap<String, Integer> mains = new HashMap<>();
-        if (rdCheeseBurger1.isSelected()) {
+        if (rdCheeseBurger1.isSelected() && txtCheeseBurger.getText() != null && !txtCheeseBurger.getText().isBlank() && !txtCheeseBurger.getText().isEmpty()) {
             mains.put("CheeseBurger", Integer.parseInt(txtCheeseBurger.getText()));
         }
 
-        if (rdFriedRice1.isSelected()) {
+        if (rdFriedRice1.isSelected() && txtFriedRice.getText() != null && !txtFriedRice.getText().isBlank() && !txtFriedRice.getText().isEmpty()) {
             mains.put("Fried Rice", Integer.parseInt(txtFriedRice.getText()));
         }
 
-        if (rdVeggiePizza1.isSelected()) {
+        if (rdVeggiePizza1.isSelected() && txtVeggiePizza.getText() != null && !txtVeggiePizza.getText().isBlank() && !txtVeggiePizza.getText().isEmpty()) {
             mains.put("Veggie Pizza", Integer.parseInt(txtVeggiePizza.getText()));
         }
 
-        if (rdHamBurger1.isSelected()) {
+        if (rdHamBurger1.isSelected() && txtHamBurger.getText() != null && !txtHamBurger.getText().isBlank() && !txtHamBurger.getText().isEmpty()) {
             mains.put("Ham Burger", Integer.parseInt(txtHamBurger.getText()));
         }
 
-        if (rdFishNChips1.isSelected()) {
+        if (rdFishNChips1.isSelected() && txtFishNChips.getText() != null && !txtFishNChips.getText().isBlank() && !txtFishNChips.getText().isEmpty()) {
             mains.put("Fish N' Chips", Integer.parseInt(txtFishNChips.getText()));
         }
 
-        if (rdPrawnFriedRice1.isSelected()) {
+        if (rdPrawnFriedRice1.isSelected() && txtPrawnFriedRice.getText() != null && !txtPrawnFriedRice.getText().isBlank() && !txtPrawnFriedRice.getText().isEmpty()) {
             mains.put("Prawn Fried Rice", Integer.parseInt(txtPrawnFriedRice.getText()));
         }
 
-        if (rdTofuSalad1.isSelected()) {
+        if (rdTofuSalad1.isSelected() && txtTofuSalad.getText() != null && !txtTofuSalad.getText().isBlank() && !txtTofuSalad.getText().isEmpty()) {
             mains.put("Tofu Salad", Integer.parseInt(txtTofuSalad.getText()));
         }
 
-        if (rdFalafelBowl1.isSelected()) {
+        if (rdFalafelBowl1.isSelected() && txtFalafelBowl.getText() != null && !txtFalafelBowl.getText().isBlank() && !txtFalafelBowl.getText().isEmpty()) {
             mains.put("Falafel Bowl", Integer.parseInt(txtFalafelBowl.getText()));
         }
 
-        if (rdTofuAndRiceBowl1.isSelected()) {
+        if (rdTofuAndRiceBowl1.isSelected() && txtTofuAndRiceBowl.getText() != null && !txtTofuAndRiceBowl.getText().isBlank() && !txtTofuAndRiceBowl.getText().isEmpty()) {
             mains.put("Tofu & Rice Platter", Integer.parseInt(txtTofuAndRiceBowl.getText()));
         }
         return mains;
