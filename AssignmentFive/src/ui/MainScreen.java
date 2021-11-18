@@ -146,13 +146,12 @@ public class MainScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOffActionPerformed
-        // TODO add your handling code here:
+        System.out.println("LOGOUT");
+        dB4OUtil.storeSystem(system);
         JPanel loginScreen = new LoginScreen(mainWorkArea, business, restaurantDirectory, customerDirectory, orderDirectory, deliveryStaffDirectory);
         mainWorkArea.add("LoginScreen", loginScreen);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
-
-        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOffActionPerformed
 
 
