@@ -391,42 +391,35 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
         if (updateValidations()) {
+            UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
+            updatedAccount.setUsername(txtUserName1.getText());
+            updatedAccount.setPassword(txtPassword.getText());
+            Employee employee = new Employee();
+            employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
+            updatedAccount.setEmployee(employee);
 
-            if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUserName1.getText())) {
-                JOptionPane.showMessageDialog(null, "UserName already taken!");
-                txtUserName1.setText("");
-                txtPassword.setText("");
-            } else {
-                UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
-                updatedAccount.setUsername(txtUserName1.getText());
-                updatedAccount.setPassword(txtPassword.getText());
-                Employee employee = new Employee();
-                employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
-                updatedAccount.setEmployee(employee);
-
-                for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
-                    if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
-                        business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
-                    }
+            for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+                if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
+                    business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
                 }
-
-                business.Customer.Customer updatedCustomer = business.getCustomerDirectory().findCustomer(flags.getUserName());
-                updatedCustomer.setUserName(txtUserName1.getText());
-                updatedCustomer.setFirstName(txtFirstName1.getText());
-                updatedCustomer.setLastName(txtLastName1.getText());
-
-                for (int i = 0; i <= business.getCustomerDirectory().getCustomers().size() - 1; i++) {
-                    if (business.getCustomerDirectory().getCustomers().get(i).getUserName().equals(flags.getUserName())) {
-                        business.getCustomerDirectory().getCustomers().set(i, updatedCustomer);
-                    }
-                }
-
-                business.getOrderDirectory().updateSelectedCustomerOrders(flags.getCustomerName(), txtFirstName1.getText() + " " + txtLastName1.getText());
-
-                JOptionPane.showMessageDialog(null, "User Account updated successfully.");
-                pnlUpdate.setVisible(false);
-                populateCustomerRole();
             }
+
+            business.Customer.Customer updatedCustomer = business.getCustomerDirectory().findCustomer(flags.getUserName());
+            updatedCustomer.setUserName(txtUserName1.getText());
+            updatedCustomer.setFirstName(txtFirstName1.getText());
+            updatedCustomer.setLastName(txtLastName1.getText());
+
+            for (int i = 0; i <= business.getCustomerDirectory().getCustomers().size() - 1; i++) {
+                if (business.getCustomerDirectory().getCustomers().get(i).getUserName().equals(flags.getUserName())) {
+                    business.getCustomerDirectory().getCustomers().set(i, updatedCustomer);
+                }
+            }
+
+            business.getOrderDirectory().updateSelectedCustomerOrders(flags.getCustomerName(), txtFirstName1.getText() + " " + txtLastName1.getText());
+
+            JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+            pnlUpdate.setVisible(false);
+            populateCustomerRole();
         }
     }//GEN-LAST:event_btnUpdateSaveActionPerformed
 

@@ -436,42 +436,35 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
         if (updateValidations()) {
 
-            if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(txtUserName1.getText())) {
-                JOptionPane.showMessageDialog(null, "UserName already taken!");
-                txtUserName1.setText("");
-                txtPassword.setText("");
-            } else {
+            String oldRestaurantName;
+            UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flag.getUserName());
+            updatedAccount.setUsername(txtUserName1.getText());
+            updatedAccount.setPassword(txtPassword.getText());
+            Employee employee = new Employee();
+            employee.setName(txtManagerName1.getText());
+            updatedAccount.setEmployee(employee);
 
-                String oldRestaurantName;
-                UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flag.getUserName());
-                updatedAccount.setUsername(txtUserName1.getText());
-                updatedAccount.setPassword(txtPassword.getText());
-                Employee employee = new Employee();
-                employee.setName(txtManagerName1.getText());
-                updatedAccount.setEmployee(employee);
-
-                for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
-                    if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flag.getUserName())) {
-                        business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
-                    }
+            for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+                if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flag.getUserName())) {
+                    business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
                 }
-
-                Restaurant updatedRestaurant = restaurantDirectory.findRestaurant(flag.getRestaurantManagerName());
-                oldRestaurantName = updatedRestaurant.getName();
-                updatedRestaurant.setName(txtRestaurantName1.getText());
-                updatedRestaurant.setManagerName(txtManagerName1.getText());
-
-                for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
-                    if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(flag.getRestaurantManagerName())) {
-                        restaurantDirectory.getRestaurants().set(i, updatedRestaurant);
-                    }
-                }
-
-                business.getOrderDirectory().updateRestaurantNameInOrders(oldRestaurantName, txtRestaurantName1.getText());
-                JOptionPane.showMessageDialog(null, "User Account updated successfully.");
-                pnlUpdate.setVisible(false);
-                populateRestaurantRole();
             }
+
+            Restaurant updatedRestaurant = restaurantDirectory.findRestaurant(flag.getRestaurantManagerName());
+            oldRestaurantName = updatedRestaurant.getName();
+            updatedRestaurant.setName(txtRestaurantName1.getText());
+            updatedRestaurant.setManagerName(txtManagerName1.getText());
+
+            for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
+                if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(flag.getRestaurantManagerName())) {
+                    restaurantDirectory.getRestaurants().set(i, updatedRestaurant);
+                }
+            }
+
+            business.getOrderDirectory().updateRestaurantNameInOrders(oldRestaurantName, txtRestaurantName1.getText());
+            JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+            pnlUpdate.setVisible(false);
+            populateRestaurantRole();
         }
     }//GEN-LAST:event_btnUpdateSaveActionPerformed
 

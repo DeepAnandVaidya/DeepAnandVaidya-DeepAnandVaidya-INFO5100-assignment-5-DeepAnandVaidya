@@ -1480,76 +1480,58 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
      */
     private void enableMainsRadioButtons(Restaurant selectedRestaurant) {
         for (Map.Entry<String, Integer> mainsrMap : selectedRestaurant.getMenu().getMains().entrySet()) {
-            if (mainsrMap.getKey().equals("CheeseBurger")) {
+            if (mainsrMap.getKey().equals("Cheese Burger")) {
                 rdCheeseBurger1.setEnabled(true);
                 lblCheeseBurgerPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblCheeseBurgerPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Fried Rice")) {
                 rdFriedRice1.setEnabled(true);
                 lblFriedRicePrice.setText("- " + mainsrMap.getValue() + "$");
                 lblFriedRicePrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Veggie Pizza")) {
                 rdVeggiePizza1.setEnabled(true);
-                lblCheeseBurgerPrice.setText("- " + mainsrMap.getValue() + "$");
-                lblCheeseBurgerPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
+                lblVeggiePrice.setText("- " + mainsrMap.getValue() + "$");
+                lblVeggiePrice.setForeground(Color.decode("#fc7703"));
             }
 
             if (mainsrMap.getKey().equals("Ham Burger")) {
                 rdHamBurger1.setEnabled(true);
                 lblHamburgerPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblHamburgerPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Fish N' Chips")) {
                 rdFishNChips1.setEnabled(true);
                 lblFishNChipsPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblFishNChipsPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Prawn Fried Rice")) {
                 rdPrawnFriedRice1.setEnabled(true);
                 lblPrawnFriedRicePrice.setText("- " + mainsrMap.getValue() + "$");
                 lblPrawnFriedRicePrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Tofu Salad")) {
                 rdTofuSalad1.setEnabled(true);
                 lblTofuSaladPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblTofuSaladPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Falafel Bowl")) {
                 rdFalafelBowl1.setEnabled(true);
                 lblFalafelBowlPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblFalafelBowlPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
 
             if (mainsrMap.getKey().equals("Tofu & Rice Platter")) {
                 rdTofuAndRiceBowl1.setEnabled(true);
                 lblTofuRiceBowlPrice.setText("- " + mainsrMap.getValue() + "$");
                 lblTofuRiceBowlPrice.setForeground(Color.decode("#fc7703"));
-//                totalCost = totalCost + mainsrMap.getValue();
-//                foodItems.add(mainsrMap.getKey());
             }
         }
     }

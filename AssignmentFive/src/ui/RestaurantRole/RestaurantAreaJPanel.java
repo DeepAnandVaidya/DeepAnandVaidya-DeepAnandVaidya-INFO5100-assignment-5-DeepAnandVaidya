@@ -1281,6 +1281,8 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
                 "Delivery Staff Member"
             }
         ));
+        tblDeliveryStaff.setSelectionBackground(new java.awt.Color(153, 209, 232));
+        tblDeliveryStaff.setSelectionForeground(new java.awt.Color(0, 51, 51));
         jScrollPane6.setViewportView(tblDeliveryStaff);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1765,7 +1767,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private HashMap<String, Integer> setMains() {
         HashMap<String, Integer> mains = new HashMap<>();
         if (rdCheeseBurger1.isSelected() && txtCheeseBurger.getText() != null && !txtCheeseBurger.getText().isBlank() && !txtCheeseBurger.getText().isEmpty()) {
-            mains.put("CheeseBurger", Integer.parseInt(txtCheeseBurger.getText()));
+            mains.put("Cheese Burger", Integer.parseInt(txtCheeseBurger.getText()));
         }
 
         if (rdFriedRice1.isSelected() && txtFriedRice.getText() != null && !txtFriedRice.getText().isBlank() && !txtFriedRice.getText().isEmpty()) {
