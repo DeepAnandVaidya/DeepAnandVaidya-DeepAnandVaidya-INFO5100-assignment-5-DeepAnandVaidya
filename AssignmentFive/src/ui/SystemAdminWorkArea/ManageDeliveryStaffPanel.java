@@ -8,6 +8,7 @@ package ui.SystemAdminWorkArea;
 import business.Business;
 import business.DeliveryStaff.DeliveryStaff;
 import business.DeliveryStaff.DeliveryStaffDirectory;
+import business.FlagClass;
 import business.employee.Employee;
 import business.role.DeliveryManRole;
 import business.role.RestaurantRole;
@@ -31,6 +32,7 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
      */
     Business business;
     DeliveryStaffDirectory deliveryStaffDirectory;
+    FlagClass flags;
 
     public ManageDeliveryStaffPanel(Business business, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
@@ -41,6 +43,8 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         populateDeliveryStaffRole();
+        pnlUpdateUser.setVisible(false);
+        flags = new FlagClass();
     }
 
     /**
@@ -378,7 +382,32 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
-        // TODO add your handling code here:
+        UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
+        updatedAccount.setUsername(txtUserName1.getText());
+        updatedAccount.setPassword(txtPassword.getText());
+        Employee employee = new Employee();
+        employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
+        updatedAccount.setEmployee(employee);
+
+        for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+            if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
+                business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+            }
+        }
+
+        DeliveryStaff staff = business.getDeliveryStaffDirectory().findStaffByUserName(flags.getUserName());
+        staff.setUserName(txtUserName1.getText());
+
+        for (int i = 0; i <= business.getDeliveryStaffDirectory().getDeliveryStaffMembers().size() - 1; i++) {
+            if (business.getDeliveryStaffDirectory().getDeliveryStaffMembers().get(i).getUserName().equals(flags.getUserName())) {
+                business.getDeliveryStaffDirectory().getDeliveryStaffMembers().set(i, staff);
+            }
+        }
+
+        business.getOrderDirectory().updateSelectedDeliveryStaffOrders(flags.getDeliveryStaffName(), txtFirstName1.getText() + " " + txtLastName1.getText());
+        JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+        pnlUpdateUser.setVisible(false);
+        populateDeliveryStaffRole();
     }//GEN-LAST:event_btnUpdateSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -405,6 +434,22 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
+        int selectedRowIndex = tblDeliveryStaff.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a User");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblDeliveryStaff.getModel();
+            UserAccount selectedUserAccount = (UserAccount) model.getValueAt(selectedRowIndex, 0);
+            pnlUpdateUser.setVisible(true);
+            txtFirstName1.setText(selectedUserAccount.getEmployee().getName().substring(0, selectedUserAccount.getEmployee().getName().indexOf(" ")));
+            txtLastName1.setText(selectedUserAccount.getEmployee().getName().substring(selectedUserAccount.getEmployee().getName().indexOf(" ") + 1, selectedUserAccount.getEmployee().getName().length()));
+            txtUserName1.setText(selectedUserAccount.getUsername());
+            txtPassword.setText(selectedUserAccount.getPassword());
+            flags.setUserName(selectedUserAccount.getUsername());
+            flags.setDeliveryStaffName(selectedUserAccount.getEmployee().getName());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 

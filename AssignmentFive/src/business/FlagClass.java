@@ -13,6 +13,7 @@ public class FlagClass {
 
     private String restaurantManagerName;
     private String userName;
+    private String deliveryStaffName;
 
     public String getRestaurantManagerName() {
         return restaurantManagerName;
@@ -28,6 +29,14 @@ public class FlagClass {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getDeliveryStaffName() {
+        return deliveryStaffName;
+    }
+
+    public void setDeliveryStaffName(String deliveryStaffName) {
+        this.deliveryStaffName = deliveryStaffName;
     }
 
 }

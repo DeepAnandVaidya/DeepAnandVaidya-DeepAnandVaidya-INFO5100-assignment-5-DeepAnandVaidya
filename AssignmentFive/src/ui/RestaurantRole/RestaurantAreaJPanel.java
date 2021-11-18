@@ -1558,6 +1558,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
             orderId = selectedOrder.getId();
             lblHeader4.setText("Assign Order: " + orderId);
+            populateStaffMembers();
         }
     }//GEN-LAST:event_btnDetails1ActionPerformed
 

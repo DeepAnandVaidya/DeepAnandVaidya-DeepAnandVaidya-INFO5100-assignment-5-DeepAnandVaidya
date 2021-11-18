@@ -84,4 +84,14 @@ public class OrderDirectory {
         }
     }
 
+    public void updateSelectedDeliveryStaffOrders(String oldDeliveryStaff, String newDeliveryStaff) {
+        int index = 0;
+        for (Order order : orders) {
+            if (order.getDeliveryStaffName() != null && order.getDeliveryStaffName().equals(oldDeliveryStaff)) {
+                order.setDeliveryStaffName(newDeliveryStaff);
+                orders.set(index, order);
+            }
+        }
+    }
+
 }
