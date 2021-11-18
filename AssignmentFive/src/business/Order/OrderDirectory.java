@@ -73,4 +73,15 @@ public class OrderDirectory {
         }
     }
 
+    public void removeSelectedDeliveryStaffOrders(String deliveryStaff) {
+        int index = 0;
+        for (Order order : orders) {
+            if (order.getDeliveryStaffName() != null && order.getDeliveryStaffName().equals(deliveryStaff)) {
+                order.setDeliveryStaffName(null);
+                order.setStatus("PENDING");
+                orders.set(index, order);
+            }
+        }
+    }
+
 }

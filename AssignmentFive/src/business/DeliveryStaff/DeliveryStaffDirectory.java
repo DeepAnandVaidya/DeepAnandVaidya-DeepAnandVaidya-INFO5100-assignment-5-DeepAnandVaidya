@@ -38,4 +38,8 @@ public class DeliveryStaffDirectory {
         return staff;
     }
 
+    public void removeRestaurant(DeliveryStaff staff) {
+        int index = deliveryStaffMembers.indexOf(staff);
+        deliveryStaffMembers.remove(index);
+    }
 }
