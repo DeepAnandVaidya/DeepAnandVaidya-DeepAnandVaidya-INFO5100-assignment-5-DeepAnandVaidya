@@ -103,4 +103,14 @@ public class OrderDirectory {
         }
     }
 
+    public void updateSelectedCustomerOrders(String oldCustomerName, String newCustomerName) {
+        int index = 0;
+        for (Order order : orders) {
+            if (order.getCustomerName() != null && order.getCustomerName().equals(oldCustomerName)) {
+                order.setCustomerName(newCustomerName);
+                orders.set(index, order);
+            }
+        }
+    }
+
 }

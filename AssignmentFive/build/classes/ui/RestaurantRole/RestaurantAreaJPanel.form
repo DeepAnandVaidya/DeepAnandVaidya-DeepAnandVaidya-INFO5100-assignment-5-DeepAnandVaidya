@@ -1303,7 +1303,7 @@
                               <Color blue="cc" green="cc" red="0" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="APPETIZERS"/>
+                            <Property name="text" type="java.lang.String" value="Appetizers"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblAptVeg1">

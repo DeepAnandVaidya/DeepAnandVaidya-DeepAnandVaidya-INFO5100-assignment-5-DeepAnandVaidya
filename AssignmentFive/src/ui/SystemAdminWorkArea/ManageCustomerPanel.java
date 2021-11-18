@@ -7,6 +7,7 @@ package ui.SystemAdminWorkArea;
 
 import business.Business;
 import business.Customer.CustomerDirectory;
+import business.FlagClass;
 import business.employee.Employee;
 import business.role.Customer;
 import business.role.RestaurantRole;
@@ -30,11 +31,13 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
      */
     Business business;
     CustomerDirectory customerDirectory;
+    FlagClass flags;
     
     public ManageCustomerPanel(Business business, CustomerDirectory customerDirectory) {
         initComponents();
         this.business = business;
         this.customerDirectory = customerDirectory;
+        this.flags = new FlagClass();
         
         JTableHeader tableHeader = tblCustomers.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -203,7 +206,7 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                     .addGroup(pnlUpdateLayout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(btnUpdateSave)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         pnlUpdateLayout.setVerticalGroup(
             pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,43 +266,42 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                 .addComponent(lblPanelHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
                                 .addComponent(jButton1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                                .addComponent(btnUpdate)
-                                .addGap(179, 179, 179)
-                                .addComponent(lblAddUser)
-                                .addGap(44, 44, 44)))
-                        .addGap(1, 1, 1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                            .addComponent(pnlUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCreateUser)
-                                .addGap(48, 48, 48))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(pnlUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnUpdate)
+                                        .addGap(78, 78, 78))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGap(101, 101, 101)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFirstName)
-                                    .addComponent(lblLastName)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblUserName)
-                                        .addComponent(lblPassword)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(52, 52, 52))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblAddUser)
+                                        .addGap(44, 44, 44))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnCreateUser)
+                                        .addGap(47, 47, 47)))))
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(434, 434, 434)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFirstName)
+                            .addComponent(lblLastName)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblUserName)
+                                .addComponent(lblPassword)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtFirstName, txtLastName, txtUserName});
@@ -330,24 +332,22 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
                             .addComponent(lblUserName)
                             .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnDelete))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPassword)
                             .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
                         .addComponent(btnCreateUser))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -380,7 +380,36 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateUserActionPerformed
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
-        // TODO add your handling code here:
+        UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
+        updatedAccount.setUsername(txtUserName1.getText());
+        updatedAccount.setPassword(txtPassword.getText());
+        Employee employee = new Employee();
+        employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
+        updatedAccount.setEmployee(employee);
+        
+        for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+            if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
+                business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+            }
+        }
+        
+        business.Customer.Customer updatedCustomer = business.getCustomerDirectory().findCustomer(flags.getUserName());
+        updatedCustomer.setUserName(txtUserName1.getText());
+        updatedCustomer.setFirstName(txtFirstName1.getText());
+        updatedCustomer.setLastName(txtLastName1.getText());
+        
+        for (int i = 0; i <= business.getCustomerDirectory().getCustomers().size() - 1; i++) {
+            if (business.getCustomerDirectory().getCustomers().get(i).getUserName().equals(flags.getUserName())) {
+                business.getCustomerDirectory().getCustomers().set(i, updatedCustomer);
+            }
+        }
+        
+        business.getOrderDirectory().updateSelectedCustomerOrders(flags.getCustomerName(), txtFirstName1.getText() + " " + txtLastName1.getText());
+        
+        JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+        pnlUpdate.setVisible(false);
+        populateCustomerRole();
+
     }//GEN-LAST:event_btnUpdateSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -404,8 +433,24 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        pnlUpdate.setVisible(true);
         
+        int selectedRowIndex = tblCustomers.getSelectedRow();
+        
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a User");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
+            UserAccount selectedUserAccount = (UserAccount) model.getValueAt(selectedRowIndex, 0);
+            pnlUpdate.setVisible(true);
+            txtFirstName1.setText(selectedUserAccount.getEmployee().getName().substring(0, selectedUserAccount.getEmployee().getName().indexOf(" ")));
+            txtLastName1.setText(selectedUserAccount.getEmployee().getName().substring(selectedUserAccount.getEmployee().getName().indexOf(" ") + 1, selectedUserAccount.getEmployee().getName().length()));
+            txtUserName1.setText(selectedUserAccount.getUsername());
+            txtPassword.setText(selectedUserAccount.getPassword());
+            flags.setUserName(selectedUserAccount.getUsername());
+            flags.setCustomerName(selectedUserAccount.getEmployee().getName());
+        }
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 

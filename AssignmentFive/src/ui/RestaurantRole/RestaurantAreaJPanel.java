@@ -701,7 +701,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblApetizers1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblApetizers1.setForeground(new java.awt.Color(0, 204, 204));
         lblApetizers1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblApetizers1.setText("APPETIZERS");
+        lblApetizers1.setText("Appetizers");
 
         lblAptVeg1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAptVeg1.setForeground(new java.awt.Color(0, 102, 102));
