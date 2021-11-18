@@ -62,4 +62,15 @@ public class OrderDirectory {
         return order;
     }
 
+    public void updateRestaurantNameInOrders(String oldRestaurantName, String newRestaurantName) {
+        int i = 0;
+        for (Order orderIteration : orders) {
+            if (orderIteration.getRestaurantName().equals(oldRestaurantName)) {
+                orderIteration.setRestaurantName(newRestaurantName);
+                orders.set(i, orderIteration);
+            }
+            i++;
+        }
+    }
+
 }

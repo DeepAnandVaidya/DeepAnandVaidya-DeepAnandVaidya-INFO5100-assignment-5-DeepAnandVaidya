@@ -148,7 +148,7 @@ public class LoginScreen extends javax.swing.JPanel {
         }
 
         if (!flag) {
-            JOptionPane.showMessageDialog(null, "Invalid User Name/ Password.");
+            JOptionPane.showMessageDialog(null, "Invalid User Name / Password.");
             txtUserName.setText("");
             pwdField.setText("");
         }

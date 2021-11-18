@@ -6,6 +6,7 @@
 package ui.SystemAdminWorkArea;
 
 import business.Business;
+import business.FlagClass;
 import business.Restaurant.Restaurant;
 import business.Restaurant.RestaurantDirectory;
 import business.employee.Employee;
@@ -36,7 +37,9 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     UserAccount account;
     Restaurant restaurant;
     String restaurantName;
-
+    String managerame;
+    FlagClass flag;
+    
     public ManageRestaurantManagersPanel(Business business, UserAccount account, JPanel workAreaPanel, RestaurantDirectory restaurantDirectory) {
         initComponents();
         this.business = business;
@@ -44,11 +47,13 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
         this.restaurantDirectory = restaurantDirectory;
         this.account = account;
         this.restaurant = new Restaurant();
-
+        flag = new FlagClass();
+        
         JTableHeader tableHeader = tblRestaurantManagers.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         populateRestaurantRole();
+        pnlUpdate.setVisible(false);
     }
 
     /**
@@ -76,6 +81,17 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         lblRestaurantName = new javax.swing.JLabel();
         txtRestaurantName = new javax.swing.JTextField();
+        pnlUpdate = new javax.swing.JPanel();
+        lblAddUser1 = new javax.swing.JLabel();
+        lblManagerName1 = new javax.swing.JLabel();
+        txtManagerName1 = new javax.swing.JTextField();
+        lblRestaurantName1 = new javax.swing.JLabel();
+        txtRestaurantName1 = new javax.swing.JTextField();
+        lblUserName1 = new javax.swing.JLabel();
+        txtUserName1 = new javax.swing.JTextField();
+        lblPassword1 = new javax.swing.JLabel();
+        btnUpdateSave = new javax.swing.JButton();
+        txtPassword = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(240, 255, 255));
 
@@ -153,50 +169,140 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
         btnUpdate.setForeground(new java.awt.Color(0, 102, 0));
         btnUpdate.setText("UPDATE USER");
         btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         lblRestaurantName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblRestaurantName.setText("Restaurant Name : ");
+
+        pnlUpdate.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblAddUser1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAddUser1.setForeground(new java.awt.Color(0, 102, 102));
+        lblAddUser1.setText("UPDATE USER");
+
+        lblManagerName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblManagerName1.setText("Manager Name :");
+
+        lblRestaurantName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblRestaurantName1.setText("Restaurant Name : ");
+
+        lblUserName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblUserName1.setText("Username : ");
+
+        lblPassword1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPassword1.setText("Password : ");
+
+        btnUpdateSave.setBackground(new java.awt.Color(175, 211, 211));
+        btnUpdateSave.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnUpdateSave.setForeground(new java.awt.Color(0, 102, 102));
+        btnUpdateSave.setText("UPDATE");
+        btnUpdateSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateSaveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlUpdateLayout = new javax.swing.GroupLayout(pnlUpdate);
+        pnlUpdate.setLayout(pnlUpdateLayout);
+        pnlUpdateLayout.setHorizontalGroup(
+            pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUpdateLayout.createSequentialGroup()
+                .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlUpdateLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(lblAddUser1))
+                    .addGroup(pnlUpdateLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblManagerName1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRestaurantName1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblUserName1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPassword1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRestaurantName1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtManagerName1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdateSave)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlUpdateLayout.setVerticalGroup(
+            pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUpdateLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(lblAddUser1)
+                .addGap(18, 18, 18)
+                .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblManagerName1)
+                    .addComponent(txtManagerName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRestaurantName1)
+                    .addComponent(txtRestaurantName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUserName1)
+                    .addComponent(txtUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPassword1)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(btnUpdateSave)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(lblPanelHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(btnBack)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pnlUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(80, 80, 80))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnUpdate))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblManagerName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblRestaurantName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblUserName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtManagerName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCreateUser)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblAddUser)
+                                .addGap(72, 72, 72))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(lblPanelHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(btnBack)))
                 .addGap(53, 53, 53))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDelete)
-                .addGap(28, 28, 28)
-                .addComponent(btnUpdate)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblManagerName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblRestaurantName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUserName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtManagerName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateUser))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblAddUser)
-                .addGap(292, 292, 292))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,52 +314,60 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(btnBack)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAddUser)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblManagerName)
+                            .addComponent(txtManagerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblRestaurantName)
+                            .addComponent(txtRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUserName)
+                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDelete))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnUpdate))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(lblAddUser)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblManagerName)
-                    .addComponent(txtManagerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRestaurantName)
-                    .addComponent(txtRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUserName)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnCreateUser)
-                .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPassword)
+                            .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(btnCreateUser)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(pnlUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
         String userName = txtUserName.getText();
         String password = pwdPassword.getText();
-        String managerame = txtManagerName.getText();
+        managerame = txtManagerName.getText();
         restaurantName = txtRestaurantName.getText();
         Employee employee = new Employee(managerame);
         RestaurantRole role = new RestaurantRole();
         business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-
+        
         JOptionPane.showMessageDialog(null, "User Account added successfully.");
         txtManagerName.setText("");
         txtRestaurantName.setText("");
         txtUserName.setText("");
         pwdPassword.setText("");
         populateRestaurantRole();
-
+        
         restaurant = restaurantDirectory.addRestaurant();
         restaurant.setManagerName(managerame);
         restaurant.setName(restaurantName);
@@ -268,7 +382,7 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRowIndex = tblRestaurantManagers.getSelectedRow();
-
+        
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a User");
             return;
@@ -279,16 +393,68 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
             business.getUserAccountDirectory().removeAccount(accountToBeRemoved);
             JOptionPane.showMessageDialog(null, "User Account deleted successfully.");
             populateRestaurantRole();
-
+            
             Restaurant restaurant = restaurantDirectory.findRestaurant(selectedUserAccount.getEmployee().getName());
             String restaurantName = restaurant.getName();
-
+            
             Restaurant restaurantToBeRemoved = restaurantDirectory.findRestaurant(selectedUserAccount.getEmployee().getName());
             restaurantDirectory.removeRestaurant(restaurantToBeRemoved);
-
+            
             business.getOrderDirectory().removeSelectedRestaurantOrders(restaurantName);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        int selectedRowIndex = tblRestaurantManagers.getSelectedRow();
+        
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a User");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblRestaurantManagers.getModel();
+            UserAccount selectedUserAccount = (UserAccount) model.getValueAt(selectedRowIndex, 0);
+            pnlUpdate.setVisible(true);
+            restaurant = restaurantDirectory.findRestaurant(selectedUserAccount.getEmployee().getName());
+            txtManagerName1.setText(selectedUserAccount.getEmployee().getName());
+            txtRestaurantName1.setText(restaurant.getName());
+            txtUserName1.setText(selectedUserAccount.getUsername());
+            txtPassword.setText(selectedUserAccount.getPassword());
+            flag.setRestaurantManagerName(selectedUserAccount.getEmployee().getName());
+            flag.setUserName(selectedUserAccount.getUsername());
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
+        String oldRestaurantName;
+        UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flag.getUserName());
+        updatedAccount.setUsername(txtUserName1.getText());
+        updatedAccount.setPassword(txtPassword.getText());
+        Employee employee = new Employee();
+        employee.setName(txtManagerName1.getText());
+        updatedAccount.setEmployee(employee);
+        
+        for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
+            if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flag.getUserName())) {
+                business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
+            }
+        }
+        
+        Restaurant updatedRestaurant = restaurantDirectory.findRestaurant(flag.getRestaurantManagerName());
+        oldRestaurantName = updatedRestaurant.getName();
+        updatedRestaurant.setName(txtRestaurantName1.getText());
+        updatedRestaurant.setManagerName(txtManagerName1.getText());
+        
+        for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
+            if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(flag.getRestaurantManagerName())) {
+                restaurantDirectory.getRestaurants().set(i, updatedRestaurant);
+            }
+        }
+        
+        business.getOrderDirectory().updateRestaurantNameInOrders(oldRestaurantName, txtRestaurantName1.getText());
+        JOptionPane.showMessageDialog(null, "User Account updated successfully.");
+        pnlUpdate.setVisible(false);
+        populateRestaurantRole();
+    }//GEN-LAST:event_btnUpdateSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,24 +462,35 @@ public class ManageRestaurantManagersPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreateUser;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdateSave;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAddUser;
+    private javax.swing.JLabel lblAddUser1;
     private javax.swing.JLabel lblManagerName;
+    private javax.swing.JLabel lblManagerName1;
     private javax.swing.JLabel lblPanelHeading;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPassword1;
     private javax.swing.JLabel lblRestaurantName;
+    private javax.swing.JLabel lblRestaurantName1;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JLabel lblUserName1;
+    private javax.swing.JPanel pnlUpdate;
     private javax.swing.JPasswordField pwdPassword;
     private javax.swing.JTable tblRestaurantManagers;
     private javax.swing.JTextField txtManagerName;
+    private javax.swing.JTextField txtManagerName1;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtRestaurantName;
+    private javax.swing.JTextField txtRestaurantName1;
     private javax.swing.JTextField txtUserName;
+    private javax.swing.JTextField txtUserName1;
     // End of variables declaration//GEN-END:variables
 
     private void populateRestaurantRole() {
         DefaultTableModel model = (DefaultTableModel) tblRestaurantManagers.getModel();
         model.setRowCount(0);
-
+        
         for (UserAccount userAccount : business.getUserAccountDirectory().getUserAccountList()) {
             Object[] row = new Object[3];
             RestaurantRole role = new RestaurantRole();

@@ -221,9 +221,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navigationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tglOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tglOrders, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(btnEditProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         navigationPanelLayout.setVerticalGroup(
@@ -304,18 +304,22 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "RESTAURANT", "TOTAL COST", "ORDER TIME", "ORDER STATUS"
+                "ID", "RESTAURANT", "TOTAL COST", "ORDER TIME", "ORDER STATUS", "DELIVERED BY"
             }
         ));
         tblOrders.setSelectionBackground(new java.awt.Color(153, 209, 232));
         tblOrders.setSelectionForeground(new java.awt.Color(0, 51, 51));
         jScrollPane3.setViewportView(tblOrders);
+        if (tblOrders.getColumnModel().getColumnCount() > 0) {
+            tblOrders.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tblOrders.getColumnModel().getColumn(5).setPreferredWidth(30);
+        }
 
         javax.swing.GroupLayout pnlOrderTableLayout = new javax.swing.GroupLayout(pnlOrderTable);
         pnlOrderTable.setLayout(pnlOrderTableLayout);
@@ -1743,12 +1747,19 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         for (Order order : orderDirectory.getOrders()) {
             if (order.getCustomerName().equals(customer.getFirstName() + " " + customer.getLastName())) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[6];
                 row[0] = order;
                 row[1] = order.getRestaurantName();
                 row[2] = order.getCost() + "$";
                 row[3] = order.getOrderDateTime();
                 row[4] = order.getStatus();
+
+                if (order.getDeliveryStaffName() != null && !order.getDeliveryStaffName().isBlank() && !order.getDeliveryStaffName().isEmpty()) {
+                    row[5] = order.getDeliveryStaffName().toUpperCase();
+                } else {
+                    row[5] = "- NA -";
+                }
+
                 model.addRow(row);
             }
         }

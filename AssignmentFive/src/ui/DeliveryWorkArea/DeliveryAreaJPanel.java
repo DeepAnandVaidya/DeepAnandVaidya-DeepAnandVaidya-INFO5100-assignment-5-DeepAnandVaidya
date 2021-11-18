@@ -15,6 +15,7 @@ import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +40,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     Order order;
     int orderId;
     String staffMemberName;
-
+    
     public DeliveryAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.restaurantDirectory = restaurantDirectory;
@@ -52,13 +53,13 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         userName = account.getUsername();
         this.staff = deliveryStaffDirectory.findStaffByUserName(userName);
         lblGreeting.setText(staff.getFirstName() == null && staff.getLastName() == null ? "Welcome " + staff.getUserName() + "!" : "Welcome " + staff.getFirstName().toUpperCase() + " " + staff.getLastName().toUpperCase() + "!");
-
+        
         JTableHeader tableHeader = tblOrders.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-
+        
         if (orderDirectory != null) {
-            populateOrders();
+            populateOrders(null);
         }
     }
 
@@ -82,6 +83,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         lblGreeting = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         NavigationPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -190,6 +192,16 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblOrders);
 
+        jButton1.setBackground(new java.awt.Color(255, 204, 102));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 102, 51));
+        jButton1.setText("DELIVER ORDER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainWorkAreaPanelLayout = new javax.swing.GroupLayout(MainWorkAreaPanel);
         MainWorkAreaPanel.setLayout(MainWorkAreaPanelLayout);
         MainWorkAreaPanelLayout.setHorizontalGroup(
@@ -200,7 +212,9 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainWorkAreaPanelLayout.setVerticalGroup(
@@ -208,9 +222,11 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
             .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(lblGreeting)
-                .addGap(74, 74, 74)
+                .addGap(46, 46, 46)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MainWorkAreaPanel, "card2");
@@ -233,16 +249,38 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditProfileActionPerformed
 
     private void btnCompletedOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompletedOrdersActionPerformed
-        // TODO add your handling code here:
+        populateOrders("COMPLETED ORDERS");
     }//GEN-LAST:event_btnCompletedOrdersActionPerformed
 
     private void btnPendingOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingOrdersActionPerformed
-        // TODO add your handling code here:
+        populateOrders("PENDING ORDERS");
     }//GEN-LAST:event_btnPendingOrdersActionPerformed
 
     private void btnAllOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllOrdersActionPerformed
-        // TODO add your handling code here:
+        populateOrders(null);
     }//GEN-LAST:event_btnAllOrdersActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+        
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            Order updatedOrder = orderDirectory.findOrder(selectedOrder.getId());
+            updatedOrder.setStatus("DELIVERED");
+            orderId = selectedOrder.getId();
+            
+            for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+                if (orderDirectory.getOrders().get(i).getId() == selectedOrder.getId()) {
+                    orderDirectory.getOrders().set(i, updatedOrder);
+                }
+            }
+            populateOrders(null);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -252,6 +290,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCompletedOrders;
     private javax.swing.JButton btnEditProfile;
     private javax.swing.JButton btnPendingOrders;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
@@ -259,20 +298,46 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblOrders;
     // End of variables declaration//GEN-END:variables
 
-    private void populateOrders() {
+    private void populateOrders(String flag) {
         DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
         model.setRowCount(0);
-
+        
         for (Order order : orderDirectory.getOrders()) {
             if (order.getDeliveryStaffName() != null && !order.getDeliveryStaffName().isBlank() && !order.getDeliveryStaffName().isEmpty()) {
                 if (order.getDeliveryStaffName().equals(account.getEmployee().getName())) {
-                    Object[] row = new Object[5];
-                    row[0] = order;
-                    row[1] = order.getCustomerName().toUpperCase();
-                    row[2] = order.getRestaurantName().toUpperCase();
-                    row[3] = order.getOrderDateTime();
-                    row[4] = order.getStatus();
-                    model.addRow(row);
+                    if (flag != null && flag.equals("COMPLETED ORDERS")) {
+                        if (order.getStatus().equals("DELIVERED")) {
+                            Object[] row = new Object[5];
+                            row[0] = order;
+                            row[1] = order.getCustomerName().toUpperCase();
+                            row[2] = order.getRestaurantName().toUpperCase();
+                            row[3] = order.getOrderDateTime();
+                            row[4] = order.getStatus();
+                            model.addRow(row);
+                        }
+                    }
+                    
+                    if (flag != null && flag.equals("PENDING ORDERS")) {
+                        if (order.getStatus().equals("ASSIGNED")) {
+                            Object[] row = new Object[5];
+                            row[0] = order;
+                            row[1] = order.getCustomerName().toUpperCase();
+                            row[2] = order.getRestaurantName().toUpperCase();
+                            row[3] = order.getOrderDateTime();
+                            row[4] = order.getStatus();
+                            model.addRow(row);
+                        }
+                    }
+                    
+                    if (flag == null) {
+                        Object[] row = new Object[5];
+                        row[0] = order;
+                        row[1] = order.getCustomerName().toUpperCase();
+                        row[2] = order.getRestaurantName().toUpperCase();
+                        row[3] = order.getOrderDateTime();
+                        row[4] = order.getStatus();
+                        model.addRow(row);
+                    }
                 }
             }
         }
