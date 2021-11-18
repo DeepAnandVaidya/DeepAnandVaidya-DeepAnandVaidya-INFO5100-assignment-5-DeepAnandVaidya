@@ -76,6 +76,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         disableRadioButtons();
         pnlOrderTable.setVisible(false);
         btnAddReview.setVisible(false);
+        btnCancelOrder.setVisible(false);
 
         if (orderDirectory != null) {
             populateOrders();
@@ -106,6 +107,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnAddReview = new javax.swing.JButton();
+        btnCancelOrder = new javax.swing.JButton();
         EditProfilePanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -348,6 +350,17 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCancelOrder.setBackground(new java.awt.Color(153, 0, 0));
+        btnCancelOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelOrder.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelOrder.setText("CANCEL ORDER");
+        btnCancelOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainWorkAreaLayout = new javax.swing.GroupLayout(MainWorkArea);
         MainWorkArea.setLayout(MainWorkAreaLayout);
         MainWorkAreaLayout.setHorizontalGroup(
@@ -365,7 +378,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                             .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(MainWorkAreaLayout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(btnAddReview)))
+                        .addComponent(btnAddReview)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelOrder)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainWorkAreaLayout.setVerticalGroup(
@@ -378,10 +393,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(btnAddReview)
+                .addGroup(MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddReview)
+                    .addComponent(btnCancelOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(MainWorkArea, "card2");
@@ -1331,9 +1348,11 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         if (tglOrders.isSelected()) {
             pnlOrderTable.setVisible(true);
             btnAddReview.setVisible(true);
+            btnCancelOrder.setVisible(true);
         } else {
             pnlOrderTable.setVisible(false);
             btnAddReview.setVisible(false);
+            btnCancelOrder.setVisible(false);
         }
     }//GEN-LAST:event_tglOrdersActionPerformed
 
@@ -1372,6 +1391,20 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         switchPanels(MainWorkArea);
         txtFeedback.setText("");
     }//GEN-LAST:event_btnSubmitFeedbackActionPerformed
+
+    private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order.");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            orderDirectory.removeOrderByOrderId(selectedOrder.getId());
+            populateOrders();
+        }
+    }//GEN-LAST:event_btnCancelOrderActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -1611,6 +1644,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAddReview;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnEditProfile;
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnSave;

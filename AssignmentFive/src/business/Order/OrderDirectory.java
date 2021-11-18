@@ -113,4 +113,9 @@ public class OrderDirectory {
         }
     }
 
+    public void removeOrderByOrderId(int id) {
+        Order order = orders.stream().filter(x -> x.getId() == id).findAny().orElse(null);
+        orders.remove(order);
+    }
+
 }
