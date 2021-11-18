@@ -94,4 +94,13 @@ public class OrderDirectory {
         }
     }
 
+    public void removeSelectedCustomerOrders(String customerName) {
+        for (Order order : orders) {
+            if (order.getCustomerName().equals(customerName)) {
+                int index = orders.indexOf(order);
+                orders.remove(order);
+            }
+        }
+    }
+
 }
