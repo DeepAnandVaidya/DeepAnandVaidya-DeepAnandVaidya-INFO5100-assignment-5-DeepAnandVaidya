@@ -425,6 +425,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblFirstName.setForeground(new java.awt.Color(0, 51, 51));
         lblFirstName.setText("FIRST NAME : ");
 
+        txtFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtFirstName.setForeground(new java.awt.Color(0, 102, 102));
         txtFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFirstNameActionPerformed(evt);
@@ -435,6 +437,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblLastName.setForeground(new java.awt.Color(0, 51, 51));
         lblLastName.setText("LAST NAME : ");
 
+        txtLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtLastName.setForeground(new java.awt.Color(0, 102, 102));
         txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLastNameActionPerformed(evt);
@@ -445,6 +449,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblEmail.setForeground(new java.awt.Color(0, 51, 51));
         lblEmail.setText("EMAIL : ");
 
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 102, 102));
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -455,6 +461,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblMobileNum.setForeground(new java.awt.Color(0, 51, 51));
         lblMobileNum.setText("MOBILE NUMBER : ");
 
+        txtMobileNum.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtMobileNum.setForeground(new java.awt.Color(0, 102, 102));
         txtMobileNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMobileNumActionPerformed(evt);
@@ -1256,26 +1264,31 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMobileNumActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        customer.setFirstName(txtFirstName.getText());
-        customer.setLastName(txtLastName.getText());
-        customer.setEmail(txtEmail.getText());
-        customer.setPhoneNumber(txtMobileNum.getText());
+        if (validations()) {
+            customer.setFirstName(txtFirstName.getText());
+            customer.setLastName(txtLastName.getText());
+            customer.setEmail(txtEmail.getText());
+            customer.setPhoneNumber(txtMobileNum.getText());
 
-        JOptionPane.showMessageDialog(null, "Profile details saved successfully.");
-        switchPanels(MainWorkArea);
+            JOptionPane.showMessageDialog(null, "Profile details saved successfully.");
+            switchPanels(MainWorkArea);
 
-        for (int i = 0; i <= customerDirectory.getCustomers().size() - 1; i++) {
-            if (customerDirectory.getCustomers().get(i).getUserName().equals(userName)) {
-                customerDirectory.getCustomers().set(i, customer);
+            for (int i = 0; i <= customerDirectory.getCustomers().size() - 1; i++) {
+                if (customerDirectory.getCustomers().get(i).getUserName().equals(userName)) {
+                    customerDirectory.getCustomers().set(i, customer);
+                }
             }
+
+            lblGreeting.setText("Ready to Order " + customer.getFirstName().toUpperCase() + " " + customer.getLastName().toUpperCase() + "?");
         }
-
-        lblGreeting.setText("Ready to Order " + customer.getFirstName().toUpperCase() + " " + customer.getLastName().toUpperCase() + "?");
-
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
         switchPanels(EditProfilePanel);
+        txtFirstName.setText(customer.getFirstName());
+        txtLastName.setText(customer.getLastName());
+        txtEmail.setText(customer.getEmail());
+        txtMobileNum.setText(customer.getPhoneNumber());
     }//GEN-LAST:event_btnEditProfileActionPerformed
 
     private void btnViewMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMenuActionPerformed
@@ -1917,5 +1930,55 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             order.setCost(totalCost);
             foodItems.add(rdPepsi1.getText());
         }
+    }
+
+    private boolean validations() {
+
+        boolean validData = true;
+
+        // validate the name field
+        if (txtFirstName.getText().isBlank() || txtFirstName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "First Name is blank, enter some data!");
+            validData = false;
+            return validData;
+        } // validate the address line 1 field
+        else if (txtLastName.getText().isBlank() || txtLastName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Last is blank, enter some data!");
+            validData = false;
+            return validData;
+        } // validate the address line 2 field
+        else if (!emailValidate(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter a valid EmailID!");
+            validData = false;
+            return validData;
+        } // validate the date of birth
+        else if (!teleNumValidate(txtMobileNum.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter a valid Phone Number!");
+            validData = false;
+            return validData;
+        } // validate Primary Telephone Number
+        else {
+            return true;
+        }
+    }
+
+    private boolean emailValidate(String email) {
+        if (email.isBlank() || email.isEmpty()) {
+            return false;
+        } else if (!email.isBlank() && !email.isEmpty() && !email.contains("@")) {
+            return false;
+        } else if (!email.isBlank() && !email.isEmpty() && !email.contains(".com")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean teleNumValidate(String teleNumString) {
+        if (teleNumString.isBlank() || teleNumString.isEmpty()) {
+            return false;
+        } else if (!teleNumString.isBlank() && !teleNumString.isEmpty() && teleNumString.trim().length() != 10) {
+            return false;
+        }
+        return true;
     }
 }

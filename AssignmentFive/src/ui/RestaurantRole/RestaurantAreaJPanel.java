@@ -479,6 +479,8 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblName.setForeground(new java.awt.Color(0, 51, 51));
         lblName.setText("NAME : ");
 
+        txtName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtName.setForeground(new java.awt.Color(0, 102, 102));
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -489,9 +491,15 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblAddress.setForeground(new java.awt.Color(0, 51, 51));
         lblAddress.setText("ADDRESS : ");
 
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtAddress.setForeground(new java.awt.Color(0, 102, 102));
+
         lblCuisine.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCuisine.setForeground(new java.awt.Color(0, 51, 51));
         lblCuisine.setText("CUISINE : ");
+
+        txtCuisine.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtCuisine.setForeground(new java.awt.Color(0, 102, 102));
 
         lblVeg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblVeg.setForeground(new java.awt.Color(0, 51, 51));
@@ -557,9 +565,15 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblPhoneNum.setForeground(new java.awt.Color(0, 51, 51));
         lblPhoneNum.setText("PHONE NO. : ");
 
+        txtPhoneNum.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtPhoneNum.setForeground(new java.awt.Color(0, 102, 102));
+
         lblEmailId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblEmailId.setForeground(new java.awt.Color(0, 51, 51));
         lblEmailId.setText("EMAIL ID : ");
+
+        txtEmailId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtEmailId.setForeground(new java.awt.Color(0, 102, 102));
 
         javax.swing.GroupLayout EditDetailsPanelLayout = new javax.swing.GroupLayout(EditDetailsPanel);
         EditDetailsPanel.setLayout(EditDetailsPanelLayout);
@@ -1356,6 +1370,27 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
     private void btnEditDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDetailsActionPerformed
         switchPanels(EditDetailsPanel);
+        txtName.setText(restaurant.getName());
+        txtAddress.setText(restaurant.getAddress());
+        txtCuisine.setText(restaurant.getCuisine());
+        txtPhoneNum.setText(restaurant.getPhoneNumber());
+        txtEmailId.setText(restaurant.getEmailId());
+
+        if (restaurant.getVegOrNonVeg().equals("VEG")) {
+            chkVeg.setSelected(true);
+        }
+
+        if (restaurant.getVegOrNonVeg().equals("NON-VEG")) {
+            chkNonVeg.setSelected(true);
+        }
+
+        if (restaurant.getVegOrNonVeg().equals("VEGAN")) {
+            chkVegan.setSelected(true);
+        }
+
+        if (restaurant.getVegOrNonVeg().equals("ALL")) {
+            chkAll.setSelected(true);
+        }
     }//GEN-LAST:event_btnEditDetailsActionPerformed
 
     private void chkNonVegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkNonVegActionPerformed
@@ -1383,39 +1418,41 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_chkVegActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        restaurant.setName(txtName.getText());
-        restaurant.setAddress(txtAddress.getText());
-        restaurant.setCuisine(txtCuisine.getText());
-        restaurant.setPhoneNumber(txtPhoneNum.getText());
-        restaurant.setEmailId(txtEmailId.getText());
+        if (validations()) {
+            restaurant.setName(txtName.getText());
+            restaurant.setAddress(txtAddress.getText());
+            restaurant.setCuisine(txtCuisine.getText());
+            restaurant.setPhoneNumber(txtPhoneNum.getText());
+            restaurant.setEmailId(txtEmailId.getText());
 
-        if (chkVeg.isSelected()) {
-            restaurant.setVegOrNonVeg("VEG");
-        } else if (chkNonVeg.isSelected()) {
-            restaurant.setVegOrNonVeg("NON-VEG");
-        } else if (chkVegan.isSelected()) {
-            restaurant.setVegOrNonVeg("VEGAN");
-        } else {
-            restaurant.setVegOrNonVeg("ALL");
-        }
-
-        JOptionPane.showMessageDialog(null, "Restaurant Details saved successfully.");
-        txtName.setText("");
-        txtAddress.setText("");
-        txtCuisine.setText("");
-        chkVeg.setSelected(false);
-        chkNonVeg.setSelected(false);
-        chkVegan.setSelected(false);
-        chkAll.setSelected(false);
-        switchPanels(workAreaPanel);
-
-        for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
-            if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(managerName)) {
-                restaurantDirectory.getRestaurants().set(i, restaurant);
+            if (chkVeg.isSelected()) {
+                restaurant.setVegOrNonVeg("VEG");
+            } else if (chkNonVeg.isSelected()) {
+                restaurant.setVegOrNonVeg("NON-VEG");
+            } else if (chkVegan.isSelected()) {
+                restaurant.setVegOrNonVeg("VEGAN");
+            } else {
+                restaurant.setVegOrNonVeg("ALL");
             }
-        }
 
-        lblRestaurantName.setText(restaurant.getName());
+            JOptionPane.showMessageDialog(null, "Restaurant Details saved successfully.");
+            txtName.setText("");
+            txtAddress.setText("");
+            txtCuisine.setText("");
+            chkVeg.setSelected(false);
+            chkNonVeg.setSelected(false);
+            chkVegan.setSelected(false);
+            chkAll.setSelected(false);
+            switchPanels(workAreaPanel);
+
+            for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
+                if (restaurantDirectory.getRestaurants().get(i).getManagerName().equals(managerName)) {
+                    restaurantDirectory.getRestaurants().set(i, restaurant);
+                }
+            }
+
+            lblRestaurantName.setText(restaurant.getName());
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -2211,6 +2248,59 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             row[0] = staff;
             model.addRow(row);
         }
+    }
+
+    private boolean validations() {
+
+        boolean validData = true;
+
+        if (txtName.getText().isBlank() || txtName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name is blank, enter some data!");
+            validData = false;
+            return validData;
+        } else if (txtAddress.getText().isBlank() || txtAddress.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Address is blank, enter some data!");
+            validData = false;
+            return validData;
+        } else if (txtCuisine.getText().isBlank() || txtCuisine.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Cuisine is blank, enter some data!");
+            validData = false;
+            return validData;
+        } else if (!teleNumValidate(txtPhoneNum.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter a valid Phone Number!");
+            validData = false;
+            return validData;
+        } else if (!emailValidate(txtEmailId.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter a valid EmailID!");
+            validData = false;
+            return validData;
+        } else if (!chkVeg.isSelected() && !chkNonVeg.isSelected() && !chkVegan.isSelected() && !chkAll.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Select a food type!");
+            validData = false;
+            return validData;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean emailValidate(String email) {
+        if (email.isBlank() || email.isEmpty()) {
+            return false;
+        } else if (!email.isBlank() && !email.isEmpty() && !email.contains("@")) {
+            return false;
+        } else if (!email.isBlank() && !email.isEmpty() && !email.contains(".com")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean teleNumValidate(String teleNumString) {
+        if (teleNumString.isBlank() || teleNumString.isEmpty()) {
+            return false;
+        } else if (!teleNumString.isBlank() && !teleNumString.isEmpty() && teleNumString.trim().length() != 10) {
+            return false;
+        }
+        return true;
     }
 
 }

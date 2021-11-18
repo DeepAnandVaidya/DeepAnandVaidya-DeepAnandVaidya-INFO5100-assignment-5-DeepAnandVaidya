@@ -13,6 +13,7 @@ import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,7 +41,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     Order order;
     int orderId;
     String staffMemberName;
-    
+
     public DeliveryAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.restaurantDirectory = restaurantDirectory;
@@ -53,11 +54,11 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         userName = account.getUsername();
         this.staff = deliveryStaffDirectory.findStaffByUserName(userName);
         lblGreeting.setText(staff.getFirstName() == null && staff.getLastName() == null ? "Welcome " + staff.getUserName() + "!" : "Welcome " + staff.getFirstName().toUpperCase() + " " + staff.getLastName().toUpperCase() + "!");
-        
+
         JTableHeader tableHeader = tblOrders.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
+
         if (orderDirectory != null) {
             populateOrders(null);
         }
@@ -84,6 +85,18 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        EditProfilePanel = new javax.swing.JPanel();
+        lblHeader = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        lblFirstName = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        lblLastName = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblMobileNum = new javax.swing.JLabel();
+        txtMobileNum = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
 
         NavigationPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -207,15 +220,17 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         MainWorkAreaPanelLayout.setHorizontalGroup(
             MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
                 .addGroup(MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblGreeting, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
+                    .addGroup(MainWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         MainWorkAreaPanelLayout.setVerticalGroup(
             MainWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +245,149 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         );
 
         jLayeredPane1.add(MainWorkAreaPanel, "card2");
+
+        EditProfilePanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblHeader.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHeader.setForeground(new java.awt.Color(0, 153, 153));
+        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader.setText("Edit Profile");
+
+        btnBack.setBackground(new java.awt.Color(255, 204, 204));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 0, 51));
+        btnBack.setText("BACK");
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFirstName.setForeground(new java.awt.Color(0, 51, 51));
+        lblFirstName.setText("FIRST NAME : ");
+
+        txtFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtFirstName.setForeground(new java.awt.Color(0, 102, 102));
+        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFirstNameActionPerformed(evt);
+            }
+        });
+
+        lblLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblLastName.setForeground(new java.awt.Color(0, 51, 51));
+        lblLastName.setText("LAST NAME : ");
+
+        txtLastName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtLastName.setForeground(new java.awt.Color(0, 102, 102));
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLastNameActionPerformed(evt);
+            }
+        });
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(0, 51, 51));
+        lblEmail.setText("EMAIL : ");
+
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 102, 102));
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+
+        lblMobileNum.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMobileNum.setForeground(new java.awt.Color(0, 51, 51));
+        lblMobileNum.setText("MOBILE NUMBER : ");
+
+        txtMobileNum.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtMobileNum.setForeground(new java.awt.Color(0, 102, 102));
+        txtMobileNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMobileNumActionPerformed(evt);
+            }
+        });
+
+        btnSave.setBackground(new java.awt.Color(215, 254, 211));
+        btnSave.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(72, 151, 64));
+        btnSave.setText("SAVE CHANGES");
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EditProfilePanelLayout = new javax.swing.GroupLayout(EditProfilePanel);
+        EditProfilePanel.setLayout(EditProfilePanelLayout);
+        EditProfilePanelLayout.setHorizontalGroup(
+            EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                .addContainerGap(555, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(35, 35, 35))
+            .addGroup(EditProfilePanelLayout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditProfilePanelLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(lblHeader))
+                    .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                            .addComponent(lblMobileNum)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                            .addComponent(lblEmail)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                            .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblFirstName)
+                                .addComponent(lblLastName))
+                            .addGap(18, 18, 18)
+                            .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(32, 32, 32))))
+                .addContainerGap(214, Short.MAX_VALUE))
+        );
+        EditProfilePanelLayout.setVerticalGroup(
+            EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditProfilePanelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblHeader)
+                .addGap(80, 80, 80)
+                .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFirstName)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLastName)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMobileNum)
+                    .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(btnSave)
+                .addContainerGap(180, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(EditProfilePanel, "card3");
 
         jSplitPane1.setRightComponent(jLayeredPane1);
 
@@ -246,6 +404,11 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
+        switchPanels(EditProfilePanel);
+        txtFirstName.setText(staff.getFirstName());
+        txtLastName.setText(staff.getLastName());
+        txtEmail.setText(staff.getEmail());
+        txtMobileNum.setText(staff.getPhoneNumber());
     }//GEN-LAST:event_btnEditProfileActionPerformed
 
     private void btnCompletedOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompletedOrdersActionPerformed
@@ -262,7 +425,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRowIndex = tblOrders.getSelectedRow();
-        
+
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select an Order");
             return;
@@ -272,7 +435,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
             Order updatedOrder = orderDirectory.findOrder(selectedOrder.getId());
             updatedOrder.setStatus("DELIVERED");
             orderId = selectedOrder.getId();
-            
+
             for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
                 if (orderDirectory.getOrders().get(i).getId() == selectedOrder.getId()) {
                     orderDirectory.getOrders().set(i, updatedOrder);
@@ -282,26 +445,77 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        switchPanels(MainWorkAreaPanel);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameActionPerformed
+
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtMobileNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMobileNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMobileNumActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        if (validations()) {
+            staff.setFirstName(txtFirstName.getText());
+            staff.setLastName(txtLastName.getText());
+            staff.setEmail(txtEmail.getText());
+            staff.setPhoneNumber(txtMobileNum.getText());
+
+            for (int i = 0; i <= deliveryStaffDirectory.getDeliveryStaffMembers().size() - 1; i++) {
+                if (deliveryStaffDirectory.getDeliveryStaffMembers().get(i).getUserName().equals(userName)) {
+                    deliveryStaffDirectory.getDeliveryStaffMembers().set(i, staff);
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "Profile details saved successfully.");
+            switchPanels(MainWorkAreaPanel);
+            lblGreeting.setText("Welcome " + staff.getFirstName().toUpperCase() + " " + staff.getLastName().toUpperCase() + "!");
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel EditProfilePanel;
     private javax.swing.JPanel MainWorkAreaPanel;
     private javax.swing.JPanel NavigationPanel;
     private javax.swing.JButton btnAllOrders;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCompletedOrders;
     private javax.swing.JButton btnEditProfile;
     private javax.swing.JButton btnPendingOrders;
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblGreeting;
+    private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblMobileNum;
     private javax.swing.JTable tblOrders;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtMobileNum;
     // End of variables declaration//GEN-END:variables
 
     private void populateOrders(String flag) {
         DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
         model.setRowCount(0);
-        
+
         for (Order order : orderDirectory.getOrders()) {
             if (order.getDeliveryStaffName() != null && !order.getDeliveryStaffName().isBlank() && !order.getDeliveryStaffName().isEmpty()) {
                 if (order.getDeliveryStaffName().equals(account.getEmployee().getName())) {
@@ -316,7 +530,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                             model.addRow(row);
                         }
                     }
-                    
+
                     if (flag != null && flag.equals("PENDING ORDERS")) {
                         if (order.getStatus().equals("ASSIGNED")) {
                             Object[] row = new Object[5];
@@ -328,7 +542,7 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                             model.addRow(row);
                         }
                     }
-                    
+
                     if (flag == null) {
                         Object[] row = new Object[5];
                         row[0] = order;
@@ -341,5 +555,62 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
+    }
+
+    private void switchPanels(Component component) {
+        jLayeredPane1.removeAll();
+        jLayeredPane1.add(component);
+        jLayeredPane1.revalidate();
+        jLayeredPane1.repaint();
+    }
+
+    private boolean validations() {
+
+        boolean validData = true;
+
+        // validate the name field
+        if (txtFirstName.getText().isBlank() || txtFirstName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "First Name is blank, enter some data!");
+            validData = false;
+            return validData;
+        } // validate the address line 1 field
+        else if (txtLastName.getText().isBlank() || txtLastName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Last is blank, enter some data!");
+            validData = false;
+            return validData;
+        } // validate the address line 2 field
+        else if (!emailValidate(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter a valid EmailID!");
+            validData = false;
+            return validData;
+        } // validate the date of birth
+        else if (!teleNumValidate(txtMobileNum.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter a valid Phone Number!");
+            validData = false;
+            return validData;
+        } // validate Primary Telephone Number
+        else {
+            return true;
+        }
+    }
+
+    private boolean emailValidate(String email) {
+        if (email.isBlank() || email.isEmpty()) {
+            return false;
+        } else if (!email.isBlank() && !email.isEmpty() && !email.contains("@")) {
+            return false;
+        } else if (!email.isBlank() && !email.isEmpty() && !email.contains(".com")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean teleNumValidate(String teleNumString) {
+        if (teleNumString.isBlank() || teleNumString.isEmpty()) {
+            return false;
+        } else if (!teleNumString.isBlank() && !teleNumString.isEmpty() && teleNumString.trim().length() != 10) {
+            return false;
+        }
+        return true;
     }
 }
