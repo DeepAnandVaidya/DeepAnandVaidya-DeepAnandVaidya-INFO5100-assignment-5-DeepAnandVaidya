@@ -22,6 +22,7 @@ public class Restaurant {
     private String phoneNumber;
     private String emailId;
     private HashMap<String, String> reviewComments;
+    private double averageRating;
 
     public String getName() {
         return name;
@@ -93,6 +94,14 @@ public class Restaurant {
 
     public void setReviewComments(HashMap<String, String> reviewComments) {
         this.reviewComments = reviewComments;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
     }
 
     @Override

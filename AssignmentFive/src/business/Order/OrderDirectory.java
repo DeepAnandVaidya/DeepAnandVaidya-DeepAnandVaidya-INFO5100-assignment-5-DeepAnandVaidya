@@ -118,4 +118,14 @@ public class OrderDirectory {
         orders.remove(order);
     }
 
+    public ArrayList<Order> ordersofARestaurantWithSomeRating(String restaurantName) {
+        ArrayList<Order> restaurantOrders = new ArrayList<>();
+        for (Order order : orders) {
+            if (order.getRestaurantName().equals(restaurantName) && order.getOrderRating() != 0) {
+                restaurantOrders.add(order);
+            }
+        }
+        return restaurantOrders;
+    }
+
 }

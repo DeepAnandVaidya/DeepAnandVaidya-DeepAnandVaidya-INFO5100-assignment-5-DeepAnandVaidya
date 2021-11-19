@@ -15,6 +15,7 @@ public class FlagClass {
     private String userName;
     private String deliveryStaffName;
     private String customerName;
+    private int id;
 
     public String getRestaurantManagerName() {
         return restaurantManagerName;
@@ -46,6 +47,14 @@ public class FlagClass {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

@@ -8,6 +8,7 @@ package ui.CustomerRole;
 import business.Business;
 import business.Customer.CustomerDirectory;
 import business.DeliveryStaff.DeliveryStaffDirectory;
+import business.FlagClass;
 import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.Restaurant;
@@ -50,6 +51,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     ArrayList<String> foodItems;
     int orderId;
     DeliveryStaffDirectory deliveryStaffDirectory;
+    FlagClass flags;
 
     public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business, RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, OrderDirectory orderDirectory, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
@@ -60,6 +62,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         this.deliveryStaffDirectory = deliveryStaffDirectory;
         this.totalCost = 0;
         this.foodItems = new ArrayList<>();
+        this.flags = new FlagClass();
         userName = account.getUsername();
         customer = customerDirectory.findCustomer(userName);
         lblGreeting.setText(customer.getFirstName() == null && customer.getLastName() == null ? "Ready to order " + customer.getUserName() + "?" : "Ready to Order " + customer.getFirstName().toUpperCase() + " " + customer.getLastName().toUpperCase() + "?");
@@ -77,6 +80,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         pnlOrderTable.setVisible(false);
         btnAddReview.setVisible(false);
         btnCancelOrder.setVisible(false);
+        btnRateOrder.setVisible(false);
 
         if (orderDirectory != null) {
             populateOrders();
@@ -109,6 +113,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tblOrders = new javax.swing.JTable();
         btnAddReview = new javax.swing.JButton();
         btnCancelOrder = new javax.swing.JButton();
+        btnRateOrder = new javax.swing.JButton();
         EditProfilePanel = new javax.swing.JPanel();
         lblHeader = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -193,6 +198,16 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         txtFeedback = new javax.swing.JTextField();
         btnSubmitFeedback = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        RateOrderPanel = new javax.swing.JPanel();
+        lblHeading1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        rd5 = new javax.swing.JRadioButton();
+        rd4 = new javax.swing.JRadioButton();
+        rd3 = new javax.swing.JRadioButton();
+        rd2 = new javax.swing.JRadioButton();
+        rd1 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         navigationPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -373,6 +388,17 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnRateOrder.setBackground(new java.awt.Color(0, 0, 0));
+        btnRateOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRateOrder.setForeground(new java.awt.Color(0, 153, 153));
+        btnRateOrder.setText("Rate an Order");
+        btnRateOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRateOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRateOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainWorkAreaLayout = new javax.swing.GroupLayout(MainWorkArea);
         MainWorkArea.setLayout(MainWorkAreaLayout);
         MainWorkAreaLayout.setHorizontalGroup(
@@ -392,7 +418,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                         .addGap(64, 64, 64)
                         .addComponent(btnAddReview)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancelOrder)))
+                        .addComponent(btnCancelOrder)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRateOrder)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainWorkAreaLayout.setVerticalGroup(
@@ -407,7 +435,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(MainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddReview)
-                    .addComponent(btnCancelOrder))
+                    .addComponent(btnCancelOrder)
+                    .addComponent(btnRateOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(98, Short.MAX_VALUE))
@@ -495,8 +524,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         EditProfilePanel.setLayout(EditProfilePanelLayout);
         EditProfilePanelLayout.setHorizontalGroup(
             EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
-                .addContainerGap(573, Short.MAX_VALUE)
+            .addGroup(EditProfilePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(35, 35, 35))
             .addGroup(EditProfilePanelLayout.createSequentialGroup()
@@ -1241,6 +1270,132 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         jLayeredPane1.add(FeedbackPanel, "card5");
 
+        RateOrderPanel.setBackground(new java.awt.Color(240, 255, 255));
+
+        lblHeading1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblHeading1.setForeground(new java.awt.Color(0, 153, 153));
+        lblHeading1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeading1.setText("<Rate order xyz>");
+
+        jButton3.setBackground(new java.awt.Color(255, 204, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 0, 0));
+        jButton3.setText("BACK");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("<html><span font color=\"rgb(178, 209, 201)\">Highest is <span font color = \"rgb(252, 140, 3)\">5</span> </span> <span font color=\"rgb(0,153,153)\">:)</span><span font color=\"rgb(178, 209, 201)\"> and the lowest is <span font color = \"rgb(252, 140, 3)\">1</span> </span> <span font color=\"rgb(0,153,153)\">:(<span></html>");
+
+        rd5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rd5.setForeground(new java.awt.Color(0, 102, 102));
+        rd5.setText("<html> <span font color=\"rgb(252, 140, 3)\">(5) <span>Loved it!</html> ");
+        rd5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd5ActionPerformed(evt);
+            }
+        });
+
+        rd4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rd4.setForeground(new java.awt.Color(0, 102, 102));
+        rd4.setText("<html> <span font color=\"rgb(252, 140, 3)\">(4) <span>Hmm, it wasn't shabby</html> ");
+        rd4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd4ActionPerformed(evt);
+            }
+        });
+
+        rd3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rd3.setForeground(new java.awt.Color(0, 102, 102));
+        rd3.setText("<html> <span font color=\"rgb(252, 140, 3)\">(3) <span> Eh! could have been better</html>");
+        rd3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd3ActionPerformed(evt);
+            }
+        });
+
+        rd2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rd2.setForeground(new java.awt.Color(0, 102, 102));
+        rd2.setText("<html> <span font color=\"rgb(252, 140, 3)\">(2) <span>Pretending that it was good but it really wasn't</html>  ");
+        rd2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd2ActionPerformed(evt);
+            }
+        });
+
+        rd1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rd1.setForeground(new java.awt.Color(0, 102, 102));
+        rd1.setText("<html><span font color=\"rgb(252, 140, 3)\">(1) <span>'Horrific' is the word!</html> ");
+        rd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(215, 254, 211));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(72, 151, 64));
+        jButton1.setText("SUBMIT");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout RateOrderPanelLayout = new javax.swing.GroupLayout(RateOrderPanel);
+        RateOrderPanel.setLayout(RateOrderPanelLayout);
+        RateOrderPanelLayout.setHorizontalGroup(
+            RateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RateOrderPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblHeading1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(jButton3)
+                .addGap(42, 42, 42))
+            .addComponent(jLabel2)
+            .addGroup(RateOrderPanelLayout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addGroup(RateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(rd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rd3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rd4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rd5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        RateOrderPanelLayout.setVerticalGroup(
+            RateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RateOrderPanelLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(RateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeading1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(133, 133, 133)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(rd5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rd4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rd3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(jButton1)
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(RateOrderPanel, "card6");
+
         jSplitPane1.setRightComponent(jLayeredPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1374,10 +1529,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             pnlOrderTable.setVisible(true);
             btnAddReview.setVisible(true);
             btnCancelOrder.setVisible(true);
+            btnRateOrder.setVisible(true);
         } else {
             pnlOrderTable.setVisible(false);
             btnAddReview.setVisible(false);
             btnCancelOrder.setVisible(false);
+            btnRateOrder.setVisible(false);
         }
     }//GEN-LAST:event_tglOrdersActionPerformed
 
@@ -1430,6 +1587,85 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             populateOrders();
         }
     }//GEN-LAST:event_btnCancelOrderActionPerformed
+
+    private void btnRateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRateOrderActionPerformed
+        int selectedRowIndex = tblOrders.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order.");
+            return;
+        } else {
+            switchPanels(RateOrderPanel);
+            DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            lblHeading1.setText("Rate Order " + selectedOrder.getId());
+            flags.setId(selectedOrder.getId());
+        }
+    }//GEN-LAST:event_btnRateOrderActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        switchPanels(MainWorkArea);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void rd5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd5ActionPerformed
+        rd4.setSelected(false);
+        rd3.setSelected(false);
+        rd2.setSelected(false);
+        rd1.setSelected(false);
+    }//GEN-LAST:event_rd5ActionPerformed
+
+    private void rd4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd4ActionPerformed
+        rd5.setSelected(false);
+        rd3.setSelected(false);
+        rd2.setSelected(false);
+        rd1.setSelected(false);
+    }//GEN-LAST:event_rd4ActionPerformed
+
+    private void rd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd3ActionPerformed
+        rd5.setSelected(false);
+        rd4.setSelected(false);
+        rd2.setSelected(false);
+        rd1.setSelected(false);        rd1.setSelected(false);        rd1.setSelected(false);    }//GEN-LAST:event_rd3ActionPerformed
+
+    private void rd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd2ActionPerformed
+        rd5.setSelected(false);
+        rd4.setSelected(false);
+        rd3.setSelected(false);
+        rd1.setSelected(false);         rd1.setSelected(false);         rd1.setSelected(false);     }//GEN-LAST:event_rd2ActionPerformed
+
+    private void rd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd1ActionPerformed
+        rd5.setSelected(false);
+        rd4.setSelected(false);
+        rd3.setSelected(false);
+        rd2.setSelected(false);        rd2.setSelected(false);        rd2.setSelected(false);    }//GEN-LAST:event_rd1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Order order = orderDirectory.findOrder(flags.getId());
+        int rating = 0;
+
+        if (rd5.isSelected()) {
+            rating = 5;
+        } else if (rd4.isSelected()) {
+            rating = 4;
+        } else if (rd3.isSelected()) {
+            rating = 3;
+        } else if (rd2.isSelected()) {
+            rating = 2;
+        } else {
+            rating = 1;
+        }
+
+        order.setOrderRating(rating);
+
+        for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+            if (orderDirectory.getOrders().get(i).getId() == flags.getId()) {
+                orderDirectory.getOrders().set(i, order);
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Rating submitted successfully.");
+        switchPanels(MainWorkArea);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -1666,17 +1902,22 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel FeedbackPanel;
     private javax.swing.JPanel MainWorkArea;
     private javax.swing.JPanel OrderPanel;
+    private javax.swing.JPanel RateOrderPanel;
     private javax.swing.JButton btnAddReview;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnEditProfile;
     private javax.swing.JButton btnOrder;
+    private javax.swing.JButton btnRateOrder;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSubmitFeedback;
     private javax.swing.JButton btnViewMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1708,6 +1949,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblHeading;
+    private javax.swing.JLabel lblHeading1;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMains1;
     private javax.swing.JLabel lblMainsNonVeg1;
@@ -1730,6 +1972,11 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel navigationPanel;
     private javax.swing.JPanel pnlOrderTable;
     private javax.swing.JPanel pnlTable;
+    private javax.swing.JRadioButton rd1;
+    private javax.swing.JRadioButton rd2;
+    private javax.swing.JRadioButton rd3;
+    private javax.swing.JRadioButton rd4;
+    private javax.swing.JRadioButton rd5;
     private javax.swing.JRadioButton rdBlackForestCake1;
     private javax.swing.JRadioButton rdCheeseBurger1;
     private javax.swing.JRadioButton rdChocolateMousse1;

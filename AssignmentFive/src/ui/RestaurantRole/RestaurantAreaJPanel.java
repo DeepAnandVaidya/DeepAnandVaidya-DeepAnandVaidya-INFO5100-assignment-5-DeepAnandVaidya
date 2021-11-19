@@ -17,6 +17,7 @@ import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JLabel;
@@ -83,6 +84,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
         pnlFeedbackTable.setVisible(false);
         btnClose.setVisible(false);
+        populateRating();
 
     }
 
@@ -104,6 +106,8 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         btnEditDetails = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblRating = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
         lblRestaurantName = new javax.swing.JLabel();
@@ -258,24 +262,41 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel2.setText("<html><span font color=\"rgb(178, 209, 201)\">C</span> <span font color=\"rgb(0,153,153)\">!<span></html> ");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(252, 206, 3));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("RATING");
+
+        lblRating.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblRating.setForeground(new java.awt.Color(252, 140, 3));
+        lblRating.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRating.setText("--");
+
         javax.swing.GroupLayout NavigationJPanelLayout = new javax.swing.GroupLayout(NavigationJPanel);
         NavigationJPanel.setLayout(NavigationJPanelLayout);
         NavigationJPanelLayout.setHorizontalGroup(
             NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(NavigationJPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(btnEditDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(NavigationJPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(btnEditDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(NavigationJPanelLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(NavigationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRating, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMenu, jButton2});
@@ -285,13 +306,17 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             .addGroup(NavigationJPanelLayout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(btnEditDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(lblRating)
+                .addGap(130, 130, 130)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton2)
-                .addGap(196, 196, 196)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         NavigationJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMenu, jButton2});
@@ -1925,6 +1950,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
@@ -1959,6 +1985,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblOrderedBy;
     private javax.swing.JLabel lblOrderedByValue;
     private javax.swing.JLabel lblPhoneNum;
+    private javax.swing.JLabel lblRating;
     private javax.swing.JLabel lblRestaurantName;
     private javax.swing.JLabel lblVeg;
     private javax.swing.JLabel lblVegan;
@@ -2315,4 +2342,31 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         return true;
     }
 
+    private void populateRating() {
+        ArrayList<Order> thisRestaurantOrders = orderDirectory.ordersofARestaurantWithSomeRating(restaurant.getName());
+        float counter = 0;
+        double average = 0;
+        float size = (float) thisRestaurantOrders.size();
+        if (thisRestaurantOrders != null && !thisRestaurantOrders.isEmpty()) {
+            for (Order order : thisRestaurantOrders) {
+                counter = counter + order.getOrderRating();
+            }
+
+            if (counter != 0) {
+                average = counter / size;
+            }
+        }
+
+        if (average != 0) {
+            restaurant.setAverageRating(average);
+            for (int i = 0; i <= restaurantDirectory.getRestaurants().size() - 1; i++) {
+                if (restaurantDirectory.getRestaurants().get(i).getName().equals(restaurant.getName())) {
+                    restaurantDirectory.getRestaurants().set(i, restaurant);
+                }
+            }
+            lblRating.setText(String.valueOf(average));
+        } else {
+            lblRating.setText("--");
+        }
+    }
 }

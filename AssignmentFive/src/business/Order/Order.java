@@ -24,6 +24,7 @@ public class Order {
     private String status;
     private HashMap<String, String> reviewComments;
     private String deliveryStaffName;
+    private int orderRating;
 
 //    public Order() {
 //        if (this.deliveryStaffName == null) {
@@ -32,7 +33,6 @@ public class Order {
 //            this.deliveryStaffName = deliveryStaffName;
 //        }
 //    }
-
     public String getCustomerName() {
         return customerName;
     }
@@ -103,6 +103,14 @@ public class Order {
 
     public void setDeliveryStaffName(String deliveryStaffName) {
         this.deliveryStaffName = deliveryStaffName;
+    }
+
+    public int getOrderRating() {
+        return orderRating;
+    }
+
+    public void setOrderRating(int orderRating) {
+        this.orderRating = orderRating;
     }
 
     @Override
