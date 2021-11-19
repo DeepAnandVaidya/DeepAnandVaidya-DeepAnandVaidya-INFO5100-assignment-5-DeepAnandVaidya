@@ -13,6 +13,7 @@ import business.Order.Order;
 import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -106,6 +107,14 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         btnEditProfile.setForeground(new java.awt.Color(0, 51, 51));
         btnEditProfile.setText("EDIT PROFILE");
         btnEditProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditProfileMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEditProfileMouseExited(evt);
+            }
+        });
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditProfileActionPerformed(evt);
@@ -117,6 +126,14 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         btnCompletedOrders.setForeground(new java.awt.Color(0, 51, 51));
         btnCompletedOrders.setText("COMPLETED ORDERS");
         btnCompletedOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCompletedOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCompletedOrdersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCompletedOrdersMouseExited(evt);
+            }
+        });
         btnCompletedOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompletedOrdersActionPerformed(evt);
@@ -128,6 +145,14 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         btnPendingOrders.setForeground(new java.awt.Color(0, 51, 51));
         btnPendingOrders.setText("PENDING ORDERS");
         btnPendingOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPendingOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPendingOrdersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPendingOrdersMouseExited(evt);
+            }
+        });
         btnPendingOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPendingOrdersActionPerformed(evt);
@@ -139,6 +164,14 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         btnAllOrders.setForeground(new java.awt.Color(0, 51, 51));
         btnAllOrders.setText("ALL ORDERS");
         btnAllOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAllOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAllOrdersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAllOrdersMouseExited(evt);
+            }
+        });
         btnAllOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAllOrdersActionPerformed(evt);
@@ -220,6 +253,15 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 102, 51));
         jButton1.setText("DELIVER ORDER");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -494,6 +536,48 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
             lblGreeting.setText("Welcome " + staff.getFirstName().toUpperCase() + " " + staff.getLastName().toUpperCase() + "!");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnEditProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditProfileMouseEntered
+        btnEditProfile.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnEditProfileMouseEntered
+
+    private void btnEditProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditProfileMouseExited
+        btnEditProfile.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnEditProfileMouseExited
+
+    private void btnCompletedOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompletedOrdersMouseEntered
+        btnCompletedOrders.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnCompletedOrdersMouseEntered
+
+    private void btnCompletedOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompletedOrdersMouseExited
+        btnCompletedOrders.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnCompletedOrdersMouseExited
+
+    private void btnPendingOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPendingOrdersMouseEntered
+        btnPendingOrders.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnPendingOrdersMouseEntered
+
+    private void btnPendingOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPendingOrdersMouseExited
+        btnPendingOrders.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnPendingOrdersMouseExited
+
+    private void btnAllOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllOrdersMouseEntered
+        btnCompletedOrders.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnAllOrdersMouseEntered
+
+    private void btnAllOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllOrdersMouseExited
+        btnCompletedOrders.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnAllOrdersMouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setBackground(new Color(255, 102, 51));
+        jButton1.setForeground(new Color(255, 204, 102));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setBackground(new Color(255, 204, 102));
+        jButton1.setForeground(new Color(255, 102, 51));
+    }//GEN-LAST:event_jButton1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

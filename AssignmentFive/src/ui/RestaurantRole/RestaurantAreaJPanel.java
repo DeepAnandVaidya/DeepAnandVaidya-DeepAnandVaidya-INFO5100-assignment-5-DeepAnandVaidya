@@ -282,6 +282,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblRating.setForeground(new java.awt.Color(252, 140, 3));
         lblRating.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRating.setText("--");
+        lblRating.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblRatingMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblRatingMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout NavigationJPanelLayout = new javax.swing.GroupLayout(NavigationJPanel);
         NavigationJPanel.setLayout(NavigationJPanelLayout);
@@ -391,6 +399,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnFeedback.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnFeedback.setForeground(new java.awt.Color(0, 102, 102));
         btnFeedback.setText("VIEW FEEDBACK");
+        btnFeedback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFeedback.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnFeedbackMouseEntered(evt);
@@ -588,6 +597,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblVeg.setForeground(new java.awt.Color(0, 51, 51));
         lblVeg.setText("VEG : ");
 
+        chkVeg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkVeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkVegActionPerformed(evt);
@@ -598,6 +608,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblNonVeg.setForeground(new java.awt.Color(0, 51, 51));
         lblNonVeg.setText("NON-VEG : ");
 
+        chkNonVeg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkNonVeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkNonVegActionPerformed(evt);
@@ -608,6 +619,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lblVegan.setForeground(new java.awt.Color(0, 51, 51));
         lblVegan.setText("VEGAN : ");
 
+        chkVegan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkVegan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkVeganActionPerformed(evt);
@@ -618,6 +630,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         lvlAll.setForeground(new java.awt.Color(0, 51, 51));
         lvlAll.setText("ALL :");
 
+        chkAll.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkAllActionPerformed(evt);
@@ -1911,6 +1924,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnAssign.setBackground(new Color(204, 255, 204));
         btnAssign.setForeground(new Color(0, 102, 51));
     }//GEN-LAST:event_btnAssignMouseExited
+
+    private void lblRatingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRatingMouseEntered
+//        lblRating.setFont(new Font("Segoe UI", Font.BOLD, 24));
+    }//GEN-LAST:event_lblRatingMouseEntered
+
+    private void lblRatingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRatingMouseExited
+//        lblRating.setFont(new Font("Segoe UI", Font.BOLD, 18));
+    }//GEN-LAST:event_lblRatingMouseExited
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();

@@ -16,6 +16,7 @@ import business.role.Role;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
@@ -113,6 +114,14 @@ public class LoginScreen extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 53)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("<html><b><span font color=\"rgb(0,153,153)\">CRUNCHY<span><span  font color=\"rgb(0,51,51)\">!</span></html>");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Edwardian Script ITC", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(149, 171, 171));
@@ -209,6 +218,14 @@ public class LoginScreen extends javax.swing.JPanel {
         btnLogin.setBackground(new Color(0,51,51));
         btnLogin.setForeground(new Color(0,204,204));
     }//GEN-LAST:event_btnLoginMouseExited
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        jLabel1.setFont(new Font("Segoe UI", Font.BOLD, 60));
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        jLabel1.setFont(new Font("Segoe UI", Font.BOLD, 53));
+    }//GEN-LAST:event_jLabel1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

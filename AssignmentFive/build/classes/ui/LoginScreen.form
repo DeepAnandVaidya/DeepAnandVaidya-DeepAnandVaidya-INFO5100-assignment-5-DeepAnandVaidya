@@ -166,6 +166,10 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;&lt;span font color=&quot;rgb(0,153,153)&quot;&gt;CRUNCHY&lt;span&gt;&lt;span  font color=&quot;rgb(0,51,51)&quot;&gt;!&lt;/span&gt;&lt;/html&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseExited"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
