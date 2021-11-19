@@ -861,13 +861,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(lblAptVeg1)
-                                .addGap(188, 188, 188)
-                                .addComponent(lblAptNonVeg1)
-                                .addGap(140, 140, 140)
-                                .addComponent(lblAptVegan1))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -988,21 +981,29 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                                             .addGap(3, 3, 3)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(213, 213, 213)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rdPrawnFriedRice1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPrawnFriedRicePrice))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rdHamBurger1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblHamburgerPrice))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rdFishNChips1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblFishNChipsPrice))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(rdPrawnFriedRice1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lblPrawnFriedRicePrice))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(rdHamBurger1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lblHamburgerPrice))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(rdFishNChips1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lblFishNChipsPrice)))
-                                    .addComponent(lblApetizers1)))))
+                                    .addComponent(lblApetizers1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblAptVeg1)
+                                        .addGap(188, 188, 188)
+                                        .addComponent(lblAptNonVeg1)))
+                                .addGap(140, 140, 140)
+                                .addComponent(lblAptVegan1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(lblDesserts1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1295,6 +1296,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         rd5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rd5.setForeground(new java.awt.Color(0, 102, 102));
         rd5.setText("<html> <span font color=\"rgb(252, 140, 3)\">(5) <span>Loved it!</html> ");
+        rd5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rd5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rd5ActionPerformed(evt);
@@ -1304,6 +1306,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         rd4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rd4.setForeground(new java.awt.Color(0, 102, 102));
         rd4.setText("<html> <span font color=\"rgb(252, 140, 3)\">(4) <span>Hmm, it wasn't shabby</html> ");
+        rd4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rd4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rd4ActionPerformed(evt);
@@ -1313,6 +1316,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         rd3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rd3.setForeground(new java.awt.Color(0, 102, 102));
         rd3.setText("<html> <span font color=\"rgb(252, 140, 3)\">(3) <span> Eh! could have been better</html>");
+        rd3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rd3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rd3ActionPerformed(evt);
@@ -1322,6 +1326,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         rd2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rd2.setForeground(new java.awt.Color(0, 102, 102));
         rd2.setText("<html> <span font color=\"rgb(252, 140, 3)\">(2) <span>Pretending that it was good but it really wasn't</html>  ");
+        rd2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rd2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rd2ActionPerformed(evt);
@@ -1331,6 +1336,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         rd1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rd1.setForeground(new java.awt.Color(0, 102, 102));
         rd1.setText("<html><span font color=\"rgb(252, 140, 3)\">(1) <span>'Horrific' is the word!</html> ");
+        rd1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rd1ActionPerformed(evt);
@@ -1595,11 +1601,16 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select an Order.");
             return;
         } else {
-            switchPanels(RateOrderPanel);
             DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
             Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
-            lblHeading1.setText("Rate Order " + selectedOrder.getId());
-            flags.setId(selectedOrder.getId());
+            if (!selectedOrder.getStatus().equals("DELIVERED")) {
+                JOptionPane.showMessageDialog(this, "This order is not delivered yet.");
+                return;
+            } else {
+                switchPanels(RateOrderPanel);
+                lblHeading1.setText("Rate Order " + selectedOrder.getId());
+                flags.setId(selectedOrder.getId());
+            }
         }
     }//GEN-LAST:event_btnRateOrderActionPerformed
 
