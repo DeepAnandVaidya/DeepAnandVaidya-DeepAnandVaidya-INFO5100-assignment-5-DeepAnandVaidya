@@ -15,6 +15,7 @@ import business.Restaurant.RestaurantDirectory;
 import business.role.Role;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
@@ -92,6 +93,14 @@ public class LoginScreen extends javax.swing.JPanel {
         btnLogin.setForeground(new java.awt.Color(0, 204, 204));
         btnLogin.setText("LOGIN");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLoginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLoginMouseExited(evt);
+            }
+        });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -190,6 +199,16 @@ public class LoginScreen extends javax.swing.JPanel {
             pwdField.setText("");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
+        btnLogin.setBackground(new Color(0, 128, 128));
+        btnLogin.setForeground(new Color(0, 51, 51));
+    }//GEN-LAST:event_btnLoginMouseEntered
+
+    private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
+        btnLogin.setBackground(new Color(0,51,51));
+        btnLogin.setForeground(new Color(0,204,204));
+    }//GEN-LAST:event_btnLoginMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

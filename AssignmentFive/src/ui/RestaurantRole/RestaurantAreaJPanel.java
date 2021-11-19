@@ -15,6 +15,7 @@ import business.Restaurant.Menu;
 import business.Restaurant.Restaurant;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -235,6 +236,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnMenu.setForeground(new java.awt.Color(0, 51, 51));
         btnMenu.setText("MENU");
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMenuMouseExited(evt);
+            }
+        });
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -246,6 +255,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnEditDetails.setForeground(new java.awt.Color(0, 51, 51));
         btnEditDetails.setText("EDIT DETAILS");
         btnEditDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditDetailsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEditDetailsMouseExited(evt);
+            }
+        });
         btnEditDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditDetailsActionPerformed(evt);
@@ -337,6 +354,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnAcceptOrder.setForeground(new java.awt.Color(0, 102, 51));
         btnAcceptOrder.setText("ACCEPT ORDER");
         btnAcceptOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAcceptOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAcceptOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAcceptOrderMouseExited(evt);
+            }
+        });
         btnAcceptOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptOrderActionPerformed(evt);
@@ -348,6 +373,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnrejectOrder.setForeground(new java.awt.Color(204, 0, 0));
         btnrejectOrder.setText("REJECT ORDER");
         btnrejectOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnrejectOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnrejectOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnrejectOrderMouseExited(evt);
+            }
+        });
         btnrejectOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnrejectOrderActionPerformed(evt);
@@ -358,6 +391,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnFeedback.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnFeedback.setForeground(new java.awt.Color(0, 102, 102));
         btnFeedback.setText("VIEW FEEDBACK");
+        btnFeedback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFeedbackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFeedbackMouseExited(evt);
+            }
+        });
         btnFeedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFeedbackActionPerformed(evt);
@@ -405,6 +446,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnClose.setForeground(new java.awt.Color(204, 0, 0));
         btnClose.setText("X");
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCloseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCloseMouseExited(evt);
+            }
+        });
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -416,6 +465,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnDetails.setForeground(new java.awt.Color(0, 153, 51));
         btnDetails.setText("DETAILS");
         btnDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDetailsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDetailsMouseExited(evt);
+            }
+        });
         btnDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetailsActionPerformed(evt);
@@ -427,6 +484,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnDetails1.setForeground(new java.awt.Color(0, 153, 204));
         btnDetails1.setText("SEND FOR DELIVERY");
         btnDetails1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDetails1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDetails1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDetails1MouseExited(evt);
+            }
+        });
         btnDetails1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetails1ActionPerformed(evt);
@@ -563,6 +628,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnSave.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSave.setForeground(new java.awt.Color(72, 151, 64));
         btnSave.setText("SAVE CHANGES");
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaveMouseExited(evt);
+            }
+        });
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -573,6 +646,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 0, 51));
         btnBack.setText("BACK");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -712,6 +793,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnBack3.setForeground(new java.awt.Color(255, 0, 51));
         btnBack3.setText("BACK");
         btnBack3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBack3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBack3MouseExited(evt);
+            }
+        });
         btnBack3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack3ActionPerformed(evt);
@@ -722,6 +811,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnBack4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBack4.setForeground(new java.awt.Color(72, 151, 64));
         btnBack4.setText("SAVE");
+        btnBack4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBack4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBack4MouseExited(evt);
+            }
+        });
         btnBack4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack4ActionPerformed(evt);
@@ -1197,6 +1294,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnBack5.setForeground(new java.awt.Color(255, 0, 51));
         btnBack5.setText("BACK");
         btnBack5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBack5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBack5MouseExited(evt);
+            }
+        });
         btnBack5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack5ActionPerformed(evt);
@@ -1295,6 +1400,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnBack6.setForeground(new java.awt.Color(255, 0, 51));
         btnBack6.setText("BACK");
         btnBack6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBack6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBack6MouseExited(evt);
+            }
+        });
         btnBack6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBack6ActionPerformed(evt);
@@ -1326,6 +1439,14 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         btnAssign.setForeground(new java.awt.Color(72, 151, 64));
         btnAssign.setText("ASSIGN");
         btnAssign.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAssign.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAssignMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAssignMouseExited(evt);
+            }
+        });
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
@@ -1648,6 +1769,148 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             switchPanels(workAreaPanel);
         }
     }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnEditDetailsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditDetailsMouseEntered
+        btnEditDetails.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnEditDetailsMouseEntered
+
+    private void btnEditDetailsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditDetailsMouseExited
+        btnEditDetails.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnEditDetailsMouseExited
+
+    private void btnMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseEntered
+        btnMenu.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnMenuMouseEntered
+
+    private void btnMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseExited
+        btnMenu.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnMenuMouseExited
+
+    private void btnAcceptOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptOrderMouseEntered
+        btnAcceptOrder.setBackground(new Color(0, 102, 51));
+        btnAcceptOrder.setForeground(new Color(204, 255, 204));
+    }//GEN-LAST:event_btnAcceptOrderMouseEntered
+
+    private void btnAcceptOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptOrderMouseExited
+        btnAcceptOrder.setBackground(new Color(204, 255, 204));
+        btnAcceptOrder.setForeground(new Color(0, 102, 51));
+    }//GEN-LAST:event_btnAcceptOrderMouseExited
+
+    private void btnrejectOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnrejectOrderMouseEntered
+        btnrejectOrder.setBackground(new Color(179, 0, 0));
+        btnrejectOrder.setForeground(new Color(255, 204, 204));
+    }//GEN-LAST:event_btnrejectOrderMouseEntered
+
+    private void btnrejectOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnrejectOrderMouseExited
+        btnrejectOrder.setBackground(new Color(255, 204, 204));
+        btnrejectOrder.setForeground(new Color(204, 0, 0));
+    }//GEN-LAST:event_btnrejectOrderMouseExited
+
+    private void btnDetails1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetails1MouseEntered
+        btnDetails1.setBackground(new Color(0, 153, 204));
+        btnDetails1.setForeground(new Color(0, 51, 51));
+    }//GEN-LAST:event_btnDetails1MouseEntered
+
+    private void btnDetails1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetails1MouseExited
+        btnDetails1.setBackground(new Color(204, 255, 255));
+        btnDetails1.setForeground(new Color(0, 153, 204));
+    }//GEN-LAST:event_btnDetails1MouseExited
+
+    private void btnDetailsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailsMouseEntered
+        btnDetails.setBackground(new Color(194, 240, 194));
+    }//GEN-LAST:event_btnDetailsMouseEntered
+
+    private void btnDetailsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailsMouseExited
+        btnDetails.setBackground(Color.white);
+    }//GEN-LAST:event_btnDetailsMouseExited
+
+    private void btnFeedbackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFeedbackMouseEntered
+        btnFeedback.setBackground(new Color(107, 174, 174));
+    }//GEN-LAST:event_btnFeedbackMouseEntered
+
+    private void btnFeedbackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFeedbackMouseExited
+        btnFeedback.setBackground(Color.white);
+    }//GEN-LAST:event_btnFeedbackMouseExited
+
+    private void btnCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseEntered
+        btnClose.setBackground(new Color(179, 0, 0));
+        btnClose.setForeground(new Color(255, 204, 204));
+    }//GEN-LAST:event_btnCloseMouseEntered
+
+    private void btnCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseExited
+        btnClose.setBackground(new Color(255, 204, 204));
+        btnClose.setForeground(new Color(204, 0, 0));
+    }//GEN-LAST:event_btnCloseMouseExited
+
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        btnBack.setBackground(new Color(179, 0, 0));
+        btnBack.setForeground(new Color(255, 204, 204));
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        btnBack.setBackground(new Color(255, 204, 204));
+        btnBack.setForeground(new Color(204, 0, 0));
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
+        btnSave.setBackground(new Color(0, 102, 51));
+        btnSave.setForeground(new Color(204, 255, 204));
+    }//GEN-LAST:event_btnSaveMouseEntered
+
+    private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
+        btnSave.setBackground(new Color(204, 255, 204));
+        btnSave.setForeground(new Color(0, 102, 51));
+    }//GEN-LAST:event_btnSaveMouseExited
+
+    private void btnBack3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack3MouseEntered
+        btnBack3.setBackground(new Color(179, 0, 0));
+        btnBack3.setForeground(new Color(255, 204, 204));
+    }//GEN-LAST:event_btnBack3MouseEntered
+
+    private void btnBack3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack3MouseExited
+        btnBack3.setBackground(new Color(255, 204, 204));
+        btnBack3.setForeground(new Color(204, 0, 0));
+    }//GEN-LAST:event_btnBack3MouseExited
+
+    private void btnBack4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack4MouseEntered
+        btnBack4.setBackground(new Color(0, 102, 51));
+        btnBack4.setForeground(new Color(204, 255, 204));
+    }//GEN-LAST:event_btnBack4MouseEntered
+
+    private void btnBack4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack4MouseExited
+        btnBack4.setBackground(new Color(204, 255, 204));
+        btnBack4.setForeground(new Color(0, 102, 51));
+    }//GEN-LAST:event_btnBack4MouseExited
+
+    private void btnBack5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack5MouseEntered
+        btnBack5.setBackground(new Color(179, 0, 0));
+        btnBack5.setForeground(new Color(255, 204, 204));
+    }//GEN-LAST:event_btnBack5MouseEntered
+
+    private void btnBack5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack5MouseExited
+        btnBack5.setBackground(new Color(255, 204, 204));
+        btnBack5.setForeground(new Color(204, 0, 0));
+    }//GEN-LAST:event_btnBack5MouseExited
+
+    private void btnBack6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack6MouseEntered
+        btnBack6.setBackground(new Color(179, 0, 0));
+        btnBack6.setForeground(new Color(255, 204, 204));
+    }//GEN-LAST:event_btnBack6MouseEntered
+
+    private void btnBack6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack6MouseExited
+        btnBack6.setBackground(new Color(255, 204, 204));
+        btnBack6.setForeground(new Color(204, 0, 0));
+    }//GEN-LAST:event_btnBack6MouseExited
+
+    private void btnAssignMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignMouseEntered
+        btnAssign.setBackground(new Color(0, 102, 51));
+        btnAssign.setForeground(new Color(204, 255, 204));
+    }//GEN-LAST:event_btnAssignMouseEntered
+
+    private void btnAssignMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignMouseExited
+        btnAssign.setBackground(new Color(204, 255, 204));
+        btnAssign.setForeground(new Color(0, 102, 51));
+    }//GEN-LAST:event_btnAssignMouseExited
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();

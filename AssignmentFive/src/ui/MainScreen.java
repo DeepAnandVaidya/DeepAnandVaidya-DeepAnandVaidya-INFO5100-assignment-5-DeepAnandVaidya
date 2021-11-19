@@ -19,6 +19,7 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.nio.file.Paths;
 import javax.swing.JPanel;
 
@@ -102,6 +103,14 @@ public class MainScreen extends javax.swing.JPanel {
         btnLogOff.setForeground(new java.awt.Color(0, 102, 102));
         btnLogOff.setText("LOGOFF");
         btnLogOff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogOffMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogOffMouseExited(evt);
+            }
+        });
         btnLogOff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOffActionPerformed(evt);
@@ -155,6 +164,14 @@ public class MainScreen extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
     }//GEN-LAST:event_btnLogOffActionPerformed
+
+    private void btnLogOffMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOffMouseEntered
+        btnLogOff.setBackground(new Color(107, 174, 174));
+    }//GEN-LAST:event_btnLogOffMouseEntered
+
+    private void btnLogOffMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOffMouseExited
+        btnLogOff.setBackground(Color.white);
+    }//GEN-LAST:event_btnLogOffMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,6 +13,7 @@ import business.Order.OrderDirectory;
 import business.Restaurant.RestaurantDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -87,6 +88,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnRestaurant.setForeground(new java.awt.Color(0, 51, 51));
         btnRestaurant.setText("MANAGE RESTAURANTS");
         btnRestaurant.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRestaurant.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRestaurantMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRestaurantMouseExited(evt);
+            }
+        });
         btnRestaurant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRestaurantActionPerformed(evt);
@@ -98,6 +107,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnDeliveryStaff.setForeground(new java.awt.Color(0, 51, 51));
         btnDeliveryStaff.setText("MANAGE DELIVERY STAFF");
         btnDeliveryStaff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDeliveryStaff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeliveryStaffMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeliveryStaffMouseExited(evt);
+            }
+        });
         btnDeliveryStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveryStaffActionPerformed(evt);
@@ -109,6 +126,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnCustomers.setForeground(new java.awt.Color(0, 51, 51));
         btnCustomers.setText("MANAGE CUSTOMERS");
         btnCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCustomersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCustomersMouseExited(evt);
+            }
+        });
         btnCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCustomersActionPerformed(evt);
@@ -246,6 +271,30 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         workAreaPanel.add("ManageCustomerPanel", manageCustomerPanel);
         CardLayout layout = (CardLayout) workAreaPanel.getLayout();
         layout.next(workAreaPanel);    }//GEN-LAST:event_btnCustomersActionPerformed
+
+    private void btnRestaurantMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRestaurantMouseEntered
+        btnRestaurant.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnRestaurantMouseEntered
+
+    private void btnRestaurantMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRestaurantMouseExited
+        btnRestaurant.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnRestaurantMouseExited
+
+    private void btnDeliveryStaffMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeliveryStaffMouseEntered
+        btnDeliveryStaff.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnDeliveryStaffMouseEntered
+
+    private void btnDeliveryStaffMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeliveryStaffMouseExited
+        btnDeliveryStaff.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnDeliveryStaffMouseExited
+
+    private void btnCustomersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomersMouseEntered
+        btnCustomers.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnCustomersMouseEntered
+
+    private void btnCustomersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomersMouseExited
+        btnCustomers.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnCustomersMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

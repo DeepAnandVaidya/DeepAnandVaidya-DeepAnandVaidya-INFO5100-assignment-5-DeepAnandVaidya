@@ -13,6 +13,7 @@ import business.role.Customer;
 import business.role.RestaurantRole;
 import business.role.Role;
 import business.useraccount.UserAccount;
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -96,6 +97,14 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
         jButton1.setText("BACK");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -137,6 +146,14 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         btnCreateUser.setForeground(new java.awt.Color(0, 102, 102));
         btnCreateUser.setText("CREATE");
         btnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCreateUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCreateUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCreateUserMouseExited(evt);
+            }
+        });
         btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateUserActionPerformed(evt);
@@ -157,6 +174,14 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         btnUpdateSave.setForeground(new java.awt.Color(0, 102, 102));
         btnUpdateSave.setText("UPDATE");
         btnUpdateSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateSaveMouseExited(evt);
+            }
+        });
         btnUpdateSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateSaveActionPerformed(evt);
@@ -239,6 +264,14 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         btnDelete.setForeground(new java.awt.Color(153, 0, 0));
         btnDelete.setText("DELETE USER");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseExited(evt);
+            }
+        });
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -250,6 +283,14 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         btnUpdate.setForeground(new java.awt.Color(0, 102, 0));
         btnUpdate.setText("UPDATE USER");
         btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseExited(evt);
+            }
+        });
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -463,6 +504,46 @@ public class ManageCustomerPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setBackground(new Color(248, 186, 186));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setBackground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void btnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseEntered
+        btnDelete.setBackground(new Color(248, 186, 186));
+    }//GEN-LAST:event_btnDeleteMouseEntered
+
+    private void btnDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseExited
+        btnDelete.setBackground(Color.white);
+    }//GEN-LAST:event_btnDeleteMouseExited
+
+    private void btnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseEntered
+        btnUpdate.setBackground(new Color(194, 240, 194));
+    }//GEN-LAST:event_btnUpdateMouseEntered
+
+    private void btnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseExited
+        btnUpdate.setBackground(Color.white);
+    }//GEN-LAST:event_btnUpdateMouseExited
+
+    private void btnCreateUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateUserMouseEntered
+        btnCreateUser.setBackground(new Color(107, 174, 174));
+    }//GEN-LAST:event_btnCreateUserMouseEntered
+
+    private void btnCreateUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateUserMouseExited
+        btnCreateUser.setBackground(new Color(175, 211, 211));
+    }//GEN-LAST:event_btnCreateUserMouseExited
+
+    private void btnUpdateSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateSaveMouseEntered
+        btnUpdateSave.setBackground(new Color(107, 174, 174));
+    }//GEN-LAST:event_btnUpdateSaveMouseEntered
+
+    private void btnUpdateSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateSaveMouseExited
+        btnUpdateSave.setBackground(new Color(175, 211, 211));
+    }//GEN-LAST:event_btnUpdateSaveMouseExited
 
     private boolean validations() {
         boolean validData = true;

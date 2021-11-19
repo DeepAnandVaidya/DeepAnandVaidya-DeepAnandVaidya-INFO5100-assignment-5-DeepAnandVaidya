@@ -14,6 +14,7 @@ import business.role.DeliveryManRole;
 import business.role.RestaurantRole;
 import business.role.Role;
 import business.useraccount.UserAccount;
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,12 +34,12 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
     Business business;
     DeliveryStaffDirectory deliveryStaffDirectory;
     FlagClass flags;
-    
+
     public ManageDeliveryStaffPanel(Business business, DeliveryStaffDirectory deliveryStaffDirectory) {
         initComponents();
         this.business = business;
         this.deliveryStaffDirectory = deliveryStaffDirectory;
-        
+
         JTableHeader tableHeader = tblDeliveryStaff.getTableHeader();
         tableHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
         ((DefaultTableCellRenderer) tableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -97,6 +98,14 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
         jButton1.setText("BACK");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -138,6 +147,14 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         btnCreateUser.setForeground(new java.awt.Color(0, 102, 102));
         btnCreateUser.setText("CREATE");
         btnCreateUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCreateUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCreateUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCreateUserMouseExited(evt);
+            }
+        });
         btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateUserActionPerformed(evt);
@@ -170,6 +187,14 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         btnUpdateSave.setForeground(new java.awt.Color(0, 102, 102));
         btnUpdateSave.setText("UPDATE");
         btnUpdateSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateSaveMouseExited(evt);
+            }
+        });
         btnUpdateSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateSaveActionPerformed(evt);
@@ -245,6 +270,14 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         btnDelete.setForeground(new java.awt.Color(153, 0, 0));
         btnDelete.setText("DELETE USER");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseExited(evt);
+            }
+        });
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -256,6 +289,14 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         btnUpdate.setForeground(new java.awt.Color(0, 102, 0));
         btnUpdate.setText("UPDATE USER");
         btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseExited(evt);
+            }
+        });
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -362,7 +403,7 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
         if (validations()) {
             String userName = txtUserName.getText();
             String password = pwdPassword.getText();
-            
+
             if (!business.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
                 JOptionPane.showMessageDialog(null, "UserName already taken!");
                 txtUserName.setText("");
@@ -373,14 +414,14 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
                 Employee employee = new Employee(txtFirstName.getText() + " " + txtLastName.getText());
                 DeliveryManRole role = new DeliveryManRole();
                 business.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-                
+
                 JOptionPane.showMessageDialog(null, "User Account added successfully.");
                 txtFirstName.setText("");
                 txtLastName.setText("");
                 txtUserName.setText("");
                 pwdPassword.setText("");
                 populateDeliveryStaffRole();
-                
+
                 DeliveryStaff deliveryStaff = deliveryStaffDirectory.addDeliveryStaff();
                 deliveryStaff.setUserName(userName);
                 deliveryStaff.setFirstName(firstName);
@@ -392,31 +433,31 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
         if (updateValidations()) {
-            
+
             UserAccount updatedAccount = business.getUserAccountDirectory().fetchUserAccountUsingUserName(flags.getUserName());
             updatedAccount.setUsername(txtUserName1.getText());
             updatedAccount.setPassword(txtPassword.getText());
             Employee employee = new Employee();
             employee.setName(txtFirstName1.getText() + " " + txtLastName1.getText());
             updatedAccount.setEmployee(employee);
-            
+
             for (int i = 0; i <= business.getUserAccountDirectory().getUserAccountList().size() - 1; i++) {
                 if (business.getUserAccountDirectory().getUserAccountList().get(i).getUsername().equals(flags.getUserName())) {
                     business.getUserAccountDirectory().getUserAccountList().set(i, updatedAccount);
                 }
             }
-            
+
             DeliveryStaff staff = business.getDeliveryStaffDirectory().findStaffByUserName(flags.getUserName());
             staff.setUserName(txtUserName1.getText());
             staff.setFirstName(txtFirstName1.getText());
             staff.setLastName(txtLastName1.getText());
-            
+
             for (int i = 0; i <= business.getDeliveryStaffDirectory().getDeliveryStaffMembers().size() - 1; i++) {
                 if (business.getDeliveryStaffDirectory().getDeliveryStaffMembers().get(i).getUserName().equals(flags.getUserName())) {
                     business.getDeliveryStaffDirectory().getDeliveryStaffMembers().set(i, staff);
                 }
             }
-            
+
             business.getOrderDirectory().updateSelectedDeliveryStaffOrders(flags.getDeliveryStaffName(), txtFirstName1.getText() + " " + txtLastName1.getText());
             JOptionPane.showMessageDialog(null, "User Account updated successfully.");
             pnlUpdateUser.setVisible(false);
@@ -426,7 +467,7 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRowIndex = tblDeliveryStaff.getSelectedRow();
-        
+
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a User");
             return;
@@ -437,19 +478,19 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
             business.getUserAccountDirectory().removeAccount(accountToBeRemoved);
             JOptionPane.showMessageDialog(null, "User Account deleted successfully.");
             populateDeliveryStaffRole();
-            
+
             DeliveryStaff staff = business.getDeliveryStaffDirectory().findStaffByUserName(selectedUserAccount.getUsername());
-            
+
             business.getOrderDirectory().removeSelectedDeliveryStaffOrders(staff.getFirstName() + " " + staff.getLastName());
             business.getDeliveryStaffDirectory().removeRestaurant(staff);
-            
+
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        
+
         int selectedRowIndex = tblDeliveryStaff.getSelectedRow();
-        
+
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a User");
             return;
@@ -465,7 +506,47 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
             flags.setDeliveryStaffName(selectedUserAccount.getEmployee().getName());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
-    
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setBackground(new Color(248, 186, 186));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setBackground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void btnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseEntered
+        btnDelete.setBackground(new Color(248, 186, 186));
+    }//GEN-LAST:event_btnDeleteMouseEntered
+
+    private void btnDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseExited
+        btnDelete.setBackground(Color.white);
+    }//GEN-LAST:event_btnDeleteMouseExited
+
+    private void btnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseEntered
+        btnUpdate.setBackground(new Color(194, 240, 194));
+    }//GEN-LAST:event_btnUpdateMouseEntered
+
+    private void btnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseExited
+        btnUpdate.setBackground(Color.white);
+    }//GEN-LAST:event_btnUpdateMouseExited
+
+    private void btnCreateUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateUserMouseEntered
+        btnCreateUser.setBackground(new Color(107, 174, 174));
+    }//GEN-LAST:event_btnCreateUserMouseEntered
+
+    private void btnCreateUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateUserMouseExited
+        btnCreateUser.setBackground(new Color(175, 211, 211));
+    }//GEN-LAST:event_btnCreateUserMouseExited
+
+    private void btnUpdateSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateSaveMouseEntered
+        btnUpdateSave.setBackground(new Color(107, 174, 174));
+    }//GEN-LAST:event_btnUpdateSaveMouseEntered
+
+    private void btnUpdateSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateSaveMouseExited
+        btnUpdateSave.setBackground(new Color(175, 211, 211));
+    }//GEN-LAST:event_btnUpdateSaveMouseExited
+
     private boolean validations() {
         boolean validData = true;
         if (txtFirstName == null || txtFirstName.getText().isBlank() || txtFirstName.getText().isEmpty()) {
@@ -488,7 +569,7 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
             return true;
         }
     }
-    
+
     private boolean updateValidations() {
         boolean validData = true;
         if (txtFirstName1 == null || txtFirstName1.getText().isBlank() || txtFirstName1.getText().isEmpty()) {
@@ -546,7 +627,7 @@ public class ManageDeliveryStaffPanel extends javax.swing.JPanel {
     private void populateDeliveryStaffRole() {
         DefaultTableModel model = (DefaultTableModel) tblDeliveryStaff.getModel();
         model.setRowCount(0);
-        
+
         for (UserAccount userAccount : business.getUserAccountDirectory().getUserAccountList()) {
             Object[] row = new Object[3];
             RestaurantRole role = new RestaurantRole();
