@@ -341,13 +341,13 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
         tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "CUSTOMER", "BILL AMOUNT", "ORDER TIME", "STATUS", "DELIVERY STAFF"
+                "ID", "CUSTOMER", "BILL AMOUNT", "ORDER TIME", "STATUS", "DELIVERY STAFF", "ADDRESS"
             }
         ));
         tblOrders.setSelectionBackground(new java.awt.Color(153, 209, 232));
@@ -1746,12 +1746,18 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select an Order");
             return;
         } else {
-            switchPanels(AssignDeliveryPanel);
             DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
             Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
-            orderId = selectedOrder.getId();
-            lblHeader4.setText("Assign Order: " + orderId);
-            populateStaffMembers();
+
+            if (!selectedOrder.getStatus().equals("ACCEPTED")) {
+                JOptionPane.showMessageDialog(this, "Accept the order first.");
+                return;
+            } else {
+                switchPanels(AssignDeliveryPanel);
+                orderId = selectedOrder.getId();
+                lblHeader4.setText("Assign Order: " + orderId);
+                populateStaffMembers();
+            }
         }
     }//GEN-LAST:event_btnDetails1ActionPerformed
 
@@ -2493,7 +2499,7 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
         for (Order order : orderDirectory.getOrders()) {
             if (order.getRestaurantName().equals(restaurant.getName())) {
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = order;
                 row[1] = order.getCustomerName();
                 row[2] = order.getCost() + "$";
@@ -2502,6 +2508,10 @@ public class RestaurantAreaJPanel extends javax.swing.JPanel {
 
                 if (order.getDeliveryStaffName() != null) {
                     row[5] = order.getDeliveryStaffName().toUpperCase();
+                }
+
+                if (order.getCustomerAddress()!= null) {
+                    row[6] = order.getCustomerAddress();
                 }
                 model.addRow(row);
             }

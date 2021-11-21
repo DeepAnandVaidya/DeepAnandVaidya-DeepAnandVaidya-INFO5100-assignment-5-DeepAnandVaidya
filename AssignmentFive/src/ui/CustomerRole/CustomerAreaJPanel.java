@@ -126,6 +126,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         lblMobileNum = new javax.swing.JLabel();
         txtMobileNum = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        lblAddress = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
         OrderPanel = new javax.swing.JPanel();
         lblHeader1 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
@@ -216,6 +218,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         btnEditProfile.setForeground(new java.awt.Color(0, 51, 51));
         btnEditProfile.setText("EDIT PROFILE");
         btnEditProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditProfileMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEditProfileMouseExited(evt);
+            }
+        });
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditProfileActionPerformed(evt);
@@ -227,6 +237,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tglOrders.setForeground(new java.awt.Color(0, 51, 51));
         tglOrders.setText("TOGGLE ORDERS");
         tglOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tglOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tglOrdersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tglOrdersMouseExited(evt);
+            }
+        });
         tglOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglOrdersActionPerformed(evt);
@@ -333,13 +351,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "RESTAURANT", "TOTAL COST", "ORDER TIME", "ORDER STATUS", "DELIVERED BY"
+                "ID", "RESTAURANT", "TOTAL COST", "ORDER TIME", "ORDER STATUS", "DELIVERED BY", "ADDRESS"
             }
         ));
         tblOrders.setSelectionBackground(new java.awt.Color(153, 209, 232));
@@ -371,6 +389,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         btnAddReview.setForeground(new java.awt.Color(0, 153, 51));
         btnAddReview.setText("Add a Feedback");
         btnAddReview.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAddReview.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddReviewMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddReviewMouseExited(evt);
+            }
+        });
         btnAddReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddReviewActionPerformed(evt);
@@ -520,6 +546,18 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAddress.setForeground(new java.awt.Color(0, 51, 51));
+        lblAddress.setText("ADDRESS : ");
+
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtAddress.setForeground(new java.awt.Color(0, 102, 102));
+        txtAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddressActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EditProfilePanelLayout = new javax.swing.GroupLayout(EditProfilePanel);
         EditProfilePanel.setLayout(EditProfilePanelLayout);
         EditProfilePanelLayout.setHorizontalGroup(
@@ -529,31 +567,37 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addGap(35, 35, 35))
             .addGroup(EditProfilePanelLayout.createSequentialGroup()
-                .addGap(201, 201, 201)
                 .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditProfilePanelLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(lblHeader))
-                    .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
-                            .addComponent(lblMobileNum)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
-                            .addComponent(lblEmail)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditProfilePanelLayout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(lblHeader))
                             .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblFirstName)
-                                .addComponent(lblLastName))
-                            .addGap(18, 18, 18)
-                            .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(32, 32, 32))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                                    .addComponent(lblMobileNum)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                                    .addComponent(lblEmail)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                                    .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblFirstName)
+                                        .addComponent(lblLastName))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                        .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProfilePanelLayout.createSequentialGroup()
+                                    .addComponent(lblAddress)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(EditProfilePanelLayout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(232, Short.MAX_VALUE))
         );
         EditProfilePanelLayout.setVerticalGroup(
@@ -579,9 +623,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMobileNum)
                     .addComponent(txtMobileNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(26, 26, 26)
+                .addGroup(EditProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAddress)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(btnSave)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(EditProfilePanel, "card3");
@@ -1442,9 +1490,19 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             customer.setLastName(txtLastName.getText());
             customer.setEmail(txtEmail.getText());
             customer.setPhoneNumber(txtMobileNum.getText());
+            customer.setAddress(txtAddress.getText());
 
             JOptionPane.showMessageDialog(null, "Profile details saved successfully.");
             switchPanels(MainWorkArea);
+
+            Order order = orderDirectory.findOrderByCustomerName(customer.getFirstName() + " " + customer.getLastName());
+            order.setCustomerAddress(txtAddress.getText());
+
+            for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+                if (orderDirectory.getOrders().get(i).getCustomerName().equals(customer.getFirstName() + " " + customer.getLastName())) {
+                    orderDirectory.getOrders().set(i, order);
+                }
+            }
 
             for (int i = 0; i <= customerDirectory.getCustomers().size() - 1; i++) {
                 if (customerDirectory.getCustomers().get(i).getUserName().equals(userName)) {
@@ -1453,6 +1511,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
 
             lblGreeting.setText("Ready to Order " + customer.getFirstName().toUpperCase() + " " + customer.getLastName().toUpperCase() + "?");
+
+            if (orderDirectory != null) {
+                populateOrders();
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -1462,6 +1524,20 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         txtLastName.setText(customer.getLastName());
         txtEmail.setText(customer.getEmail());
         txtMobileNum.setText(customer.getPhoneNumber());
+        txtAddress.setText(customer.getAddress());
+
+//        Order order = orderDirectory.findOrderByCustomerName(customer.getAddress());
+//        order.setCustomerAddress(txtAddress.getText());
+//
+//        for (int i = 0; i <= orderDirectory.getOrders().size() - 1; i++) {
+//            if (orderDirectory.getOrders().get(i).getCustomerName().equals(customer.getFirstName() + " " + customer.getLastName())) {
+//                orderDirectory.getOrders().set(i, order);
+//            }
+//        }
+//
+//        if (orderDirectory != null) {
+//            populateOrders();
+//        }
     }//GEN-LAST:event_btnEditProfileActionPerformed
 
     private void btnViewMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMenuActionPerformed
@@ -1499,6 +1575,101 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         switchPanels(MainWorkArea);
+        lblOnionRingsPrice.setText("- NA -");
+        lblOnionRingsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdOnionRings1.setEnabled(false);
+
+        lblSpinachPiePrice.setText("- NA -");
+        lblSpinachPiePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdSpinachPie1.setEnabled(false);
+
+        lblSpringRolesPrice.setText("- NA -");
+        lblSpringRolesPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdSpringRoles1.setEnabled(false);
+
+        lblMeatBallsPrice.setText("- NA -");
+        lblMeatBallsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdMeatBalls1.setEnabled(false);
+
+        lblsausageDipPrice.setText("- NA -");
+        lblsausageDipPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdSausageDip1.setEnabled(false);
+
+        lblFriedShrimpPrice.setText("- NA -");
+        lblFriedShrimpPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdFriedShrimp1.setEnabled(false);
+
+        lblWhiteBeanDipPrice.setText("- NA -");
+        lblWhiteBeanDipPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdWhiteBeanDip1.setEnabled(false);
+
+        lblTortillaChipsPrice.setText("- NA -");
+        lblTortillaChipsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdTortillaChips1.setEnabled(false);
+
+        lblCrispyTofuPrice.setText("- NA -");
+        lblCrispyTofuPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdCrispyTofu1.setEnabled(false);
+
+        lblCheeseBurgerPrice.setText("- NA -");
+        lblCheeseBurgerPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdCheeseBurger1.setEnabled(false);
+
+        lblFriedRicePrice.setText("- NA -");
+        lblFriedRicePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdFriedRice1.setEnabled(false);
+
+        lblVeggiePrice.setText("- NA -");
+        lblVeggiePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdVeggiePizza1.setEnabled(false);
+
+        lblHamburgerPrice.setText("- NA -");
+        lblHamburgerPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdHamBurger1.setEnabled(false);
+
+        lblFishNChipsPrice.setText("- NA -");
+        lblFishNChipsPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdFishNChips1.setEnabled(false);
+
+        lblPrawnFriedRicePrice.setText("- NA -");
+        lblPrawnFriedRicePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdPrawnFriedRice1.setEnabled(false);
+
+        lblTofuSaladPrice.setText("- NA -");
+        lblTofuSaladPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdTofuSalad1.setEnabled(false);
+
+        lblFalafelBowlPrice.setText("- NA -");
+        lblFalafelBowlPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdFalafelBowl1.setEnabled(false);
+
+        lblTofuRiceBowlPrice.setText("- NA -");
+        lblTofuRiceBowlPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdTofuAndRiceBowl1.setEnabled(false);
+
+        lblBlackForestCakePrice.setText("- NA -");
+        lblBlackForestCakePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdBlackForestCake1.setEnabled(false);
+
+        lblPineappleSwissRolePrice.setText("- NA -");
+        lblPineappleSwissRolePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdPineappleSwissRole1.setEnabled(false);
+
+        lblChocolateMoussePrice.setText("- NA -");
+        lblChocolateMoussePrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdChocolateMousse1.setEnabled(false);
+
+        lblCocaColaPrice.setText("- NA -");
+        lblCocaColaPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdCocaCola1.setEnabled(false);
+
+        lblFreshLimeSaltedPrice.setText("- NA -");
+        lblFreshLimeSaltedPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdFreshLimesalted1.setEnabled(false);
+
+        lblPepsiPrice.setText("- NA -");
+        lblPepsiPrice.setForeground(new java.awt.Color(0, 102, 102));
+        rdPepsi1.setEnabled(false);
     }//GEN-LAST:event_btnBack1ActionPerformed
 
     private void rdOnionRings1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdOnionRings1ActionPerformed
@@ -1512,6 +1683,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         Order order = orderDirectory.addOrder();
         order.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
+        order.setCustomerAddress(customer.getAddress());
         order.setRestaurantName(restaurantName);
         order.setFoodItems(foodItems);
         order.setStatus("PENDING");
@@ -1677,6 +1849,34 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Rating submitted successfully.");
         switchPanels(MainWorkArea);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnEditProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditProfileMouseEntered
+        btnEditProfile.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_btnEditProfileMouseEntered
+
+    private void btnEditProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditProfileMouseExited
+        btnEditProfile.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_btnEditProfileMouseExited
+
+    private void tglOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tglOrdersMouseEntered
+        tglOrders.setBackground(new Color(112, 143, 143));
+    }//GEN-LAST:event_tglOrdersMouseEntered
+
+    private void tglOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tglOrdersMouseExited
+        tglOrders.setBackground(new Color(206, 217, 217));
+    }//GEN-LAST:event_tglOrdersMouseExited
+
+    private void btnAddReviewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddReviewMouseEntered
+        btnAddReview.setBackground(new Color(194, 240, 194));
+    }//GEN-LAST:event_btnAddReviewMouseEntered
+
+    private void btnAddReviewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddReviewMouseExited
+        btnAddReview.setBackground(Color.white);
+    }//GEN-LAST:event_btnAddReviewMouseExited
+
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
 
     private void switchPanels(Component component) {
         jLayeredPane1.removeAll();
@@ -1936,6 +2136,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lbBeverages1;
+    private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblApetizers1;
     private javax.swing.JLabel lblAptNonVeg1;
     private javax.swing.JLabel lblAptVeg1;
@@ -2015,6 +2216,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblOrders;
     private javax.swing.JTable tblRestaurants;
     private javax.swing.JToggleButton tglOrders;
+    private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFeedback;
     private javax.swing.JTextField txtFirstName;
@@ -2047,7 +2249,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         for (Order order : orderDirectory.getOrders()) {
             if (order.getCustomerName().equals(customer.getFirstName() + " " + customer.getLastName())) {
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = order;
                 row[1] = order.getRestaurantName();
                 row[2] = order.getCost() + "$";
@@ -2058,6 +2260,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     row[5] = order.getDeliveryStaffName().toUpperCase();
                 } else {
                     row[5] = "- NA -";
+                }
+
+                if (order.getCustomerAddress() != null && !order.getCustomerAddress().isBlank() && !order.getCustomerAddress().isEmpty()) {
+                    row[6] = order.getCustomerAddress();
+                } else {
+                    row[6] = "- NA -";
                 }
 
                 model.addRow(row);
@@ -2207,7 +2415,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         boolean validData = true;
 
-        // validate the name field
         if (txtFirstName.getText().isBlank() || txtFirstName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "First Name is blank, enter some data!");
             validData = false;
@@ -2217,18 +2424,19 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Last is blank, enter some data!");
             validData = false;
             return validData;
-        } // validate the address line 2 field
-        else if (!emailValidate(txtEmail.getText())) {
+        } else if (!emailValidate(txtEmail.getText())) {
             JOptionPane.showMessageDialog(this, "Enter a valid EmailID!");
             validData = false;
             return validData;
-        } // validate the date of birth
-        else if (!teleNumValidate(txtMobileNum.getText())) {
+        } else if (!teleNumValidate(txtMobileNum.getText())) {
             JOptionPane.showMessageDialog(this, "Enter a valid Phone Number!");
             validData = false;
             return validData;
-        } // validate Primary Telephone Number
-        else {
+        } else if (txtAddress.getText().isBlank() || txtAddress.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Address is blank, enter some data!!");
+            validData = false;
+            return validData;
+        } else {
             return true;
         }
     }

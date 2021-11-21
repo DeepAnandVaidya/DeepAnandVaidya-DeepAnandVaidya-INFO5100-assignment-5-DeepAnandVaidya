@@ -238,13 +238,13 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
         tblOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "CUSTOMER", "RESTAURANT", "ORDER TIME", "STATUS"
+                "ID", "CUSTOMER", "RESTAURANT", "ORDER TIME", "STATUS", "ADDRESS"
             }
         ));
         jScrollPane1.setViewportView(tblOrders);
@@ -617,35 +617,38 @@ public class DeliveryAreaJPanel extends javax.swing.JPanel {
                 if (order.getDeliveryStaffName().equals(account.getEmployee().getName())) {
                     if (flag != null && flag.equals("COMPLETED ORDERS")) {
                         if (order.getStatus().equals("DELIVERED")) {
-                            Object[] row = new Object[5];
+                            Object[] row = new Object[6];
                             row[0] = order;
                             row[1] = order.getCustomerName().toUpperCase();
                             row[2] = order.getRestaurantName().toUpperCase();
                             row[3] = order.getOrderDateTime();
                             row[4] = order.getStatus();
+                            row[5] = order.getCustomerAddress();
                             model.addRow(row);
                         }
                     }
 
                     if (flag != null && flag.equals("PENDING ORDERS")) {
                         if (order.getStatus().equals("ASSIGNED")) {
-                            Object[] row = new Object[5];
+                            Object[] row = new Object[6];
                             row[0] = order;
                             row[1] = order.getCustomerName().toUpperCase();
                             row[2] = order.getRestaurantName().toUpperCase();
                             row[3] = order.getOrderDateTime();
                             row[4] = order.getStatus();
+                            row[5] = order.getCustomerAddress();
                             model.addRow(row);
                         }
                     }
 
                     if (flag == null) {
-                        Object[] row = new Object[5];
+                        Object[] row = new Object[6];
                         row[0] = order;
                         row[1] = order.getCustomerName().toUpperCase();
                         row[2] = order.getRestaurantName().toUpperCase();
                         row[3] = order.getOrderDateTime();
                         row[4] = order.getStatus();
+                        row[5] = order.getCustomerAddress();
                         model.addRow(row);
                     }
                 }

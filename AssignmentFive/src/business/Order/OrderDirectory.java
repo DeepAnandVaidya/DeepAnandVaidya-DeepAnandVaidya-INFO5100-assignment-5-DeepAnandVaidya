@@ -128,4 +128,18 @@ public class OrderDirectory {
         return restaurantOrders;
     }
 
+    public Order findOrderByCustomerName(String customerName) {
+        Order order = new Order();
+        for (Order order2 : orders) {
+            if (order2.getCustomerName() != null && !order2.getCustomerName().isBlank() && !order2.getCustomerName().isEmpty()) {
+                if (order2.getCustomerName().equals(customerName)) {
+                    order = order2;
+                    break;
+                }
+            }
+        }
+
+        return order;
+    }
+
 }

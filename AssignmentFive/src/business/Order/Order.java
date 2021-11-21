@@ -25,6 +25,7 @@ public class Order {
     private HashMap<String, String> reviewComments;
     private String deliveryStaffName;
     private int orderRating;
+    private String customerAddress;
 
 //    public Order() {
 //        if (this.deliveryStaffName == null) {
@@ -111,6 +112,14 @@ public class Order {
 
     public void setOrderRating(int orderRating) {
         this.orderRating = orderRating;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
     }
 
     @Override
